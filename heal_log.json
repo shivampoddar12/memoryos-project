@@ -1,0 +1,28 @@
+[
+  {
+    "session": 1,
+    "timestamp": "2026-06-25T05:26:58.743951",
+    "drift_score_before": 0.5511,
+    "memories_before": 5,
+    "memories_pruned": 0,
+    "memories_after": 5,
+    "reinjected": [
+      "what is machine learning",
+      "what is deep learning",
+      "what is neural network"
+    ]
+  },
+  {
+    "session": 2,
+    "timestamp": "2026-06-25T05:26:58.744904",
+    "drift_score_before": 0.5606,
+    "memories_before": 5,
+    "memories_pruned": 0,
+    "memories_after": 5,
+    "reinjected": [
+      "what is machine learning",
+      "what is deep learning",
+      "what is neural network"
+    ]
+  }
+]

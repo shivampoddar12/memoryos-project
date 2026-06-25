@@ -1,0 +1,26 @@
+[
+  {
+    "session": 1,
+    "time": "2026-06-25T04:56:30.112939",
+    "input": "what is machine learning",
+    "response": "Agent received: 'what is machine learning' | Memory entries: 0"
+  },
+  {
+    "session": 2,
+    "time": "2026-06-25T04:57:52.961814",
+    "input": "what is deep learning",
+    "response": "Agent received: 'what is deep learning' | Memory entries: 1"
+  },
+  {
+    "session": 3,
+    "time": "2026-06-25T04:58:12.041832",
+    "input": "what is neural network",
+    "response": "Agent received: 'what is neural network' | Memory entries: 2"
+  },
+  {
+    "session": 4,
+    "time": "2026-06-25T04:58:22.753796",
+    "input": "what is python",
+    "response": "Agent received: 'what is python' | Memory entries: 3"
+  }
+]

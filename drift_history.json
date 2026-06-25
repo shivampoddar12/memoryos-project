@@ -1,0 +1,16 @@
+[
+  {
+    "session": 1,
+    "timestamp": "2026-06-25T05:07:01.770916",
+    "drift_score": 0.4418,
+    "status": "WARNING",
+    "inputs_analyzed": 3
+  },
+  {
+    "session": 2,
+    "timestamp": "2026-06-25T05:07:01.772018",
+    "drift_score": 0.5959,
+    "status": "CRITICAL",
+    "inputs_analyzed": 4
+  }
+]
