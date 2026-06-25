@@ -1,0 +1,10 @@
+{
+  "timestamp": "2026-06-25T07:03:45.237821",
+  "model": "TF-IDF (scikit-learn)",
+  "vector_dimensions": 16,
+  "results": {
+    "similar_drift": 0.3989,
+    "different_drift": 1.0,
+    "same_drift": 0.1708
+  }
+}
