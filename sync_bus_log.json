@@ -1,0 +1,71 @@
+{
+  "knowledge_graph": {
+    "gradient_descent": {
+      "value": "Gradient descent is an optimization algorithm that minimizes loss by iteratively moving in the direction of steepest descent",
+      "learned_by": "ML-Agent",
+      "timestamp": "2026-07-22T00:29:20.369068",
+      "propagated_to": [
+        "Data-Agent",
+        "NLP-Agent"
+      ]
+    },
+    "data_cleaning": {
+      "value": "Data cleaning involves handling missing values, removing duplicates, fixing data types, and treating outliers",
+      "learned_by": "Data-Agent",
+      "timestamp": "2026-07-22T00:29:20.369173",
+      "propagated_to": [
+        "ML-Agent",
+        "NLP-Agent"
+      ]
+    },
+    "transformer_architecture": {
+      "value": "Transformers use self-attention mechanism with encoder-decoder structure, enabling parallel processing of sequences",
+      "learned_by": "NLP-Agent",
+      "timestamp": "2026-07-22T00:29:20.369253",
+      "propagated_to": [
+        "ML-Agent",
+        "Data-Agent"
+      ]
+    },
+    "context_rot": {
+      "value": "Context Rot is the degradation of LLM agent performance as session length increases, causing silent production failures",
+      "learned_by": "NLP-Agent",
+      "timestamp": "2026-07-22T00:29:20.369881",
+      "propagated_to": [
+        "ML-Agent",
+        "Data-Agent"
+      ]
+    }
+  },
+  "sync_log": [
+    {
+      "action": "broadcast",
+      "from": "ML-Agent",
+      "key": "gradient_descent",
+      "timestamp": "2026-07-22T00:29:20.369077"
+    },
+    {
+      "action": "broadcast",
+      "from": "Data-Agent",
+      "key": "data_cleaning",
+      "timestamp": "2026-07-22T00:29:20.369178"
+    },
+    {
+      "action": "broadcast",
+      "from": "NLP-Agent",
+      "key": "transformer_architecture",
+      "timestamp": "2026-07-22T00:29:20.369257"
+    },
+    {
+      "action": "broadcast",
+      "from": "NLP-Agent",
+      "key": "context_rot",
+      "timestamp": "2026-07-22T00:29:20.369886"
+    }
+  ],
+  "connected_agents": [
+    "ML-Agent",
+    "Data-Agent",
+    "NLP-Agent"
+  ]
+}
