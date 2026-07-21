@@ -1,0 +1,105 @@
+{
+  "timestamp": "2026-07-22T00:26:47.910112",
+  "experiment": "Threshold Calibration Study",
+  "baseline_size": 5,
+  "scenario_scores": {
+    "SIMILAR": 0.2871,
+    "BORDERLINE": 1.0,
+    "DIFFERENT": 1.0,
+    "EXTREME": 1.0
+  },
+  "threshold_analysis": [
+    {
+      "threshold": 0.2,
+      "similar_heals": true,
+      "borderline_heals": true,
+      "different_heals": true,
+      "extreme_heals": true,
+      "is_optimal": false
+    },
+    {
+      "threshold": 0.25,
+      "similar_heals": true,
+      "borderline_heals": true,
+      "different_heals": true,
+      "extreme_heals": true,
+      "is_optimal": false
+    },
+    {
+      "threshold": 0.3,
+      "similar_heals": false,
+      "borderline_heals": true,
+      "different_heals": true,
+      "extreme_heals": true,
+      "is_optimal": false
+    },
+    {
+      "threshold": 0.35,
+      "similar_heals": false,
+      "borderline_heals": true,
+      "different_heals": true,
+      "extreme_heals": true,
+      "is_optimal": false
+    },
+    {
+      "threshold": 0.4,
+      "similar_heals": false,
+      "borderline_heals": true,
+      "different_heals": true,
+      "extreme_heals": true,
+      "is_optimal": false
+    },
+    {
+      "threshold": 0.45,
+      "similar_heals": false,
+      "borderline_heals": true,
+      "different_heals": true,
+      "extreme_heals": true,
+      "is_optimal": false
+    },
+    {
+      "threshold": 0.5,
+      "similar_heals": false,
+      "borderline_heals": true,
+      "different_heals": true,
+      "extreme_heals": true,
+      "is_optimal": false
+    },
+    {
+      "threshold": 0.55,
+      "similar_heals": false,
+      "borderline_heals": true,
+      "different_heals": true,
+      "extreme_heals": true,
+      "is_optimal": false
+    },
+    {
+      "threshold": 0.6,
+      "similar_heals": false,
+      "borderline_heals": true,
+      "different_heals": true,
+      "extreme_heals": true,
+      "is_optimal": false
+    },
+    {
+      "threshold": 0.65,
+      "similar_heals": false,
+      "borderline_heals": true,
+      "different_heals": true,
+      "extreme_heals": true,
+      "is_optimal": false
+    },
+    {
+      "threshold": 0.7,
+      "similar_heals": false,
+      "borderline_heals": true,
+      "different_heals": true,
+      "extreme_heals": true,
+      "is_optimal": false
+    }
+  ],
+  "recommendation": {
+    "optimal_threshold": 0.45,
+    "justification": "Correctly classifies all 4 scenarios at \u03b8=0.45"
+  }
+}
