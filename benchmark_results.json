@@ -1,0 +1,54 @@
+{
+  "timestamp": "2026-07-23T01:07:50.957813",
+  "experiment": "WITH vs WITHOUT MemoryOS Benchmark",
+  "sessions_tested": 10,
+  "threshold_used": 0.45,
+  "without_memoryos": {
+    "avg_drift": 0.7113400000000001,
+    "avg_consistency": 28.87,
+    "drift_scores": [
+      0.5771,
+      0.3224,
+      0.7536,
+      0.6694,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      0.4685,
+      0.3224
+    ],
+    "heal_events": 0
+  },
+  "with_memoryos": {
+    "avg_drift": 0.06448000000000001,
+    "avg_consistency": 93.55,
+    "drift_scores": [
+      0.0,
+      0.3224,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.3224
+    ],
+    "heal_events": 8,
+    "heal_sessions": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ]
+  },
+  "improvement": {
+    "drift_reduction_percent": 90.9,
+    "consistency_gain_percent": 64.7
+  }
+}
