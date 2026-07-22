@@ -1,0 +1,45 @@
+{
+  "project": "MemoryOS for AI Agents",
+  "generated_at": "2026-07-23T01:17:08.306102",
+  "authors": [
+    "Aaditya Rana (2303051240001)",
+    "Shivam Kumar Poddar (2303051240374)"
+  ],
+  "supervisor": "Ms. Kiran Sharma",
+  "university": "Parul University, CSE-AI",
+  "drift_analysis": {
+    "total_sessions": 2,
+    "average_drift": 0.5189,
+    "max_drift": 0.5959,
+    "min_drift": 0.4418,
+    "healthy_sessions": 1
+  },
+  "heal_analysis": {
+    "total_heals": 2,
+    "heal_sessions": [
+      1,
+      2
+    ]
+  },
+  "benchmark": {
+    "drift_reduction": "90.9%",
+    "consistency_gain": "64.7%",
+    "sessions_tested": 10,
+    "threshold_used": 0.45
+  },
+  "calibration": {
+    "optimal_threshold": 0.45,
+    "thresholds_tested": 11,
+    "scenarios_tested": 4
+  },
+  "multi_agent": {
+    "connected_agents": 3,
+    "knowledge_items": 4,
+    "sync_events": 4
+  },
+  "memory_analysis": {
+    "total_memories": 4,
+    "first_session": "2026-06-25",
+    "last_session": "2026-06-25"
+  }
+}

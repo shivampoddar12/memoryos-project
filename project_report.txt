@@ -1,0 +1,51 @@
+
+MemoryOS for AI Agents — Project Summary Report
+================================================
+Generated: 23/07/2026 01:17
+Authors: Aaditya Rana, Shivam Kumar Poddar
+University: Parul University | CSE-AI | 2025-26
+Supervisor: Ms. Kiran Sharma
+
+EXECUTIVE SUMMARY
+-----------------
+MemoryOS is a self-healing memory architecture for LLM-based AI agents.
+It monitors agent memory health in real-time, detects Context Rot via
+cosine similarity drift scoring, and automatically heals degraded memory
+without requiring agent restart.
+
+KEY RESULTS
+-----------
+
+Benchmark (WITH vs WITHOUT MemoryOS):
+  • Drift Reduction:    90.9%
+  • Consistency Gain:  +64.7%
+  • Sessions Tested:   10
+  • Heal Events:       8
+
+Threshold Calibration:
+  • Optimal θ:         0.45
+  • Thresholds Tested: 11
+  • Scenarios Tested:  4
+
+Multi-Agent Sync:
+  • Agents Connected:  3
+  • Knowledge Items:   4
+  • Sync Events:       4
+
+MODULES BUILT
+-------------
+Week 1: agent.py, drift_detector.py, auto_heal.py, embeddings.py, memoryos.py
+Week 2: dashboard.py, calibration.py, multi_agent.py, benchmark.py
+
+TECH STACK
+----------
+Python 3.12 | LangGraph | scikit-learn | Streamlit | Plotly | Git
+
+REFERENCES
+----------
+[1] MemGPT (arXiv:2310.08560)
+[2] Mem0 (arXiv:2504.19413)
+[3] Agent Drift (arXiv:2601.04170)
+[4] Zep (arXiv:2501.13956)
+
+GitHub: github.com/shivampoddar12/memoryos-project
