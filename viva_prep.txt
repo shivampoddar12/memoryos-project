@@ -1,0 +1,71 @@
+🎤 Expected Viva Questions & Answers
+🔴 BASIC QUESTIONS
+
+Q1: Apna project explain karo 2 lines mein.
+
+"MemoryOS ek self-healing memory system hai jo AI agents ki memory monitor karta hai, drift detect karta hai, aur automatically heal karta hai bina restart kiye."
+
+Q2: Context Rot kya hota hai?
+
+"Jab AI agent zyada sessions karta hai toh purana important context naye tokens ke neeche dab jaata hai — agent dheere dheere 'bhoolne' lagta hai. Ise Context Rot kehte hain."
+
+Q3: Aapne yeh problem kyun choose ki?
+
+"65% production AI failures memory loss ki wajah se hoti hain — lekin koi open-source solution nahi tha. Maine yeh gap fill kiya."
+
+🟡 TECHNICAL QUESTIONS
+
+Q4: Drift Score kaise calculate karte ho?
+
+"drift(t) = 1 - cosine_similarity(v_baseline, v_current). Baseline vector deployment pe capture hota hai, har session ke baad current vector se compare hota hai. 0 = stable, 1 = completely drifted."
+
+Q5: Threshold θ = 0.45 kyun choose kiya?
+
+"Empirically 11 different values test kiye — 0.20 se 0.70 tak — 4 scenarios pe. θ = 0.45 sabse accurate classification deta hai: similar topics heal nahi karta, different topics heal karta hai."
+
+Q6: Auto-Heal kaise kaam karta hai?
+
+"3 steps: pehle relevance decay calculate karo rel = importance × e^(-λ×Δt), phir stale memories prune karo below 0.3, phir top-3 important memories re-inject karo. Bina agent restart kiye."
+
+Q7: TF-IDF kyun use kiya, HuggingFace kyun nahi?
+
+"HuggingFace ke liye PyTorch chahiye jo Windows DLL issue ki wajah se is laptop pe nahi chala. TF-IDF 500-dim bigram vectors accurate results deta hai aur GPU ki zaroorat nahi."
+
+Q8: Multi-Agent Sync Bus kaise kaam karta hai?
+
+"Ek shared knowledge graph hai jisme sabhi agents connect hote hain. Jab ek agent kuch seekhta hai toh broadcast hota hai — baaki sab agents turant pa lete hain."
+
+🟢 RESULTS QUESTIONS
+
+Q9: Benchmark results kya hain?
+
+"WITHOUT MemoryOS vs WITH MemoryOS — 10 long-horizon sessions pe: 90.9% drift reduction, 64.7% consistency improvement. 8 auto-heal events trigger hue."
+
+Q10: Yeh results reliable hain?
+
+"Haan — 4 different scenario types test kiye, 11 threshold values try kiye, statistical analysis ki — mean, median, std deviation sab calculate kiya. benchmark_analysis.png mein 4 graphs hain."
+
+🔵 RESEARCH QUESTIONS
+
+Q11: Existing solutions se alag kya hai?
+
+"MemGPT, Mem0, Zep sab storage pe focus karte hain — health monitoring nahi karte. MemoryOS pehla integrated system hai jo drift detect + auto-heal + multi-agent sync ek saath karta hai."
+
+Q12: Future scope kya hai?
+
+"Teen cheezein: pehla — HuggingFace embeddings add karna jab torch issue solve ho. Doosra — PyPI pe open-source package release karna. Teesra — benchmark results ICLR Tiny Papers mein submit karna."
+
+Q13: Koi limitation hai?
+
+"Haan — synthetic drift injection use kiya real production data nahi tha, TF-IDF transformer se kam accurate hai, aur multi-agent sync 2-3 agents tak limited hai abhi."
+
+🚨 TOUGH QUESTIONS
+
+Q14: Yeh practically deploy ho sakta hai?
+
+"Proof-of-concept hai abhi. Production-ready banane ke liye real enterprise data, scale testing, aur security hardening chahiye — lekin architecture scalable hai aur approach validated hai."
+
+Q15: Research paper kyun nahi publish kiya?
+
+"Benchmark results Phase 3 se aa rahe hain — next step ICLR Tiny Papers ya AAAI Student Abstract mein submit karna hai. Abstract already ready hai white paper mein."
+
