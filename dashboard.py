@@ -214,7 +214,7 @@ with st.sidebar:
     st.markdown('<div class="brand">🧠 MemoryOS</div><div class="muted">AI Memory Reliability Layer</div>', unsafe_allow_html=True)
     st.divider()
     page = st.radio("NAVIGATION", [
-        "Overview", "Memory Explorer", "Memory Lifecycle", "Semantic Retrieval", "Memory Intelligence", "Drift Analytics",
+        "Overview", "Memory Explorer", "Memory Lifecycle", "Semantic Retrieval", "Memory Intelligence", "Agent Memory", "Drift Analytics",
         "Auto-Heal", "Multi-Agent", "Benchmark", "Reports", "Settings"
     ], label_visibility="visible")
     st.divider()
@@ -361,6 +361,32 @@ elif page == "Memory Intelligence":
     with c: kpi("Stale", snap["stale_memories"], "decay candidates")
     with d: kpi("Drift", f'{snap["drift_score"]:.2f}', "latest score")
 
+
+elif page == "Agent Memory":
+    st.markdown("### Agent Memory Console")
+    st.caption("Test the same retrieval layer used by the MemoryOS agent before sending a message.")
+    prompt = st.text_area("Agent input", placeholder="Ask something related to stored memory...", height=120)
+    if st.button("Run Memory Pipeline", use_container_width=True):
+        if prompt.strip():
+            result = ENGINE.explain_retrieval(prompt, limit=5)
+            context = ENGINE.context(prompt, limit=5)
+            st.markdown("#### Retrieved memories")
+            if result["results"]:
+                st.dataframe(
+                    pd.DataFrame([{
+                        "memory": x["content"],
+                        "similarity": x["signals"]["semantic_similarity"],
+                        "importance": x["signals"]["importance"],
+                        "score": x["signals"]["combined_score"],
+                    } for x in result["results"]]),
+                    use_container_width=True, hide_index=True)
+            else:
+                st.info("No matching memory found.")
+            st.markdown("#### Context sent to agent")
+            st.text_area("Context", context or "No context retrieved.", height=160)
+        else:
+            st.warning("Enter an agent input first.")
+
 elif page == "Drift Analytics":
     st.markdown("### Drift Analytics")
     a,b,c = st.columns(3)
@@ -393,7 +419,7 @@ elif page == "Auto-Heal":
         st.success(f"System stable: {last_score:.2f} < {THRESHOLD:.2f}")
     if st.button("🛠 Execute Auto-Heal", use_container_width=True):
         if last_score >= THRESHOLD:
-            _, entry = run_heal(memories, last_score)
+            entry = ENGINE.heal(last_score)
             st.success(f"Recovery complete. {entry['memories_pruned']} memories pruned.")
             st.rerun()
         else:
