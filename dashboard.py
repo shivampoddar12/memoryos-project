@@ -222,6 +222,21 @@ hr{border-color:#1f3045}
 
 /* Unified MemoryOS typography */
 *, *::before, *::after{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important}
+
+/* MemoryOS hero video slideshow */
+.landing-hero{isolation:isolate}
+.hero-video-slideshow{position:absolute;inset:0;z-index:0;overflow:hidden;background:#050a10}
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;animation:memoryHeroVideo 18s infinite;filter:saturate(.78) contrast(1.04)}
+.hero-video-1{animation-delay:0s}
+.hero-video-2{animation-delay:6s}
+.hero-video-3{animation-delay:12s}
+.hero-video-slideshow:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,10,16,.94) 0%,rgba(5,10,16,.70) 42%,rgba(5,10,16,.52) 100%),linear-gradient(180deg,rgba(5,10,16,.20),rgba(5,10,16,.70))}
+.landing-hero>.landing-glow,.landing-hero>.landing-top,.landing-hero>.landing-copy,.landing-hero>.landing-side,.landing-hero>.landing-cta-row,.landing-hero>.landing-orbit,.landing-hero>.memory-core{z-index:2}
+@keyframes memoryHeroVideo{
+  0%,28%{opacity:0}
+  7%,21%{opacity:.48}
+  34%,100%{opacity:0}
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -500,6 +515,17 @@ if page == "Overview":
     st.markdown(
         f"""
         <section class="landing-hero">
+          <div class="hero-video-slideshow" aria-hidden="true">
+            <video class="hero-video hero-video-1" autoplay muted loop playsinline preload="metadata">
+              <source src="https://videos.pexels.com/video-files/3129977/3129977-uhd_3840_2160_30fps.mp4" type="video/mp4">
+            </video>
+            <video class="hero-video hero-video-2" autoplay muted loop playsinline preload="metadata">
+              <source src="https://videos.pexels.com/video-files/5028622/5028622-uhd_3840_2160_25fps.mp4" type="video/mp4">
+            </video>
+            <video class="hero-video hero-video-3" autoplay muted loop playsinline preload="metadata">
+              <source src="https://videos.pexels.com/video-files/1085656/1085656-uhd_3840_2160_25fps.mp4" type="video/mp4">
+            </video>
+          </div>
           <div class="landing-glow glow-a"></div>
           <div class="landing-glow glow-b"></div>
           <div class="landing-top">
