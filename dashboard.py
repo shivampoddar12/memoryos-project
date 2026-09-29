@@ -753,9 +753,3 @@ elif page == "Settings":
         reset_demo()
         st.success("Demo data reset.")
         st.rerun()
-
-<style>
-@media(min-width:901px){
-  div[data-testid="stHorizontalBlock"] .stButton>button{min-height:42px!important;height:42px!important;padding:0 7px!important;font-size:9.5px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:clip!important;}
-}
-</style>
