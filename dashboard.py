@@ -57,22 +57,18 @@ footer{visibility:hidden!important}
 .desktop-brand{font-size:23px;font-weight:800;letter-spacing:-1px;color:#f2eee8;white-space:nowrap}
 .desktop-brand span{color:#f4774b}
 .desktop-search{margin-left:auto;min-width:190px;border:1px solid #293b52;border-radius:7px;padding:8px 12px;color:#718095;font-size:10px;background:#0e1928}
-.desktop-nav-row{display:flex;align-items:center;gap:3px;padding:9px 18px;overflow-x:auto;scrollbar-width:none}
-.desktop-nav-row::-webkit-scrollbar{display:none}
-.desktop-nav-item{flex:0 0 auto!important}
-.desktop-nav-item button{
-  min-height:34px!important;height:34px!important;padding:0 14px!important;
-  border:1px solid transparent!important;border-radius:6px!important;
-  background:transparent!important;color:#aeb9c7!important;
-  font-family:Inter,system-ui,sans-serif!important;font-size:11px!important;
-  font-weight:600!important;letter-spacing:0!important;
-  box-shadow:none!important;transform:none!important;
+.desktop-nav-row{display:flex;align-items:center;gap:8px;padding:10px 18px;overflow:visible}
+.desktop-nav-row>div[data-testid="column"]{min-width:0}
+.desktop-nav-item{width:100%}
+.desktop-nav-more{width:100%}
+.more-title{font-size:9px;font-weight:800;letter-spacing:.14em;color:#8d9aab;margin:2px 0 10px}
+.desktop-nav-row .stPopover>button{
+  min-height:40px!important;height:40px!important;width:100%!important;
+  padding:0 14px!important;border:1px solid #24364b!important;border-radius:7px!important;
+  background:#0d1725!important;color:#c1cbd6!important;font-family:Inter,system-ui,sans-serif!important;
+  font-size:11px!important;font-weight:600!important;box-shadow:none!important;
 }
-div.desktop-nav-item button:hover{background:#162437!important;color:#fff!important;border-color:#293b52!important}
-div.desktop-nav-item.active button{background:#f4774b!important;color:#fff!important;border-color:#ff9974!important}
-.desktop-secondary-row{border-top:1px solid #1b2a3c;background:#0e1928}
-.desktop-secondary-row div.desktop-nav-item button{color:#8997a9!important;font-size:10px!important}
-.desktop-secondary-row div.desktop-nav-item.active button{background:rgba(244,119,75,.13)!important;color:#ff9b76!important;border-color:rgba(244,119,75,.28)!important}
+.desktop-nav-row .stPopover>button:hover{background:#17273a!important;color:#fff!important;border-color:#40536b!important}
 .desktop-nav-label{display:none!important}
 @media(min-width:901px){section[data-testid="stSidebar"]{display:none!important}.main .block-container{max-width:1500px;padding-left:3.2rem;padding-right:3.2rem}}
 .landing-hero{position:relative;overflow:hidden;min-height:720px;margin:0 0 55px;padding:32px 38px 26px;border:1px solid #26374b;background:radial-gradient(circle at 72% 44%,#18283b 0%,#0a111c 31%,#050a10 74%);box-shadow:0 25px 80px rgba(0,0,0,.35)}
@@ -134,6 +130,14 @@ div[data-testid="stMetric"]{background:#101b2b;border:1px solid #253750;padding:
 .stButton>button{border-radius:11px;border:1px solid #31445c;background:#162437;color:#fff;font-size:14px;font-weight:700;min-height:48px;transition:.2s}
 .stButton>button:hover{border-color:#f4774b;background:#1d2c40;color:#fff;transform:translateY(-1px);box-shadow:0 8px 20px rgba(244,119,75,.12)}
 div[data-testid="stFormSubmitButton"]>button{border-radius:11px;min-height:48px;font-weight:700}
+.desktop-nav-row .stButton>button{
+  min-height:40px!important;height:40px!important;width:100%!important;padding:0 10px!important;
+  border:1px solid #24364b!important;border-radius:7px!important;background:#0d1725!important;
+  color:#c1cbd6!important;font-family:Inter,system-ui,sans-serif!important;font-size:10.5px!important;
+  font-weight:600!important;box-shadow:none!important;transform:none!important;
+}
+.desktop-nav-row .stButton>button:hover{background:#17273a!important;border-color:#40536b!important;color:#fff!important}
+
 .desktop-nav-row .stButton>button{
   min-height:40px!important;height:40px!important;width:100%!important;
   padding:0 14px!important;border:1px solid #24364b!important;
@@ -325,28 +329,32 @@ def set_primary():
 def set_secondary():
     st.session_state.nav_page = st.session_state.secondary_nav
 
-# Desktop: clean website-style navigation with real clickable buttons (no radio controls).
-def nav_button(item, active_class=""):
-    cols = st.columns([1, 1, 1, 1, 1, 1], gap="small")
-    idx = 0
-    # kept as a helper for consistent styling; actual rows below use six columns.
-    return
+# Desktop: single-line website navigation. Extra sections live under "More".
+VISIBLE_NAV = ["Overview", "Memory Explorer", "Memory Lifecycle", "Semantic Retrieval", "Memory Intelligence", "Agent Memory"]
+MORE_NAV = ["Drift Analytics", "Auto-Heal", "Multi-Agent", "Benchmark", "Reports", "Settings"]
 
-def render_nav_row(items, secondary=False):
-    cols = st.columns(len(items), gap="small")
-    for i, item in enumerate(items):
+def render_single_nav():
+    cols = st.columns(7, gap="small")
+    for i, item in enumerate(VISIBLE_NAV):
         with cols[i]:
             active = " active" if st.session_state.nav_page == item else ""
             st.markdown(f'<div class="desktop-nav-item{active}">', unsafe_allow_html=True)
-            if st.button(item, key=f"nav_{'secondary' if secondary else 'primary'}_{i}_{item}", use_container_width=True):
+            if st.button(item, key=f"topnav_{i}_{item}", use_container_width=True):
                 st.session_state.nav_page = item
                 st.rerun()
             st.markdown('</div>', unsafe_allow_html=True)
+    with cols[6]:
+        st.markdown('<div class="desktop-nav-more">', unsafe_allow_html=True)
+        with st.popover("More +", use_container_width=True):
+            st.markdown('<div class="more-title">MORE MEMORYOS</div>', unsafe_allow_html=True)
+            for i, item in enumerate(MORE_NAV):
+                if st.button(item, key=f"morenav_{i}_{item}", use_container_width=True):
+                    st.session_state.nav_page = item
+                    st.rerun()
+        st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown('<div class="desktop-site-header"><div class="desktop-topbar"><div class="desktop-brand">🧠 Memory<span>OS</span></div><div class="desktop-search">⌕ &nbsp; Search MemoryOS</div></div><div class="desktop-nav-row">', unsafe_allow_html=True)
-render_nav_row(PRIMARY_NAV)
-st.markdown('</div><div class="desktop-nav-row desktop-secondary-row">', unsafe_allow_html=True)
-render_nav_row(SECONDARY_NAV, secondary=True)
+render_single_nav()
 st.markdown('</div></div>', unsafe_allow_html=True)
 
 with st.sidebar:
