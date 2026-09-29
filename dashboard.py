@@ -59,7 +59,12 @@ footer{visibility:hidden!important}
 .global-search-panel .stButton>button{min-height:40px!important;background:#f4774b!important;color:#fff!important;border:1px solid #f4774b!important}
 .search-result{display:flex;justify-content:space-between;gap:20px;padding:11px 13px;margin:7px 0;border:1px solid #26374b;border-radius:7px;background:#0d1725;color:#dbe2ea;font-size:11px}
 .search-result span{color:#8391a2;white-space:nowrap}
-.desktop-site-header{display:block;margin:0 0 24px;background:#0b1422;border:1px solid #24354b;border-radius:0 0 14px 14px;box-shadow:0 10px 30px rgba(0,0,0,.22);overflow:hidden}
+.desktop-site-header{display:block;margin:0 0 24px;background:#0b1422;border:1px solid #24354b;border-radius:0 0 14px 14px;box-shadow:0 10px 30px rgba(0,0,0,.22);overflow:visible;position:relative;z-index:20}
+.desktop-site-header .stHorizontalBlock{margin:0!important;padding:0 24px 16px!important;align-items:center!important}
+.desktop-site-header .stButton{margin:0!important}
+.desktop-site-header .stButton>button{min-height:42px!important;height:42px!important;margin:0!important}
+.desktop-nav-shell{position:relative;z-index:10;clear:both;margin-top:0!important}
+
 .desktop-topbar{display:flex;align-items:center;gap:30px;padding:14px 24px;border-bottom:1px solid #1d2b3e}
 .desktop-brand{font-size:23px;font-weight:800;letter-spacing:-1px;color:#f2eee8;white-space:nowrap}
 .desktop-brand span{color:#f4774b}
@@ -389,13 +394,17 @@ def render_single_nav():
         st.markdown('</div>', unsafe_allow_html=True)
 
 
-st.markdown('<div class="desktop-site-header"><div class="desktop-topbar"><div class="desktop-brand">🧠 Memory<span>OS</span></div></div></div>', unsafe_allow_html=True)
+st.markdown('<div class="desktop-site-header"><div class="desktop-topbar"><div class="desktop-brand">🧠 Memory<span>OS</span></div></div>', unsafe_allow_html=True)
 
-search_cols = st.columns([5.7, 1.3], gap="small")
+# Keep the search control in its own properly sized row so it cannot overlap or
+# collapse into the navigation below on desktop Streamlit layouts.
+search_cols = st.columns([1, 0.22], gap="small")
 with search_cols[1]:
     if st.button("⌕  Search MemoryOS", key="global_search_toggle", use_container_width=True):
         st.session_state.search_open = not st.session_state.search_open
         st.rerun()
+
+st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown('<div class="desktop-nav-shell"><div class="desktop-nav-row">', unsafe_allow_html=True)
 render_single_nav()
