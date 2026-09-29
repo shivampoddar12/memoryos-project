@@ -43,6 +43,16 @@ html,body,[class*="css"]{font-family:Inter,system-ui,-apple-system,BlinkMacSyste
 section[data-testid="stSidebar"]{width:285px!important;background:#0a1423;border-right:1px solid #1c2a3d}
 section[data-testid="stSidebar"]>div{width:285px!important}
 .block-container{max-width:1440px;padding:1.5rem 3.2rem 5rem}
+.desktop-nav{display:block;margin:0 0 20px;padding:10px 14px;border:1px solid #22334a;border-radius:18px;background:#0d1725;box-shadow:0 10px 28px rgba(0,0,0,.16)}
+.desktop-nav-label{color:#7f8da0;font-size:10px;font-weight:800;letter-spacing:.12em;margin:0 0 6px 4px}
+.desktop-nav [data-testid="stRadio"]{padding:0!important}
+.desktop-nav [data-testid="stRadio"]>label{display:none!important}
+.desktop-nav [role="radiogroup"]{gap:6px!important;flex-wrap:wrap!important}
+.desktop-nav [role="radio"]{border-radius:10px!important;padding:9px 13px!important;color:#b9c5d3!important;font-size:12px!important;font-weight:700!important;border:1px solid transparent}
+.desktop-nav [role="radio"][aria-checked="true"]{background:#f4774b!important;color:#fff!important;border-color:#ff9a72!important;box-shadow:0 6px 16px rgba(244,119,75,.18)}
+@media(min-width:901px){section[data-testid="stSidebar"]{display:none!important}.desktop-nav{display:block}}
+@media(max-width:900px){.desktop-nav{display:none!important}}
+
 .brand{font-size:28px;font-weight:800;letter-spacing:-1.2px;color:#fff;margin-bottom:2px}
 .muted{color:#a7b1c0;font-size:13px;line-height:1.55}
 .hero{position:relative;overflow:hidden;padding:42px 46px;min-height:235px;border:1px solid #22334a;border-radius:24px;
@@ -94,7 +104,7 @@ div[data-baseweb="select"]>div{background:#0d1725!important;border-color:#273b54
 [data-testid="stCaptionContainer"] p{color:#8b98aa!important;font-size:13px!important}
 [data-testid="stAlert"]{border-radius:12px}
 hr{border-color:#1f3045}
-@media(max-width:900px){section[data-testid="stSidebar"],section[data-testid="stSidebar"]>div{width:260px!important}.block-container{padding:1.2rem 1rem 3rem}.hero h1{font-size:36px}.hero{padding:30px}.kpi-value{font-size:28px}}
+@media(max-width:900px){section[data-testid="stSidebar"],section[data-testid="stSidebar"]>div{width:260px!important;display:block!important}.block-container{padding:1.2rem 1rem 3rem}.hero h1{font-size:36px}.hero{padding:30px}.kpi-value{font-size:28px}}
 @media(max-width:600px){.hero h1{font-size:30px}.hero p{font-size:14px}.hero-meta{display:none}.kpi{min-height:105px;padding:15px}}
 </style>
 """, unsafe_allow_html=True)
@@ -241,17 +251,51 @@ heal_history = read_json(HEAL_FILE, [])
 last_score = float(drift_history[-1].get("drift_score", 0)) if drift_history else 0
 status, emoji = drift_status(last_score)
 
+NAV_ITEMS = [
+    "Overview", "Memory Explorer", "Memory Lifecycle", "Semantic Retrieval",
+    "Memory Intelligence", "Agent Memory", "Drift Analytics", "Auto-Heal",
+    "Multi-Agent", "Benchmark", "Reports", "Settings"
+]
+
+if "nav_page" not in st.session_state:
+    st.session_state.nav_page = "Overview"
+
+def sync_desktop_nav():
+    st.session_state.nav_page = st.session_state.desktop_nav
+
+def sync_mobile_nav():
+    st.session_state.nav_page = st.session_state.mobile_nav
+
+# Desktop: website-style top navigation. Mobile: keep the compact sidebar navigation.
+st.markdown('<div class="desktop-nav"><div class="desktop-nav-label">MEMORYOS NAVIGATION</div>', unsafe_allow_html=True)
+st.radio(
+    "Desktop navigation",
+    NAV_ITEMS,
+    key="desktop_nav",
+    index=NAV_ITEMS.index(st.session_state.nav_page),
+    horizontal=True,
+    label_visibility="collapsed",
+    on_change=sync_desktop_nav,
+)
+st.markdown('</div>', unsafe_allow_html=True)
+
 with st.sidebar:
     st.markdown('<div class="brand">🧠 MemoryOS</div><div class="muted">AI Memory Reliability Layer</div>', unsafe_allow_html=True)
     st.divider()
-    page = st.radio("NAVIGATION", [
-        "Overview", "Memory Explorer", "Memory Lifecycle", "Semantic Retrieval", "Memory Intelligence", "Agent Memory", "Drift Analytics",
-        "Auto-Heal", "Multi-Agent", "Benchmark", "Reports", "Settings"
-    ], label_visibility="visible")
+    st.radio(
+        "NAVIGATION",
+        NAV_ITEMS,
+        key="mobile_nav",
+        index=NAV_ITEMS.index(st.session_state.nav_page),
+        label_visibility="visible",
+        on_change=sync_mobile_nav,
+    )
     st.divider()
     st.markdown(f'<div class="card" style="padding:12px 14px;margin:12px 0 8px"><span class="badge">{emoji} {status}</span></div>', unsafe_allow_html=True)
     st.caption(f"● System online  •  Threshold {THRESHOLD:.2f}")
     st.caption(f"Updated: {datetime.now().strftime('%d %b %Y • %H:%M')}")
+
+page = st.session_state.nav_page
 
 st.markdown(f"""
 <div class="hero">
