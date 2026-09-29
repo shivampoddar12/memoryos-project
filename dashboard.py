@@ -24,6 +24,9 @@ SYNC_FILE = BASE / "sync_bus_log.json"
 BENCHMARK_FILE = BASE / "benchmark_results.json"
 THRESHOLD = 0.45
 ENGINE = MemoryEngine(BASE, drift_threshold=THRESHOLD)
+SERVER_IMAGE = "https://images.unsplash.com/photo-1695668548342-c0c1ad479aee?auto=format&fit=crop&fm=jpg&q=80&w=1400"
+WORK_IMAGE = "https://images.unsplash.com/photo-1553484771-cc0d9b8c2b33?auto=format&fit=crop&fm=jpg&q=80&w=1400"
+HERO_IMAGE = "https://images.unsplash.com/photo-1694261321131-8157dce8e288?auto=format&fit=crop&fm=jpg&q=80&w=1800"
 
 st.set_page_config(
     page_title="MemoryOS",
@@ -263,13 +266,21 @@ st.markdown(f"""
 
 if page == "Overview":
     cols = st.columns(4)
-    with cols[0]: kpi("🧠 Memories", len(memories), "Active memory items")
-    with cols[1]: kpi("📈 Drift Score", f"{last_score:.2f}", status)
-    with cols[2]: kpi("🛠 Heal Events", len(heal_history), "Recovery operations")
-    with cols[3]: kpi("◉ Sessions", len(drift_history), "Tracked sessions")
+    with cols[0]:
+        kpi("🧠 Memories", len(memories), "Active memory items")
+    with cols[1]:
+        kpi("📈 Drift Score", f"{last_score:.2f}", status)
+    with cols[2]:
+        kpi("🛠 Heal Events", len(heal_history), "Recovery operations")
+    with cols[3]:
+        kpi("◉ Sessions", len(drift_history), "Tracked sessions")
 
-    st.markdown('<div class="section-head"><div><div class="section-title">Quick actions</div><div class="section-note">Run the core MemoryOS operations from here.</div></div></div>', unsafe_allow_html=True)
-    a,b,c,d = st.columns(4)
+    st.markdown(
+        '<div class="section-head"><div><div class="section-title">Quick actions</div>'
+        '<div class="section-note">Run the core MemoryOS operations from here.</div></div></div>',
+        unsafe_allow_html=True,
+    )
+    a, b, c, d = st.columns(4)
     with a:
         if st.button("🔍 Run Drift Analysis", use_container_width=True):
             sample = [m["content"] for m in memories]
@@ -295,33 +306,65 @@ if page == "Overview":
             st.success("Demo data restored.")
             st.rerun()
 
-    left, right = st.columns([1.5,1])
+    left, right = st.columns([1.5, 1])
     with left:
-        st.markdown(f"""<div class="image-feature" style="--feature-image:url('{serverImage}')">
+        st.markdown(
+            f"""<div class="image-feature" style="--feature-image:url('{SERVER_IMAGE}')">
 <div class="image-feature-content">
 <div class="image-feature-kicker">Memory Infrastructure</div>
 <h3>Reliable context, built for intelligent agents.</h3>
 <p>MemoryOS monitors drift, ranks relevant memories and keeps the agent context useful as sessions evolve.</p>
 <span class="mini-badge">SELF-HEALING MEMORY</span>
-</div></div>""", unsafe_allow_html=True)
-st.markdown('<div class="section-head"><div><div class="section-title">Drift timeline</div><div class="section-note">Session-by-session behavioral drift</div></div></div>', unsafe_allow_html=True)
+</div></div>""",
+            unsafe_allow_html=True,
+        )
+
+        st.markdown(
+            '<div class="section-head"><div><div class="section-title">Drift timeline</div>'
+            '<div class="section-note">Session-by-session behavioral drift</div></div></div>',
+            unsafe_allow_html=True,
+        )
         if drift_history:
             df = pd.DataFrame(drift_history)
             if "session" in df and "drift_score" in df:
                 st.line_chart(df.set_index("session")["drift_score"], height=280)
         else:
             st.info("No drift sessions yet. Run Drift Analysis to populate the timeline.")
+
     with right:
-        st.markdown(f"""<div class="image-feature" style="--feature-image:url('{workImage}');min-height:180px;margin-bottom:16px">
+        st.markdown(
+            f"""<div class="image-feature" style="--feature-image:url('{WORK_IMAGE}');min-height:180px;margin-bottom:16px">
 <div class="image-feature-content" style="padding:22px">
 <div class="image-feature-kicker">Agent Workspace</div>
 <h3 style="font-size:22px!important">Memory that works with your agent.</h3>
 <p>Retrieve the right context before every interaction.</p>
-</div></div>""", unsafe_allow_html=True)
-st.markdown('<div class="section-head"><div><div class="section-title">System health</div><div class="section-note">Reliability and recovery readiness</div></div></div>', unsafe_allow_html=True)
-        st.markdown(f'<div class="health-card"><div class="health-label">Current Status</div><div class="health-value">{emoji} {status}</div><div class="health-sub">Overall memory reliability state</div></div>', unsafe_allow_html=True)
-        st.markdown(f'<div class="health-card"><div class="health-label">Heal Threshold</div><div class="health-value">{THRESHOLD:.2f}</div><div class="health-sub">Auto-heal trigger level</div></div>', unsafe_allow_html=True)
-        st.markdown(f'<div class="health-card"><div class="health-label">Memory Coverage</div><div class="health-value">{len(memories)} items</div><div class="health-sub">Currently available memory records</div></div>', unsafe_allow_html=True)
+</div></div>""",
+            unsafe_allow_html=True,
+        )
+
+        st.markdown(
+            '<div class="section-head"><div><div class="section-title">System health</div>'
+            '<div class="section-note">Reliability and recovery readiness</div></div></div>',
+            unsafe_allow_html=True,
+        )
+        st.markdown(
+            f'<div class="health-card"><div class="health-label">Current Status</div>'
+            f'<div class="health-value">{emoji} {status}</div>'
+            f'<div class="health-sub">Overall memory reliability state</div></div>',
+            unsafe_allow_html=True,
+        )
+        st.markdown(
+            f'<div class="health-card"><div class="health-label">Heal Threshold</div>'
+            f'<div class="health-value">{THRESHOLD:.2f}</div>'
+            f'<div class="health-sub">Auto-heal trigger level</div></div>',
+            unsafe_allow_html=True,
+        )
+        st.markdown(
+            f'<div class="health-card"><div class="health-label">Memory Coverage</div>'
+            f'<div class="health-value">{len(memories)} items</div>'
+            f'<div class="health-sub">Currently available memory records</div></div>',
+            unsafe_allow_html=True,
+        )
 
 elif page == "Memory Explorer":
     st.markdown("### Memory Explorer")
