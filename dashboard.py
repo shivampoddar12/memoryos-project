@@ -38,7 +38,9 @@ st.set_page_config(
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-html,body,[class*="css"]{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+html,body,[class*="css"],.stApp,.stApp *,.stMarkdown,.stButton>button,.stTextInput input,.stTextArea textarea,.stSelectbox,.stSlider,.stDataFrame,.stCaption,.stAlert{
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important;
+}
 .stApp{background:#080f1c;color:#f6f7f9}
 section[data-testid="stSidebar"]{width:285px!important;background:#0a1423;border-right:1px solid #1c2a3d}
 section[data-testid="stSidebar"]>div{width:285px!important}
@@ -214,6 +216,9 @@ hr{border-color:#1f3045}
 .overview-chart-head h3{margin:6px 0 0;color:#e6e1db;font-size:25px;font-weight:600}
 .chart-threshold{font-size:9px;color:#8f9baa;border:1px solid #33485f;border-radius:999px;padding:7px 10px}
 .chart-caption{font-size:9px;color:#718096;margin:-4px 0 26px}
+
+/* Unified MemoryOS typography */
+*, *::before, *::after{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important}
 </style>
 """, unsafe_allow_html=True)
 
