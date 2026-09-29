@@ -63,6 +63,9 @@ footer{visibility:hidden!important}
 .desktop-site-header .stHorizontalBlock{margin:0!important;padding:0 24px 16px!important;align-items:center!important}
 .desktop-site-header .stButton{margin:0!important}
 .desktop-site-header .stButton>button{min-height:42px!important;height:42px!important;margin:0!important}
+.header-spacer{height:42px}
+.header-actions{margin-top:-56px}
+
 .desktop-nav-shell{position:relative;z-index:10;clear:both;margin-top:0!important;margin-bottom:8px!important}
 .desktop-nav-heading{padding:9px 18px 0;color:#718096;font-size:8px;font-weight:800;letter-spacing:.16em}
 .main .block-container{overflow-x:hidden!important}
@@ -198,6 +201,15 @@ div[data-baseweb="select"]>div{background:#0d1725!important;border-color:#273b54
 hr{border-color:#1f3045}
 @media(max-width:900px){section[data-testid="stSidebar"],section[data-testid="stSidebar"]>div{width:260px!important;display:block!important}.block-container{padding:1.2rem 1rem 3rem}.hero h1{font-size:36px}.hero{padding:30px}.kpi-value{font-size:28px}.landing-hero{min-height:650px;padding:22px 20px}.landing-copy{width:100%;margin-top:55px}.landing-copy h1{font-size:70px}.landing-side{display:none}.memory-core{width:245px;height:245px;right:5%;top:37%}.ring-one{width:275px;height:275px}.ring-two{width:215px;height:215px}.landing-orbit{width:54px;height:54px}.landing-cta-row{left:20px;bottom:78px}.landing-bottom{left:20px;right:20px;gap:15px;overflow:hidden}.landing-split{grid-template-columns:1fr;margin:60px 0}.landing-section-title h2,.split-copy h2{font-size:34px}.landing-metrics{grid-template-columns:1fr 1fr}.landing-metrics div{border-bottom:1px solid #26374b}.landing-bottom-cta{display:block}.landing-bottom-cta h2{font-size:36px}.landing-cta-copy{margin-top:20px}}
 @media(max-width:600px){.hero h1{font-size:30px}.hero p{font-size:14px}.hero-meta{display:none}.kpi{min-height:105px;padding:15px}.landing-hero{min-height:620px}.landing-copy h1{font-size:56px}.memory-core{width:190px;height:190px;top:39%;right:2%}.ring-one{width:215px;height:215px}.ring-two{width:170px;height:170px}.landing-orbit{display:none}.landing-bottom{font-size:8px;gap:9px}.landing-bottom div:nth-child(2){display:none}.landing-metrics strong{font-size:30px}}
+
+/* Top-right icon-only search control */
+div[data-testid="stHorizontalBlock"] .stButton>button[title="Search MemoryOS"]{
+  min-width:42px!important;width:42px!important;padding:0!important;font-size:20px!important;
+  border-radius:8px!important;background:#0d1725!important;color:#f4774b!important;
+}
+div[data-testid="stHorizontalBlock"] .stButton>button[title="Search MemoryOS"]:hover{
+  border-color:#f4774b!important;background:#17273a!important;color:#fff!important;
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -394,17 +406,16 @@ def render_single_nav():
         st.markdown('</div>', unsafe_allow_html=True)
 
 
-st.markdown('<div class="desktop-site-header"><div class="desktop-topbar"><div class="desktop-brand">🧠 Memory<span>OS</span></div></div>', unsafe_allow_html=True)
+# Compact website header: logo on the left, search icon on the same top row.
+st.markdown('<div class="desktop-site-header"><div class="desktop-topbar"><div class="desktop-brand">🧠 Memory<span>OS</span></div></div></div>', unsafe_allow_html=True)
 
-# Keep the search control in its own properly sized row so it cannot overlap or
-# collapse into the navigation below on desktop Streamlit layouts.
-search_cols = st.columns([1, 0.22], gap="small")
-with search_cols[1]:
-    if st.button("⌕  Search MemoryOS", key="global_search_toggle", use_container_width=True):
+header_actions = st.columns([9.4, 0.6], gap="small")
+with header_actions[0]:
+    st.markdown('<div class="header-spacer"></div>', unsafe_allow_html=True)
+with header_actions[1]:
+    if st.button("⌕", key="global_search_toggle", help="Search MemoryOS"):
         st.session_state.search_open = not st.session_state.search_open
         st.rerun()
-
-st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown('<div class="desktop-nav-shell"><div class="desktop-nav-heading">MEMORYOS NAVIGATION</div></div>', unsafe_allow_html=True)
 render_single_nav()
