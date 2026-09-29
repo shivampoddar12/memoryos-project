@@ -63,7 +63,12 @@ footer{visibility:hidden!important}
 .desktop-site-header .stHorizontalBlock{margin:0!important;padding:0 24px 16px!important;align-items:center!important}
 .desktop-site-header .stButton{margin:0!important}
 .desktop-site-header .stButton>button{min-height:42px!important;height:42px!important;margin:0!important}
-.desktop-nav-shell{position:relative;z-index:10;clear:both;margin-top:0!important}
+.desktop-nav-shell{position:relative;z-index:10;clear:both;margin-top:0!important;margin-bottom:8px!important}
+.desktop-nav-heading{padding:9px 18px 0;color:#718096;font-size:8px;font-weight:800;letter-spacing:.16em}
+.main .block-container{overflow-x:hidden!important}
+.desktop-nav-item,.desktop-nav-more{min-width:0!important}
+.desktop-nav-row{display:block!important;overflow:visible!important}
+
 
 .desktop-topbar{display:flex;align-items:center;gap:30px;padding:14px 24px;border-bottom:1px solid #1d2b3e}
 .desktop-brand{font-size:23px;font-weight:800;letter-spacing:-1px;color:#f2eee8;white-space:nowrap}
@@ -364,23 +369,18 @@ VISIBLE_NAV = ["Overview", "Memory Explorer", "Memory Lifecycle", "Semantic Retr
 MORE_NAV = ["Drift Analytics", "Auto-Heal", "Multi-Agent", "Benchmark", "Reports", "Settings"]
 
 def render_single_nav():
-    cols = st.columns(7, gap="small")
+    # Compact weighted columns keep every item fully visible on normal desktop widths.
+    cols = st.columns([0.86, 1.10, 1.10, 1.14, 1.18, 1.00, 0.86], gap="small")
     for i, item in enumerate(VISIBLE_NAV):
         with cols[i]:
-            active = " active" if st.session_state.nav_page == item else ""
-            st.markdown(f'<div class="desktop-nav-item{active}">', unsafe_allow_html=True)
             if st.button(item, key=f"topnav_{i}_{item}", use_container_width=True):
                 st.session_state.nav_page = item
                 st.rerun()
-            st.markdown('</div>', unsafe_allow_html=True)
 
     with cols[6]:
-        active_more = " active" if st.session_state.get("show_more_nav", False) or st.session_state.nav_page in MORE_NAV else ""
-        st.markdown(f'<div class="desktop-nav-more{active_more}">', unsafe_allow_html=True)
         if st.button("SEE MORE  +", key="topnav_more", use_container_width=True):
             st.session_state.show_more_nav = not st.session_state.get("show_more_nav", False)
             st.rerun()
-        st.markdown('</div>', unsafe_allow_html=True)
 
     if st.session_state.get("show_more_nav", False):
         st.markdown('<div class="more-nav-panel"><div class="more-title">MORE MEMORYOS</div>', unsafe_allow_html=True)
@@ -406,9 +406,8 @@ with search_cols[1]:
 
 st.markdown('</div>', unsafe_allow_html=True)
 
-st.markdown('<div class="desktop-nav-shell"><div class="desktop-nav-row">', unsafe_allow_html=True)
+st.markdown('<div class="desktop-nav-shell"><div class="desktop-nav-heading">MEMORYOS NAVIGATION</div></div>', unsafe_allow_html=True)
 render_single_nav()
-st.markdown('</div></div>', unsafe_allow_html=True)
 
 if st.session_state.search_open:
     st.markdown('<div class="global-search-panel">', unsafe_allow_html=True)
@@ -754,3 +753,9 @@ elif page == "Settings":
         reset_demo()
         st.success("Demo data reset.")
         st.rerun()
+
+<style>
+@media(min-width:901px){
+  div[data-testid="stHorizontalBlock"] .stButton>button{min-height:42px!important;height:42px!important;padding:0 7px!important;font-size:9.5px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:clip!important;}
+}
+</style>
