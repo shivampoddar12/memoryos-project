@@ -237,6 +237,22 @@ hr{border-color:#1f3045}
   7%,21%{opacity:.48}
   34%,100%{opacity:0}
 }
+
+/* Floating technology logos */
+.tech-logo-cloud{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;opacity:.22}
+.tech-logo-cloud img{position:absolute;width:30px;height:30px;filter:grayscale(1) brightness(1.9);animation:techFloat 10s ease-in-out infinite}
+.tech-logo-cloud img:nth-child(1){left:8%;top:24%;animation-delay:-1s}
+.tech-logo-cloud img:nth-child(2){left:25%;top:12%;animation-delay:-4s}
+.tech-logo-cloud img:nth-child(3){left:43%;top:20%;animation-delay:-7s}
+.tech-logo-cloud img:nth-child(4){left:66%;top:13%;animation-delay:-2s}
+.tech-logo-cloud img:nth-child(5){left:87%;top:25%;animation-delay:-5s}
+.tech-logo-cloud img:nth-child(6){left:12%;top:70%;animation-delay:-6s}
+.tech-logo-cloud img:nth-child(7){left:35%;top:78%;animation-delay:-3s}
+.tech-logo-cloud img:nth-child(8){left:58%;top:72%;animation-delay:-8s}
+.tech-logo-cloud img:nth-child(9){left:78%;top:67%;animation-delay:-1s}
+.tech-logo-cloud img:nth-child(10){left:92%;top:78%;animation-delay:-6s}
+@keyframes techFloat{0%,100%{transform:translate3d(0,0,0) rotate(0deg)}50%{transform:translate3d(0,-12px,0) rotate(4deg)}}
+@media(max-width:600px){.tech-logo-cloud{opacity:.13}.tech-logo-cloud img{width:22px;height:22px}}
 </style>
 """, unsafe_allow_html=True)
 
@@ -515,6 +531,18 @@ if page == "Overview":
     st.markdown(
         f"""
         <section class="landing-hero">
+          <div class="tech-logo-cloud" aria-hidden="true">
+            <img src="https://cdn.simpleicons.org/python" alt="">
+            <img src="https://cdn.simpleicons.org/react" alt="">
+            <img src="https://cdn.simpleicons.org/streamlit" alt="">
+            <img src="https://cdn.simpleicons.org/langchain" alt="">
+            <img src="https://cdn.simpleicons.org/github" alt="">
+            <img src="https://cdn.simpleicons.org/numpy" alt="">
+            <img src="https://cdn.simpleicons.org/pandas" alt="">
+            <img src="https://cdn.simpleicons.org/scikitlearn" alt="">
+            <img src="https://cdn.simpleicons.org/flask" alt="">
+            <img src="https://cdn.simpleicons.org/docker" alt="">
+          </div>
           <div class="hero-video-slideshow" aria-hidden="true">
             <video class="hero-video hero-video-1" autoplay muted loop playsinline preload="metadata">
               <source src="https://videos.pexels.com/video-files/3129977/3129977-uhd_3840_2160_30fps.mp4" type="video/mp4">
