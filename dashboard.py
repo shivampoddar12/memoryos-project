@@ -43,19 +43,38 @@ html,body,[class*="css"]{font-family:Inter,system-ui,-apple-system,BlinkMacSyste
 section[data-testid="stSidebar"]{width:285px!important;background:#0a1423;border-right:1px solid #1c2a3d}
 section[data-testid="stSidebar"]>div{width:285px!important}
 .block-container{max-width:1440px;padding:1.5rem 3.2rem 5rem}
-.desktop-nav{display:block;margin:0 0 20px;padding:10px 14px;border:1px solid #22334a;border-radius:18px;background:#0d1725;box-shadow:0 10px 28px rgba(0,0,0,.16)}
-.desktop-nav-label{color:#7f8da0;font-size:10px;font-weight:800;letter-spacing:.12em;margin:0 0 6px 4px}
-.desktop-nav [data-testid="stRadio"]{padding:0!important}
+/* Streamlit chrome reset: keep the app itself flush to the top. */
+header[data-testid="stHeader"]{background:transparent!important;height:0!important;min-height:0!important}
+div[data-testid="stToolbar"]{display:none!important}
+div[data-testid="stDecoration"]{display:none!important}
+#MainMenu{visibility:hidden!important}
+footer{visibility:hidden!important}
+.stAppViewContainer{padding-top:0!important}
+.main .block-container{padding-top:1rem!important}
+
+.desktop-nav{display:block;margin:0 0 24px;padding:12px 16px;border:1px solid #263952;border-radius:16px;background:linear-gradient(180deg,#101d2e,#0c1726);box-shadow:0 10px 28px rgba(0,0,0,.20)}
+.desktop-nav-label{color:#718197;font-size:9px;font-weight:800;letter-spacing:.16em;margin:0 0 9px 3px}
+.desktop-nav [data-testid="stRadio"]{padding:0!important;margin:0!important}
 .desktop-nav [data-testid="stRadio"]>label{display:none!important}
-.desktop-nav [role="radiogroup"]{gap:6px!important;flex-wrap:wrap!important}
-.desktop-nav [role="radio"]{border-radius:10px!important;padding:9px 13px!important;color:#b9c5d3!important;font-size:12px!important;font-weight:700!important;border:1px solid transparent}
-.desktop-nav [role="radio"][aria-checked="true"]{background:#f4774b!important;color:#fff!important;border-color:#ff9a72!important;box-shadow:0 6px 16px rgba(244,119,75,.18)}
+.desktop-nav [role="radiogroup"]{gap:5px!important;flex-wrap:nowrap!important;overflow-x:auto!important;scrollbar-width:none!important;padding-bottom:1px!important}
+.desktop-nav [role="radiogroup"]::-webkit-scrollbar{display:none!important}
+.desktop-nav [role="radio"]{
+  flex:0 0 auto!important;display:inline-flex!important;align-items:center!important;
+  border-radius:9px!important;padding:8px 12px!important;
+  color:#aebacc!important;font-size:11px!important;font-weight:700!important;
+  border:1px solid transparent!important;background:transparent!important;
+  transition:all .18s ease!important;white-space:nowrap!important;
+}
+.desktop-nav [role="radio"]>div:first-child{display:none!important}
+.desktop-nav [role="radio"] p{color:inherit!important;font-size:11px!important;font-weight:700!important;margin:0!important}
+.desktop-nav [role="radio"]:hover{background:#17263a!important;color:#fff!important;border-color:#2b4059!important}
+.desktop-nav [role="radio"][aria-checked="true"]{background:#f4774b!important;color:#fff!important;border-color:#ff9a72!important;box-shadow:0 5px 14px rgba(244,119,75,.20)!important}
 @media(min-width:901px){section[data-testid="stSidebar"]{display:none!important}.desktop-nav{display:block}}
 @media(max-width:900px){.desktop-nav{display:none!important}}
 
 .brand{font-size:28px;font-weight:800;letter-spacing:-1.2px;color:#fff;margin-bottom:2px}
 .muted{color:#a7b1c0;font-size:13px;line-height:1.55}
-.hero{position:relative;overflow:hidden;padding:42px 46px;min-height:235px;border:1px solid #22334a;border-radius:24px;
+.hero{position:relative;overflow:hidden;padding:38px 46px;min-height:225px;border:1px solid #22334a;border-radius:24px;
 background-image:linear-gradient(90deg,rgba(7,14,25,.97) 0%,rgba(7,14,25,.86) 42%,rgba(7,14,25,.35) 100%),url('https://images.unsplash.com/photo-1694261321131-8157dce8e288?auto=format&fit=crop&fm=jpg&q=80&w=1800');
 background-size:cover;background-position:center;
 box-shadow:0 24px 60px rgba(0,0,0,.28);margin-bottom:28px}
@@ -267,7 +286,7 @@ def sync_mobile_nav():
     st.session_state.nav_page = st.session_state.mobile_nav
 
 # Desktop: website-style top navigation. Mobile: keep the compact sidebar navigation.
-st.markdown('<div class="desktop-nav"><div class="desktop-nav-label">MEMORYOS NAVIGATION</div>', unsafe_allow_html=True)
+st.markdown('<div class="desktop-nav"><div class="desktop-nav-label">MEMORYOS</div>', unsafe_allow_html=True)
 st.radio(
     "Desktop navigation",
     NAV_ITEMS,
