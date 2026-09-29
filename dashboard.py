@@ -209,6 +209,11 @@ div[data-baseweb="select"]>div{background:#0d1725!important;border-color:#273b54
 hr{border-color:#1f3045}
 @media(max-width:900px){section[data-testid="stSidebar"],section[data-testid="stSidebar"]>div{width:260px!important;display:block!important}.block-container{padding:1.2rem 1rem 3rem}.hero h1{font-size:36px}.hero{padding:30px}.kpi-value{font-size:28px}.landing-hero{min-height:650px;padding:22px 20px}.landing-copy{width:100%;margin-top:55px}.landing-copy h1{font-size:70px}.landing-side{display:none}.memory-core{width:245px;height:245px;right:5%;top:37%}.ring-one{width:275px;height:275px}.ring-two{width:215px;height:215px}.landing-orbit{width:54px;height:54px}.landing-cta-row{left:20px;bottom:78px}.landing-bottom{left:20px;right:20px;gap:15px;overflow:hidden}.landing-split{grid-template-columns:1fr;margin:60px 0}.landing-section-title h2,.split-copy h2{font-size:34px}.landing-metrics{grid-template-columns:1fr 1fr}.landing-metrics div{border-bottom:1px solid #26374b}.landing-bottom-cta{display:block}.landing-bottom-cta h2{font-size:36px}.landing-cta-copy{margin-top:20px}}
 @media(max-width:600px){.hero h1{font-size:30px}.hero p{font-size:14px}.hero-meta{display:none}.kpi{min-height:105px;padding:15px}.landing-hero{min-height:620px}.landing-copy h1{font-size:56px}.memory-core{width:190px;height:190px;top:39%;right:2%}.ring-one{width:215px;height:215px}.ring-two{width:170px;height:170px}.landing-orbit{display:none}.landing-bottom{font-size:8px;gap:9px}.landing-bottom div:nth-child(2){display:none}.landing-metrics strong{font-size:30px}}
+.overview-chart-head{display:flex;justify-content:space-between;align-items:end;margin:42px 0 12px;padding-top:22px;border-top:1px solid #24354b}
+.overview-chart-head span{font-size:8px;letter-spacing:.16em;color:#f4774b;font-weight:800}
+.overview-chart-head h3{margin:6px 0 0;color:#e6e1db;font-size:25px;font-weight:600}
+.chart-threshold{font-size:9px;color:#8f9baa;border:1px solid #33485f;border-radius:999px;padding:7px 10px}
+.chart-caption{font-size:9px;color:#718096;margin:-4px 0 26px}
 </style>
 """, unsafe_allow_html=True)
 
@@ -547,6 +552,14 @@ if page == "Overview":
                 st.session_state.nav_page = card_routes[title]
                 st.session_state.search_open = False
                 st.rerun()
+
+    if drift_history:
+        st.markdown('<div class="overview-chart-head"><div><span>MEMORY HEALTH</span><h3>Drift Timeline</h3></div><div class="chart-threshold">Auto-heal threshold 0.45</div></div>', unsafe_allow_html=True)
+        chart_df = pd.DataFrame(drift_history)
+        if "session" in chart_df.columns and "drift_score" in chart_df.columns:
+            chart_df = chart_df[["session", "drift_score"]].copy().set_index("session")
+            st.line_chart(chart_df, height=280, use_container_width=True)
+        st.markdown('<div class="chart-caption">Session-by-session memory drift. Higher values indicate greater context change.</div>', unsafe_allow_html=True)
 
     st.markdown('<div class="landing-split"><div class="split-copy"><div class="landing-eyebrow">MEMORY INFRASTRUCTURE</div><h2>Context that stays useful as your agent evolves.</h2><p>MemoryOS connects retrieval, reliability monitoring and recovery into one lightweight memory layer. Test the pipeline, inspect retrieval signals and keep stale context under control.</p><div class="split-points"><div><b>01</b>Relevant memories before every interaction</div><div><b>02</b>Explainable retrieval signals</div><div><b>03</b>Persistent local memory state</div></div></div><div class="split-visual"><div class="visual-grid"></div><div class="visual-core">✣</div><span>AI MEMORY<br>INFRASTRUCTURE</span></div></div>',unsafe_allow_html=True)
 
