@@ -79,6 +79,22 @@ footer{visibility:hidden!important}
 .desktop-secondary [role="radio"]{padding:7px 13px!important;color:#93a0b2!important}
 .desktop-secondary [role="radio"][aria-checked="true"]{background:rgba(244,119,75,.13)!important;color:#ff9b76!important}
 
+.landing-hero{position:relative;overflow:hidden;min-height:720px;margin:-2px 0 55px;padding:32px 38px 26px;border:1px solid #26374b;background:radial-gradient(circle at 72% 44%,#18283b 0%,#0a111c 31%,#050a10 74%);box-shadow:0 25px 80px rgba(0,0,0,.35)}
+.landing-top{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #1d2a3a;padding-bottom:16px;position:relative;z-index:5}
+.landing-kicker,.landing-eyebrow{font-size:9px;font-weight:800;letter-spacing:.18em;color:#8f9baa}
+.landing-status{font-size:9px;letter-spacing:.12em;color:#b5bfcb}.landing-status span{display:inline-block;width:6px;height:6px;background:#f4774b;border-radius:50%;margin-right:7px;box-shadow:0 0 12px #f4774b}
+.landing-copy{position:relative;z-index:4;margin-top:68px;width:52%}.landing-copy .landing-eyebrow{color:#f0b19b;margin-bottom:12px}.landing-copy h1{font-size:clamp(72px,9vw,138px);line-height:.78;letter-spacing:-.075em;font-weight:500;color:#e7e0d8;margin:0}.landing-copy h1 em{font-style:normal;color:#8d8f92}.landing-copy p{max-width:470px;color:#8995a3;font-size:12px;line-height:1.7;margin:32px 0 0}
+.landing-side{position:absolute;right:7%;top:35%;width:210px;z-index:5;color:#aeb8c4;font-size:10px;line-height:1.6}.landing-side strong{display:block;color:#e5e7eb;font-size:11px;margin:8px 0 4px}.side-line{width:32px;height:1px;background:#f4774b}
+.landing-cta-row{position:absolute;left:38px;bottom:90px;z-index:7;display:flex;align-items:center;gap:15px}.fake-cta{background:#e9e4dc;border:0;color:#0a0e13;border-radius:3px;padding:12px 18px;font-size:11px;font-weight:800}.fake-cta span{margin-left:18px}.cta-note{font-size:9px;color:#697687;letter-spacing:.08em}
+.memory-core{position:absolute;right:15%;top:20%;width:380px;height:380px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 40% 35%,#6f7377,#272b2e 28%,#0a0f14 64%);box-shadow:inset -35px -35px 75px rgba(0,0,0,.8),0 35px 100px rgba(0,0,0,.5);z-index:2}.core-ring{position:absolute;border:1px solid rgba(239,228,216,.22);border-radius:50%}.ring-one{width:430px;height:430px}.ring-two{width:330px;height:330px;border-color:rgba(244,119,75,.25)}.core-mark{position:relative;width:92px;height:92px}.core-mark i{position:absolute;width:36px;height:36px;border:7px solid #e8e0d8;border-radius:13px;transform:rotate(45deg)}.core-mark i:nth-child(1){left:8px;top:28px}.core-mark i:nth-child(2){left:48px;top:28px}.core-mark i:nth-child(3){left:28px;top:8px}.core-mark i:nth-child(4){left:28px;top:48px}.core-label{position:absolute;bottom:-90px;text-align:center;color:#a8b0ba;font-size:8px;letter-spacing:.2em;line-height:1.5}
+.landing-orbit{position:absolute;z-index:6;border:1px solid #354253;color:#9ea8b4;background:#0b1119;border-radius:50%;width:68px;height:68px;display:flex;align-items:center;justify-content:center;font-size:8px;letter-spacing:.12em}.orbit-one{right:9%;top:28%}.orbit-two{right:7%;top:57%}.orbit-three{right:25%;bottom:15%}
+.landing-bottom{position:absolute;left:38px;right:38px;bottom:25px;border-top:1px solid #1e2b3b;padding-top:13px;display:flex;gap:55px;color:#687586;font-size:9px;letter-spacing:.08em}.landing-bottom b{color:#e0d8cf;margin-right:8px}
+.landing-section-title{margin:0 0 22px}.landing-section-title span{font-size:9px;letter-spacing:.16em;color:#f4774b;font-weight:800}.landing-section-title h2{font-size:42px;line-height:1.05;letter-spacing:-.04em;color:#e6e1db;font-weight:500;margin:10px 0 28px}
+.cap-card{min-height:210px;border:1px solid #26374b;background:#0b1420;padding:21px;position:relative;transition:.2s}.cap-card:hover{border-color:#f4774b;transform:translateY(-3px)}.cap-card>span{color:#f4774b;font-size:9px;letter-spacing:.12em}.cap-card h3{font-size:17px!important;margin:58px 0 9px!important;color:#e6e1db}.cap-card p{font-size:11px;line-height:1.65;color:#788697}.cap-card>b{position:absolute;right:18px;bottom:18px;color:#c5ccd4}
+.landing-split{display:grid;grid-template-columns:1fr 1fr;gap:45px;align-items:center;margin:95px 0;padding:30px 0}.split-copy{padding:10px}.split-copy h2{font-size:45px;line-height:1.02;font-weight:500;letter-spacing:-.04em;color:#e6e1db;margin:11px 0 20px}.split-copy>p{color:#7f8c9c;font-size:12px;line-height:1.8;max-width:500px}.split-points{margin-top:28px}.split-points div{padding:13px 0;border-top:1px solid #223145;color:#a6b1bd;font-size:11px}.split-points b{color:#f4774b;margin-right:16px}.split-visual{height:430px;position:relative;overflow:hidden;border:1px solid #27374a;background:radial-gradient(circle,#1d2b3a 0,#0a111a 50%,#05090e 100%)}.visual-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:35px 35px;transform:perspective(400px) rotateX(58deg) scale(1.5);transform-origin:center bottom}.visual-core{position:absolute;left:50%;top:45%;transform:translate(-50%,-50%);width:135px;height:135px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:55px;color:#e9e1d8;background:radial-gradient(circle,#53585c,#151a1f 65%);box-shadow:0 0 70px rgba(244,119,75,.13)}.split-visual span{position:absolute;left:20px;bottom:18px;color:#7e8b9b;font-size:8px;letter-spacing:.18em;line-height:1.5}
+.landing-metrics{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #26374b;border-bottom:1px solid #26374b;margin:40px 0 90px}.landing-metrics div{padding:28px 22px;border-right:1px solid #26374b}.landing-metrics div:last-child{border-right:0}.landing-metrics strong{display:block;color:#e8e1d9;font-size:38px;font-weight:500;letter-spacing:-.05em}.landing-metrics span{font-size:8px;letter-spacing:.16em;color:#778495}
+.landing-bottom-cta{display:flex;justify-content:space-between;align-items:flex-end;padding:45px 0 80px;border-top:1px solid #26374b}.landing-bottom-cta h2{font-size:48px;line-height:1;letter-spacing:-.04em;color:#e6e1db;font-weight:500;margin:9px 0 0}.landing-cta-copy{max-width:310px;color:#788596;font-size:11px;line-height:1.7}
+
 @media(min-width:901px){section[data-testid="stSidebar"]{display:none!important}}
 @media(max-width:900px){.desktop-site-header{display:none!important}}
 @media(min-width:901px){section[data-testid="stSidebar"]{display:none!important}.desktop-nav{display:block}}
@@ -135,8 +151,8 @@ div[data-baseweb="select"]>div{background:#0d1725!important;border-color:#273b54
 [data-testid="stCaptionContainer"] p{color:#8b98aa!important;font-size:13px!important}
 [data-testid="stAlert"]{border-radius:12px}
 hr{border-color:#1f3045}
-@media(max-width:900px){section[data-testid="stSidebar"],section[data-testid="stSidebar"]>div{width:260px!important;display:block!important}.block-container{padding:1.2rem 1rem 3rem}.hero h1{font-size:36px}.hero{padding:30px}.kpi-value{font-size:28px}}
-@media(max-width:600px){.hero h1{font-size:30px}.hero p{font-size:14px}.hero-meta{display:none}.kpi{min-height:105px;padding:15px}}
+@media(max-width:900px){section[data-testid="stSidebar"],section[data-testid="stSidebar"]>div{width:260px!important;display:block!important}.block-container{padding:1.2rem 1rem 3rem}.hero h1{font-size:36px}.hero{padding:30px}.kpi-value{font-size:28px}.landing-hero{min-height:650px;padding:22px 20px}.landing-copy{width:100%;margin-top:55px}.landing-copy h1{font-size:70px}.landing-side{display:none}.memory-core{width:245px;height:245px;right:5%;top:37%}.ring-one{width:275px;height:275px}.ring-two{width:215px;height:215px}.landing-orbit{width:54px;height:54px}.landing-cta-row{left:20px;bottom:78px}.landing-bottom{left:20px;right:20px;gap:15px;overflow:hidden}.landing-split{grid-template-columns:1fr;margin:60px 0}.landing-section-title h2,.split-copy h2{font-size:34px}.landing-metrics{grid-template-columns:1fr 1fr}.landing-metrics div{border-bottom:1px solid #26374b}.landing-bottom-cta{display:block}.landing-bottom-cta h2{font-size:36px}.landing-cta-copy{margin-top:20px}}
+@media(max-width:600px){.hero h1{font-size:30px}.hero p{font-size:14px}.hero-meta{display:none}.kpi{min-height:105px;padding:15px}.landing-hero{min-height:620px}.landing-copy h1{font-size:56px}.memory-core{width:190px;height:190px;top:39%;right:2%}.ring-one{width:215px;height:215px}.ring-two{width:170px;height:170px}.landing-orbit{display:none}.landing-bottom{font-size:8px;gap:9px}.landing-bottom div:nth-child(2){display:none}.landing-metrics strong{font-size:30px}}
 </style>
 """, unsafe_allow_html=True)
 
@@ -352,106 +368,66 @@ st.markdown(f"""
 """, unsafe_allow_html=True)
 
 if page == "Overview":
-    cols = st.columns(4)
-    with cols[0]:
-        kpi("🧠 Memories", len(memories), "Active memory items")
-    with cols[1]:
-        kpi("📈 Drift Score", f"{last_score:.2f}", status)
-    with cols[2]:
-        kpi("🛠 Heal Events", len(heal_history), "Recovery operations")
-    with cols[3]:
-        kpi("◉ Sessions", len(drift_history), "Tracked sessions")
-
+    # Marketing-style landing page inspired by the supplied reference, while keeping MemoryOS functionality live.
     st.markdown(
-        '<div class="section-head"><div><div class="section-title">Quick actions</div>'
-        '<div class="section-note">Run the core MemoryOS operations from here.</div></div></div>',
+        f"""
+        <section class="landing-hero">
+          <div class="landing-glow glow-a"></div>
+          <div class="landing-glow glow-b"></div>
+          <div class="landing-top">
+            <div class="landing-kicker">MEMORYOS / AI MEMORY INFRASTRUCTURE</div>
+            <div class="landing-status"><span></span> SYSTEM ONLINE</div>
+          </div>
+          <div class="landing-copy">
+            <div class="landing-eyebrow">RELIABLE CONTEXT FOR AI AGENTS</div>
+            <h1>Future<br><em>Memory.</em></h1>
+            <p>Build intelligent AI agents that remember what matters, detect memory drift, retrieve the right context and recover stale knowledge automatically.</p>
+          </div>
+          <div class="landing-side">
+            <div class="side-line"></div>
+            <strong>Autonomous Memory</strong>
+            <span>Semantic retrieval, drift detection and self-healing memory in one intelligent layer.</span>
+          </div>
+          <div class="landing-cta-row">
+            <button class="fake-cta">Explore MemoryOS <span>↗</span></button>
+            <span class="cta-note">Built for intelligent agents</span>
+          </div>
+          <div class="landing-orbit orbit-one">RETRIEVE</div>
+          <div class="landing-orbit orbit-two">DRIFT</div>
+          <div class="landing-orbit orbit-three">HEAL</div>
+          <div class="memory-core">
+            <div class="core-ring ring-one"></div>
+            <div class="core-ring ring-two"></div>
+            <div class="core-mark"><i></i><i></i><i></i><i></i></div>
+            <div class="core-label">MEMORY<br>ENGINE</div>
+          </div>
+          <div class="landing-bottom">
+            <div><b>01</b><span>Semantic Retrieval</span></div>
+            <div><b>02</b><span>Memory Reliability</span></div>
+            <div><b>03</b><span>Self-Healing Context</span></div>
+          </div>
+        </section>
+        """,
         unsafe_allow_html=True,
     )
-    a, b, c, d = st.columns(4)
-    with a:
-        if st.button("🔍 Run Drift Analysis", use_container_width=True):
-            sample = [m["content"] for m in memories]
-            baseline = sample[:max(1, min(4, len(sample)))]
-            current = sample[-max(1, min(4, len(sample))):]
-            result = ENGINE.drift(baseline, current)
-            st.success(f"Analysis complete • drift {result['score']:.2f} • {result['status']}")
-            st.rerun()
-    with b:
-        if st.button("🛠 Run Auto-Heal", use_container_width=True):
-            if last_score >= THRESHOLD:
-                entry = ENGINE.heal(last_score)
-                st.success(f"Healed • pruned {entry['memories_pruned']} memories")
-                st.rerun()
-            else:
-                st.info("No heal required below threshold.")
-    with c:
-        if st.button("↻ Refresh", use_container_width=True):
-            st.rerun()
-    with d:
-        if st.button("↺ Reset Demo", use_container_width=True):
-            reset_demo()
-            st.success("Demo data restored.")
-            st.rerun()
 
-    left, right = st.columns([1.5, 1])
-    with left:
-        st.markdown(
-            f"""<div class="image-feature" style="--feature-image:url('{SERVER_IMAGE}')">
-<div class="image-feature-content">
-<div class="image-feature-kicker">Memory Infrastructure</div>
-<h3>Reliable context, built for intelligent agents.</h3>
-<p>MemoryOS monitors drift, ranks relevant memories and keeps the agent context useful as sessions evolve.</p>
-<span class="mini-badge">SELF-HEALING MEMORY</span>
-</div></div>""",
-            unsafe_allow_html=True,
-        )
+    st.markdown('<div class="landing-section-title"><span>MEMORYOS CAPABILITIES</span><h2>Everything your agent needs<br>to remember intelligently.</h2></div>', unsafe_allow_html=True)
+    f1,f2,f3,f4 = st.columns(4)
+    cards = [
+        ("01","Semantic Retrieval","Find the most relevant memories using TF-IDF similarity and weighted relevance."),
+        ("02","Drift Detection","Measure how memory context changes across sessions and flag unhealthy drift."),
+        ("03","Memory Lifecycle","Track active and stale memories as relevance changes over time."),
+        ("04","Auto-Heal","Prune low-value context and preserve high-value memories when drift crosses the threshold."),
+    ]
+    for col,(num,title,desc) in zip((f1,f2,f3,f4),cards):
+        with col:
+            st.markdown(f'<div class="cap-card"><span>{num}</span><h3>{title}</h3><p>{desc}</p><b>↗</b></div>',unsafe_allow_html=True)
 
-        st.markdown(
-            '<div class="section-head"><div><div class="section-title">Drift timeline</div>'
-            '<div class="section-note">Session-by-session behavioral drift</div></div></div>',
-            unsafe_allow_html=True,
-        )
-        if drift_history:
-            df = pd.DataFrame(drift_history)
-            if "session" in df and "drift_score" in df:
-                st.line_chart(df.set_index("session")["drift_score"], height=280)
-        else:
-            st.info("No drift sessions yet. Run Drift Analysis to populate the timeline.")
+    st.markdown('<div class="landing-split"><div class="split-copy"><div class="landing-eyebrow">MEMORY INFRASTRUCTURE</div><h2>Context that stays useful as your agent evolves.</h2><p>MemoryOS connects retrieval, reliability monitoring and recovery into one lightweight memory layer. Test the pipeline, inspect retrieval signals and keep stale context under control.</p><div class="split-points"><div><b>01</b>Relevant memories before every interaction</div><div><b>02</b>Explainable retrieval signals</div><div><b>03</b>Persistent local memory state</div></div></div><div class="split-visual"><div class="visual-grid"></div><div class="visual-core">✣</div><span>AI MEMORY<br>INFRASTRUCTURE</span></div></div>',unsafe_allow_html=True)
 
-    with right:
-        st.markdown(
-            f"""<div class="image-feature" style="--feature-image:url('{WORK_IMAGE}');min-height:180px;margin-bottom:16px">
-<div class="image-feature-content" style="padding:22px">
-<div class="image-feature-kicker">Agent Workspace</div>
-<h3 style="font-size:22px!important">Memory that works with your agent.</h3>
-<p>Retrieve the right context before every interaction.</p>
-</div></div>""",
-            unsafe_allow_html=True,
-        )
+    st.markdown('<div class="landing-metrics"><div><strong>'+str(len(memories))+'</strong><span>MEMORY ITEMS</span></div><div><strong>'+f'{last_score:.2f}'+'</strong><span>DRIFT SCORE</span></div><div><strong>'+str(len(heal_history))+'</strong><span>HEAL EVENTS</span></div><div><strong>'+str(len(drift_history))+'</strong><span>SESSIONS</span></div></div>',unsafe_allow_html=True)
 
-        st.markdown(
-            '<div class="section-head"><div><div class="section-title">System health</div>'
-            '<div class="section-note">Reliability and recovery readiness</div></div></div>',
-            unsafe_allow_html=True,
-        )
-        st.markdown(
-            f'<div class="health-card"><div class="health-label">Current Status</div>'
-            f'<div class="health-value">{emoji} {status}</div>'
-            f'<div class="health-sub">Overall memory reliability state</div></div>',
-            unsafe_allow_html=True,
-        )
-        st.markdown(
-            f'<div class="health-card"><div class="health-label">Heal Threshold</div>'
-            f'<div class="health-value">{THRESHOLD:.2f}</div>'
-            f'<div class="health-sub">Auto-heal trigger level</div></div>',
-            unsafe_allow_html=True,
-        )
-        st.markdown(
-            f'<div class="health-card"><div class="health-label">Memory Coverage</div>'
-            f'<div class="health-value">{len(memories)} items</div>'
-            f'<div class="health-sub">Currently available memory records</div></div>',
-            unsafe_allow_html=True,
-        )
+    st.markdown('<div class="landing-bottom-cta"><div><div class="landing-eyebrow">AGENT MEMORY CONSOLE</div><h2>Give your agent a memory it can trust.</h2></div><div class="landing-cta-copy">Run retrieval, inspect context, analyze drift and execute recovery from the navigation above.</div></div>',unsafe_allow_html=True)
 
 elif page == "Memory Explorer":
     st.markdown("### Memory Explorer")
