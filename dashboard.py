@@ -118,7 +118,10 @@ footer{visibility:hidden!important}
 .landing-orbit{position:absolute;z-index:6;border:1px solid #354253;color:#9ea8b4;background:#0b1119;border-radius:50%;width:68px;height:68px;display:flex;align-items:center;justify-content:center;font-size:8px;letter-spacing:.12em}.orbit-one{right:9%;top:28%}.orbit-two{right:7%;top:57%}.orbit-three{right:25%;bottom:15%}
 .landing-bottom{position:absolute;left:38px;right:38px;bottom:25px;border-top:1px solid #1e2b3b;padding-top:13px;display:flex;gap:55px;color:#9aa6b4;font-size:9px;letter-spacing:.08em}.landing-bottom b{color:#e0d8cf;margin-right:8px}
 .landing-section-title{margin:0 0 22px}.landing-section-title span{font-size:9px;letter-spacing:.16em;color:#f4774b;font-weight:800}.landing-section-title h2{font-size:42px;line-height:1.05;letter-spacing:-.04em;color:#e6e1db;font-weight:500;margin:10px 0 28px}
-.cap-card{min-height:210px;border:1px solid #26374b;background:#0b1420;padding:21px;position:relative;transition:.2s}.cap-card:hover{border-color:#f4774b;transform:translateY(-3px)}.cap-card .stButton{margin-top:12px}.cap-card .stButton>button{min-height:34px!important;height:34px!important;padding:0 10px!important;border-radius:6px!important;background:#101d2d!important;border:1px solid #30455d!important;color:#f4774b!important;font-size:9px!important;font-weight:800!important;letter-spacing:.08em!important}.cap-card .stButton>button:hover{background:#f4774b!important;color:#fff!important;border-color:#f4774b!important}.cap-card>span{color:#f4774b;font-size:9px;letter-spacing:.12em}.cap-card h3{font-size:17px!important;margin:58px 0 9px!important;color:#e6e1db}.cap-card p{font-size:11px;line-height:1.65;color:#a3afbd}.cap-card>b{position:absolute;right:18px;bottom:18px;color:#c5ccd4}
+.cap-card{min-height:210px;border:1px solid #26374b;background:#0b1420;padding:21px;position:relative;transition:.2s}.cap-card:hover{border-color:#f4774b;transform:translateY(-3px)}
+div[data-testid="stHorizontalBlock"] .stButton>button{transition:all .18s ease!important}
+div[data-testid="stHorizontalBlock"] .stButton>button:hover{border-color:#f4774b!important;box-shadow:0 0 0 1px rgba(244,119,75,.35)!important}
+.cap-card .stButton{margin-top:12px}.cap-card .stButton>button{min-height:34px!important;height:34px!important;padding:0 10px!important;border-radius:6px!important;background:#101d2d!important;border:1px solid #30455d!important;color:#f4774b!important;font-size:9px!important;font-weight:800!important;letter-spacing:.08em!important}.cap-card .stButton>button:hover{background:#f4774b!important;color:#fff!important;border-color:#f4774b!important}.cap-card>span{color:#f4774b;font-size:9px;letter-spacing:.12em}.cap-card h3{font-size:17px!important;margin:58px 0 9px!important;color:#e6e1db}.cap-card p{font-size:11px;line-height:1.65;color:#a3afbd}.cap-card>b{position:absolute;right:18px;bottom:18px;color:#c5ccd4}
 .landing-split{display:grid;grid-template-columns:1fr 1fr;gap:45px;align-items:center;margin:95px 0;padding:30px 0}.split-copy{padding:10px}.split-copy h2{font-size:45px;line-height:1.02;font-weight:500;letter-spacing:-.04em;color:#e6e1db;margin:11px 0 20px}.split-copy>p{color:#a5b0bd;font-size:12px;line-height:1.8;max-width:500px}.split-points{margin-top:28px}.split-points div{padding:13px 0;border-top:1px solid #223145;color:#a6b1bd;font-size:11px}.split-points b{color:#f4774b;margin-right:16px}.split-visual{height:430px;position:relative;overflow:hidden;border:1px solid #27374a;background:radial-gradient(circle,#1d2b3a 0,#0a111a 50%,#05090e 100%)}.visual-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:35px 35px;transform:perspective(400px) rotateX(58deg) scale(1.5);transform-origin:center bottom}.visual-core{position:absolute;left:50%;top:45%;transform:translate(-50%,-50%);width:135px;height:135px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:55px;color:#e9e1d8;background:radial-gradient(circle,#53585c,#151a1f 65%);box-shadow:0 0 70px rgba(244,119,75,.13)}.split-visual span{position:absolute;left:20px;bottom:18px;color:#7e8b9b;font-size:8px;letter-spacing:.18em;line-height:1.5}
 .landing-metrics{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #26374b;border-bottom:1px solid #26374b;margin:40px 0 90px}.landing-metrics div{padding:28px 22px;border-right:1px solid #26374b}.landing-metrics div:last-child{border-right:0}.landing-metrics strong{display:block;color:#e8e1d9;font-size:38px;font-weight:500;letter-spacing:-.05em}.landing-metrics span{font-size:8px;letter-spacing:.16em;color:#778495}
 .landing-bottom-cta{display:flex;justify-content:space-between;align-items:flex-end;padding:45px 0 80px;border-top:1px solid #26374b}.landing-bottom-cta h2{font-size:48px;line-height:1;letter-spacing:-.04em;color:#e6e1db;font-weight:500;margin:9px 0 0}.landing-cta-copy{max-width:310px;color:#788596;font-size:11px;line-height:1.7}
@@ -526,6 +529,20 @@ if page == "Overview":
     if st.button("Explore MemoryOS  ↗", key="hero_explore", use_container_width=False):
         st.session_state.nav_page = "Memory Explorer"
         st.rerun()
+
+    # Functional hero quick-links matching the three highlighted capabilities.
+    quick1, quick2, quick3 = st.columns(3, gap="small")
+    quick_links = [
+        ("01  Semantic Retrieval", "Semantic Retrieval"),
+        ("02  Memory Reliability", "Memory Intelligence"),
+        ("03  Self-Healing Context", "Auto-Heal"),
+    ]
+    for idx, (label, target) in enumerate(quick_links):
+        with (quick1, quick2, quick3)[idx]:
+            if st.button(label, key=f"hero_quick_{idx}", use_container_width=True):
+                st.session_state.nav_page = target
+                st.session_state.search_open = False
+                st.rerun()
 
     st.markdown('<div class="landing-section-title"><span>MEMORYOS CAPABILITIES</span><h2>Everything your agent needs<br>to remember intelligently.</h2></div>', unsafe_allow_html=True)
     f1,f2,f3,f4 = st.columns(4)
