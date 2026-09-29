@@ -52,49 +52,28 @@ footer{visibility:hidden!important}
 .stAppViewContainer{padding-top:0!important}
 .main .block-container{padding-top:.65rem!important}
 
-.desktop-site-header{
-  display:block;margin:0 0 22px;background:#0b1422;
-  border:1px solid #24354b;border-radius:0 0 18px 18px;
-  box-shadow:0 12px 30px rgba(0,0,0,.22);overflow:hidden;
-}
-.desktop-topbar{display:flex;align-items:center;gap:28px;padding:14px 22px 11px;border-bottom:1px solid #1c2a3d}
-.desktop-brand{font-size:24px;font-weight:800;letter-spacing:-1px;color:#fff;white-space:nowrap}
+.desktop-site-header{display:block;margin:0 0 24px;background:#0b1422;border:1px solid #24354b;border-radius:0 0 14px 14px;box-shadow:0 10px 30px rgba(0,0,0,.22);overflow:hidden}
+.desktop-topbar{display:flex;align-items:center;gap:30px;padding:14px 24px;border-bottom:1px solid #1d2b3e}
+.desktop-brand{font-size:23px;font-weight:800;letter-spacing:-1px;color:#f2eee8;white-space:nowrap}
 .desktop-brand span{color:#f4774b}
-.desktop-nav-row{display:flex;align-items:center;gap:4px;min-width:0}
-.desktop-nav-row [data-testid="stRadio"]{padding:0!important;margin:0!important}
-.desktop-nav-row [data-testid="stRadio"]>label{display:none!important}
-.desktop-nav-row [role="radiogroup"]{display:flex!important;align-items:center!important;gap:2px!important;flex-wrap:nowrap!important;overflow-x:auto!important;scrollbar-width:none!important}
-.desktop-nav-row [role="radiogroup"]::-webkit-scrollbar{display:none!important}
-.desktop-nav-row [role="radio"]{
-  display:inline-flex!important;align-items:center!important;justify-content:center!important;
-  flex:0 0 auto!important;border:0!important;border-radius:8px!important;
-  background:transparent!important;padding:9px 11px!important;
-  color:#b7c1cf!important;white-space:nowrap!important;
+.desktop-search{margin-left:auto;min-width:190px;border:1px solid #293b52;border-radius:7px;padding:8px 12px;color:#718095;font-size:10px;background:#0e1928}
+.desktop-nav-row{display:flex;align-items:center;gap:3px;padding:9px 18px;overflow-x:auto;scrollbar-width:none}
+.desktop-nav-row::-webkit-scrollbar{display:none}
+.desktop-nav-item{flex:0 0 auto!important}
+.desktop-nav-item button{
+  min-height:34px!important;height:34px!important;padding:0 14px!important;
+  border:1px solid transparent!important;border-radius:6px!important;
+  background:transparent!important;color:#aeb9c7!important;
+  font-family:Inter,system-ui,sans-serif!important;font-size:11px!important;
+  font-weight:600!important;letter-spacing:0!important;
+  box-shadow:none!important;transform:none!important;
 }
-.desktop-nav-row [role="radio"]>div:first-child{display:none!important}
-.desktop-nav-row [role="radio"] p{font-size:12px!important;font-weight:650!important;color:inherit!important;margin:0!important}
-.desktop-nav-row [role="radio"]:hover{background:#172536!important;color:#fff!important}
-.desktop-nav-row [role="radio"][aria-checked="true"]{background:#f4774b!important;color:#fff!important}
-.desktop-secondary{padding:7px 22px;background:#0e1928;border-top:1px solid rgba(255,255,255,.02)}
-.desktop-secondary [role="radio"]{padding:7px 13px!important;color:#93a0b2!important}
-.desktop-secondary [role="radio"][aria-checked="true"]{background:rgba(244,119,75,.13)!important;color:#ff9b76!important}
-
-.landing-hero{position:relative;overflow:hidden;min-height:720px;margin:0 0 55px;padding:32px 38px 26px;border:1px solid #26374b;background:radial-gradient(circle at 72% 44%,#18283b 0%,#0a111c 31%,#050a10 74%);box-shadow:0 25px 80px rgba(0,0,0,.35)}
-.landing-top{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #1d2a3a;padding-bottom:16px;position:relative;z-index:5}
-.landing-kicker,.landing-eyebrow{font-size:9px;font-weight:800;letter-spacing:.18em;color:#8f9baa}
-.landing-status{font-size:9px;letter-spacing:.12em;color:#b5bfcb}.landing-status span{display:inline-block;width:6px;height:6px;background:#f4774b;border-radius:50%;margin-right:7px;box-shadow:0 0 12px #f4774b}
-.landing-copy{position:relative;z-index:4;margin-top:68px;width:52%}.landing-copy .landing-eyebrow{color:#f0b19b;margin-bottom:12px}.landing-copy h1{font-size:clamp(72px,9vw,138px);line-height:.78;letter-spacing:-.075em;font-weight:500;color:#e7e0d8;margin:0}.landing-copy h1 em{font-style:normal;color:#8d8f92}.landing-copy p{max-width:470px;color:#b1bbc7;font-size:13px;line-height:1.7;margin:32px 0 0}
-.landing-side{position:absolute;right:7%;top:35%;width:210px;z-index:5;color:#c0c8d2;font-size:10px;line-height:1.6}.landing-side strong{display:block;color:#e5e7eb;font-size:11px;margin:8px 0 4px}.side-line{width:32px;height:1px;background:#f4774b}
-.landing-cta-row{position:absolute;left:38px;bottom:90px;z-index:7;display:flex;align-items:center;gap:15px}.fake-cta{background:#e9e4dc;border:0;color:#0a0e13;border-radius:3px;padding:12px 18px;font-size:11px;font-weight:800}.fake-cta span{margin-left:18px}.cta-note{font-size:9px;color:#697687;letter-spacing:.08em}
-.memory-core{position:absolute;right:15%;top:20%;width:380px;height:380px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 40% 35%,#6f7377,#272b2e 28%,#0a0f14 64%);box-shadow:inset -35px -35px 75px rgba(0,0,0,.8),0 35px 100px rgba(0,0,0,.5);z-index:2}.core-ring{position:absolute;border:1px solid rgba(239,228,216,.22);border-radius:50%}.ring-one{width:430px;height:430px}.ring-two{width:330px;height:330px;border-color:rgba(244,119,75,.25)}.core-mark{position:relative;width:92px;height:92px}.core-mark i{position:absolute;width:36px;height:36px;border:7px solid #e8e0d8;border-radius:13px;transform:rotate(45deg)}.core-mark i:nth-child(1){left:8px;top:28px}.core-mark i:nth-child(2){left:48px;top:28px}.core-mark i:nth-child(3){left:28px;top:8px}.core-mark i:nth-child(4){left:28px;top:48px}.core-label{position:absolute;bottom:-90px;text-align:center;color:#a8b0ba;font-size:8px;letter-spacing:.2em;line-height:1.5}
-.landing-orbit{position:absolute;z-index:6;border:1px solid #354253;color:#9ea8b4;background:#0b1119;border-radius:50%;width:68px;height:68px;display:flex;align-items:center;justify-content:center;font-size:8px;letter-spacing:.12em}.orbit-one{right:9%;top:28%}.orbit-two{right:7%;top:57%}.orbit-three{right:25%;bottom:15%}
-.landing-bottom{position:absolute;left:38px;right:38px;bottom:25px;border-top:1px solid #1e2b3b;padding-top:13px;display:flex;gap:55px;color:#687586;font-size:9px;letter-spacing:.08em}.landing-bottom b{color:#e0d8cf;margin-right:8px}
-.landing-section-title{margin:0 0 22px}.landing-section-title span{font-size:9px;letter-spacing:.16em;color:#f4774b;font-weight:800}.landing-section-title h2{font-size:42px;line-height:1.05;letter-spacing:-.04em;color:#e6e1db;font-weight:500;margin:10px 0 28px}
-.cap-card{min-height:210px;border:1px solid #26374b;background:#0b1420;padding:21px;position:relative;transition:.2s}.cap-card:hover{border-color:#f4774b;transform:translateY(-3px)}.cap-card>span{color:#f4774b;font-size:9px;letter-spacing:.12em}.cap-card h3{font-size:17px!important;margin:58px 0 9px!important;color:#e6e1db}.cap-card p{font-size:11px;line-height:1.65;color:#a3afbd}.cap-card>b{position:absolute;right:18px;bottom:18px;color:#c5ccd4}
-.landing-split{display:grid;grid-template-columns:1fr 1fr;gap:45px;align-items:center;margin:95px 0;padding:30px 0}.split-copy{padding:10px}.split-copy h2{font-size:45px;line-height:1.02;font-weight:500;letter-spacing:-.04em;color:#e6e1db;margin:11px 0 20px}.split-copy>p{color:#a5b0bd;font-size:12px;line-height:1.8;max-width:500px}.split-points{margin-top:28px}.split-points div{padding:13px 0;border-top:1px solid #223145;color:#a6b1bd;font-size:11px}.split-points b{color:#f4774b;margin-right:16px}.split-visual{height:430px;position:relative;overflow:hidden;border:1px solid #27374a;background:radial-gradient(circle,#1d2b3a 0,#0a111a 50%,#05090e 100%)}.visual-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:35px 35px;transform:perspective(400px) rotateX(58deg) scale(1.5);transform-origin:center bottom}.visual-core{position:absolute;left:50%;top:45%;transform:translate(-50%,-50%);width:135px;height:135px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:55px;color:#e9e1d8;background:radial-gradient(circle,#53585c,#151a1f 65%);box-shadow:0 0 70px rgba(244,119,75,.13)}.split-visual span{position:absolute;left:20px;bottom:18px;color:#7e8b9b;font-size:8px;letter-spacing:.18em;line-height:1.5}
-.landing-metrics{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #26374b;border-bottom:1px solid #26374b;margin:40px 0 90px}.landing-metrics div{padding:28px 22px;border-right:1px solid #26374b}.landing-metrics div:last-child{border-right:0}.landing-metrics strong{display:block;color:#e8e1d9;font-size:38px;font-weight:500;letter-spacing:-.05em}.landing-metrics span{font-size:8px;letter-spacing:.16em;color:#778495}
-.landing-bottom-cta{display:flex;justify-content:space-between;align-items:flex-end;padding:45px 0 80px;border-top:1px solid #26374b}.landing-bottom-cta h2{font-size:48px;line-height:1;letter-spacing:-.04em;color:#e6e1db;font-weight:500;margin:9px 0 0}.landing-cta-copy{max-width:310px;color:#788596;font-size:11px;line-height:1.7}
-
+.desktop-nav-item button:hover{background:#162437!important;color:#fff!important;border-color:#293b52!important}
+.desktop-nav-item.active button{background:#f4774b!important;color:#fff!important;border-color:#ff9974!important}
+.desktop-secondary-row{border-top:1px solid #1b2a3c;background:#0e1928}
+.desktop-secondary-row .desktop-nav-item button{color:#8997a9!important;font-size:10px!important}
+.desktop-secondary-row .desktop-nav-item.active button{background:rgba(244,119,75,.13)!important;color:#ff9b76!important;border-color:rgba(244,119,75,.28)!important}
+.desktop-nav-label{display:none!important}
 @media(min-width:901px){section[data-testid="stSidebar"]{display:none!important}.main .block-container{max-width:1500px;padding-left:3.2rem;padding-right:3.2rem}}
 @media(max-width:900px){.desktop-site-header{display:none!important}}
 @media(min-width:901px){section[data-testid="stSidebar"]{display:none!important}.desktop-nav{display:block}}
@@ -315,28 +294,29 @@ def set_primary():
 def set_secondary():
     st.session_state.nav_page = st.session_state.secondary_nav
 
-# Desktop: commerce-style website header. Mobile: compact Streamlit sidebar.
-st.markdown('<div class="desktop-site-header"><div class="desktop-topbar"><div class="desktop-brand">🧠 Memory<span>OS</span></div><div class="desktop-nav-row">', unsafe_allow_html=True)
-st.radio(
-    "Primary navigation",
-    PRIMARY_NAV,
-    key="primary_nav",
-    index=PRIMARY_NAV.index(st.session_state.nav_page) if st.session_state.nav_page in PRIMARY_NAV else 0,
-    horizontal=True,
-    label_visibility="collapsed",
-    on_change=set_primary,
-)
-st.markdown('</div></div><div class="desktop-secondary"><div class="desktop-nav-row">', unsafe_allow_html=True)
-st.radio(
-    "Secondary navigation",
-    SECONDARY_NAV,
-    key="secondary_nav",
-    index=SECONDARY_NAV.index(st.session_state.nav_page) if st.session_state.nav_page in SECONDARY_NAV else 0,
-    horizontal=True,
-    label_visibility="collapsed",
-    on_change=set_secondary,
-)
-st.markdown('</div></div></div>', unsafe_allow_html=True)
+# Desktop: clean website-style navigation with real clickable buttons (no radio controls).
+def nav_button(item, active_class=""):
+    cols = st.columns([1, 1, 1, 1, 1, 1], gap="small")
+    idx = 0
+    # kept as a helper for consistent styling; actual rows below use six columns.
+    return
+
+def render_nav_row(items, secondary=False):
+    cols = st.columns(len(items), gap="small")
+    for i, item in enumerate(items):
+        with cols[i]:
+            active = " active" if st.session_state.nav_page == item else ""
+            st.markdown(f'<div class="desktop-nav-item{active}">', unsafe_allow_html=True)
+            if st.button(item, key=f"nav_{'secondary' if secondary else 'primary'}_{i}_{item}", use_container_width=True):
+                st.session_state.nav_page = item
+                st.rerun()
+            st.markdown('</div>', unsafe_allow_html=True)
+
+st.markdown('<div class="desktop-site-header"><div class="desktop-topbar"><div class="desktop-brand">🧠 Memory<span>OS</span></div><div class="desktop-search">⌕ &nbsp; Search MemoryOS</div></div><div class="desktop-nav-row">', unsafe_allow_html=True)
+render_nav_row(PRIMARY_NAV)
+st.markdown('</div><div class="desktop-nav-row desktop-secondary-row">', unsafe_allow_html=True)
+render_nav_row(SECONDARY_NAV, secondary=True)
+st.markdown('</div></div>', unsafe_allow_html=True)
 
 with st.sidebar:
     st.markdown('<div class="brand">🧠 MemoryOS</div><div class="muted">AI Memory Reliability Layer</div>', unsafe_allow_html=True)
