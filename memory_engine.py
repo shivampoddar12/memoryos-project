@@ -215,6 +215,57 @@ class MemoryEngine:
         except Exception:
             return [m for m in memories if query in m["content"].lower()][:limit]
 
+
+    def retrieve(self, query: str, limit: int = 5, min_similarity: float = 0.0) -> Dict[str, Any]:
+        """RAG-style retrieval with relevance and importance-aware ranking."""
+        query = query.strip()
+        if not query:
+            return {"query": query, "results": []}
+        memories = self.memories()
+        if not memories:
+            return {"query": query, "results": []}
+        semantic = self.search(query, limit=max(limit * 3, 10))
+        ranked = []
+        for item in semantic:
+            similarity = float(item.get("similarity", 0.0))
+            if similarity < min_similarity:
+                continue
+            importance = float(item.get("importance", 1.0))
+            relevance = float(item.get("relevance", importance))
+            score = 0.65 * similarity + 0.25 * importance + 0.10 * min(relevance, 1.0)
+            ranked.append({
+                **item,
+                "retrieval_score": round(score, 4),
+                "similarity": round(similarity, 4),
+            })
+        ranked.sort(key=lambda x: x["retrieval_score"], reverse=True)
+        return {"query": query, "results": ranked[:limit]}
+
+    def context(self, query: str, limit: int = 5) -> str:
+        """Build a compact context block suitable for an agent prompt."""
+        results = self.retrieve(query, limit=limit)["results"]
+        if not results:
+            return ""
+        lines = ["Relevant memory context:"]
+        for i, item in enumerate(results, 1):
+            lines.append(f"{i}. {item['content']}")
+        return "\n".join(lines)
+
+    def lifecycle(self) -> List[Dict[str, Any]]:
+        """Return memory lifecycle state for dashboard/agent inspection."""
+        session_count = max(1, len(self.drift_history()))
+        result = []
+        for item in self.memories():
+            importance = float(item.get("importance", 1.0))
+            accesses = int(item.get("access_count", 0))
+            relevance = importance * math.exp(-0.1 * session_count) + min(accesses, 10) * 0.01
+            result.append({
+                **item,
+                "relevance": round(relevance, 4),
+                "state": "STALE" if relevance < self.stale_threshold else "ACTIVE",
+            })
+        return sorted(result, key=lambda x: x["relevance"], reverse=True)
+
     def health(self) -> Dict[str, Any]:
         history = self.drift_history()
         last = history[-1] if history else None
