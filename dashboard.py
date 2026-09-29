@@ -61,22 +61,25 @@ footer{visibility:hidden!important}
 .desktop-nav-row>div[data-testid="column"]{min-width:0}
 .desktop-nav-item{width:100%}
 .desktop-nav-more{width:100%}
+.desktop-nav-more.active{border-radius:7px}
 .more-title{font-size:9px;font-weight:800;letter-spacing:.14em;color:#8d9aab;margin:2px 0 10px}
-.desktop-nav-more [data-testid="stPopover"]>button,
-.desktop-nav-more button[kind="secondary"]{
+.desktop-nav-more .stButton>button{
   min-height:40px!important;height:40px!important;width:100%!important;
-  padding:0 14px!important;border:1px solid #40536b!important;border-radius:7px!important;
+  padding:0 12px!important;border:1px solid #40536b!important;border-radius:7px!important;
   background:#0d1725!important;background-color:#0d1725!important;
-  color:#c1cbd6!important;font-family:Inter,system-ui,sans-serif!important;
-  font-size:11px!important;font-weight:600!important;box-shadow:none!important;
+  color:#e3e8ee!important;font-family:Inter,system-ui,sans-serif!important;
+  font-size:10px!important;font-weight:700!important;letter-spacing:.03em!important;
+  box-shadow:none!important;opacity:1!important;
 }
-.desktop-nav-more [data-testid="stPopover"]>button:hover,
-.desktop-nav-more button[kind="secondary"]:hover{
-  background:#17273a!important;background-color:#17273a!important;color:#fff!important;border-color:#f4774b!important;
+.desktop-nav-more .stButton>button:hover{background:#17273a!important;background-color:#17273a!important;color:#fff!important;border-color:#f4774b!important}
+.desktop-nav-more.active .stButton>button{border-color:#f4774b!important;color:#fff!important}
+.more-nav-panel{margin:4px 18px 8px;padding:10px 0 4px;border-top:1px solid #26374b}
+.more-nav-panel .stButton>button{
+  min-height:36px!important;height:36px!important;padding:0 10px!important;
+  border:1px solid #24364b!important;border-radius:6px!important;
+  background:#0d1725!important;color:#c1cbd6!important;font-size:10px!important;font-weight:600!important;
 }
-div[data-baseweb="popover"]{background:#0b1420!important;border:1px solid #2b3d52!important}
-div[data-baseweb="popover"] [data-testid="stVerticalBlock"]{background:#0b1420!important}
-.desktop-nav-more [data-testid="stPopover"] svg{color:#c1cbd6!important}
+.more-nav-panel .stButton>button:hover{background:#17273a!important;color:#fff!important;border-color:#f4774b!important}
 .desktop-nav-label{display:none!important}
 @media(min-width:901px){section[data-testid="stSidebar"]{display:none!important}.main .block-container{max-width:1500px;padding-left:3.2rem;padding-right:3.2rem}}
 .landing-hero{position:relative;overflow:hidden;min-height:720px;margin:0 0 55px;padding:32px 38px 26px;border:1px solid #26374b;background:radial-gradient(circle at 72% 44%,#18283b 0%,#0a111c 31%,#050a10 74%);box-shadow:0 25px 80px rgba(0,0,0,.35)}
@@ -351,15 +354,26 @@ def render_single_nav():
                 st.session_state.nav_page = item
                 st.rerun()
             st.markdown('</div>', unsafe_allow_html=True)
+
     with cols[6]:
-        st.markdown('<div class="desktop-nav-more">', unsafe_allow_html=True)
-        with st.popover("More +", use_container_width=True):
-            st.markdown('<div class="more-title">MORE MEMORYOS</div>', unsafe_allow_html=True)
-            for i, item in enumerate(MORE_NAV):
-                if st.button(item, key=f"morenav_{i}_{item}", use_container_width=True):
+        active_more = " active" if st.session_state.get("show_more_nav", False) or st.session_state.nav_page in MORE_NAV else ""
+        st.markdown(f'<div class="desktop-nav-more{active_more}">', unsafe_allow_html=True)
+        if st.button("SEE MORE  +", key="topnav_more", use_container_width=True):
+            st.session_state.show_more_nav = not st.session_state.get("show_more_nav", False)
+            st.rerun()
+        st.markdown('</div>', unsafe_allow_html=True)
+
+    if st.session_state.get("show_more_nav", False):
+        st.markdown('<div class="more-nav-panel"><div class="more-title">MORE MEMORYOS</div>', unsafe_allow_html=True)
+        more_cols = st.columns(6, gap="small")
+        for i, item in enumerate(MORE_NAV):
+            with more_cols[i]:
+                if st.button(item, key=f"more_item_{i}_{item}", use_container_width=True):
                     st.session_state.nav_page = item
+                    st.session_state.show_more_nav = False
                     st.rerun()
         st.markdown('</div>', unsafe_allow_html=True)
+
 
 st.markdown('<div class="desktop-site-header"><div class="desktop-topbar"><div class="desktop-brand">🧠 Memory<span>OS</span></div><div class="desktop-search">⌕ &nbsp; Search MemoryOS</div></div><div class="desktop-nav-row">', unsafe_allow_html=True)
 render_single_nav()
