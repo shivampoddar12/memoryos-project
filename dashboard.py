@@ -214,7 +214,7 @@ with st.sidebar:
     st.markdown('<div class="brand">🧠 MemoryOS</div><div class="muted">AI Memory Reliability Layer</div>', unsafe_allow_html=True)
     st.divider()
     page = st.radio("NAVIGATION", [
-        "Overview", "Memory Explorer", "Drift Analytics",
+        "Overview", "Memory Explorer", "Memory Lifecycle", "Semantic Retrieval", "Drift Analytics",
         "Auto-Heal", "Multi-Agent", "Benchmark", "Reports", "Settings"
     ], label_visibility="visible")
     st.divider()
@@ -303,6 +303,38 @@ elif page == "Memory Explorer":
                 st.rerun()
             else:
                 st.warning("Enter memory content first.")
+
+elif page == "Memory Lifecycle":
+    st.markdown("### Memory Lifecycle")
+    lifecycle = ENGINE.lifecycle()
+    if lifecycle:
+        df = pd.DataFrame(lifecycle)
+        show = [x for x in ["content","importance","access_count","relevance","state"] if x in df.columns]
+        st.dataframe(df[show], use_container_width=True, hide_index=True)
+        active = sum(x.get("state") == "ACTIVE" for x in lifecycle)
+        stale = sum(x.get("state") == "STALE" for x in lifecycle)
+        x,y = st.columns(2)
+        with x: kpi("Active", active, "healthy memories")
+        with y: kpi("Stale", stale, "candidates for pruning")
+    else:
+        st.info("No memories available.")
+
+elif page == "Semantic Retrieval":
+    st.markdown("### Semantic Memory Retrieval")
+    q = st.text_input("Ask your memory", placeholder="What do you know about machine learning?")
+    limit = st.slider("Results", 1, 10, 5)
+    if st.button("Retrieve Context", use_container_width=True):
+        result = ENGINE.retrieve(q, limit=limit, min_similarity=0.0)
+        if result["results"]:
+            for i, item in enumerate(result["results"], 1):
+                st.markdown(
+                    f'<div class="card"><span class="badge">#{i} • score {item["retrieval_score"]:.3f}</span>'
+                    f'<p style="margin:12px 0 0">{item["content"]}</p>'
+                    f'<div class="muted">semantic {item["similarity"]:.3f} • importance {item["importance"]:.2f}</div></div>',
+                    unsafe_allow_html=True)
+            st.text_area("Agent-ready context", ENGINE.context(q, limit), height=140)
+        else:
+            st.info("No relevant memories found.")
 
 elif page == "Drift Analytics":
     st.markdown("### Drift Analytics")
