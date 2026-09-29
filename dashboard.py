@@ -61,6 +61,13 @@ section[data-testid="stSidebar"] > div { width:300px !important; }
 .card h3 { margin:0 0 8px; font-size:20px; color:#ffffff; }
 .badge { display:inline-flex; align-items:center; gap:5px; padding:7px 11px; border-radius:999px; background:#182231;
          border:1px solid #394a61; font-size:12px; color:#e5eaf1; font-weight:700; }
+.live-badge { display:inline-flex; align-items:center; gap:7px; padding:8px 13px; border-radius:999px;
+              background:#dc2626; border:1px solid #ef4444; color:#fff; font-size:12px; font-weight:800;
+              letter-spacing:.04em; box-shadow:0 7px 22px rgba(220,38,38,.22); }
+.health-card { background:#111923; border:1px solid #2d394b; border-radius:15px; padding:16px 17px; margin:8px 0; }
+.health-label { color:#9da9b9; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; }
+.health-value { color:#fff; font-size:22px; font-weight:800; margin-top:6px; }
+.health-sub { color:#8793a5; font-size:12px; margin-top:3px; }
 div[data-testid="stMetric"] { background:#101720; border:1px solid #2a3647; padding:16px; border-radius:16px; }
 .stButton > button { border-radius:11px; border:1px solid #3a485c; background:#151e2a; color:#ffffff; font-size:14px; font-weight:700; min-height:48px; transition:.2s; }
 .stButton > button:hover { border-color:#9a7cff; background:#1b2636; color:#fff; transform:translateY(-1px); box-shadow:0 8px 20px rgba(124,58,237,.18); }
@@ -252,7 +259,7 @@ with st.sidebar:
 
 st.markdown(f"""
 <div class="hero">
-  <div class="badge">● LIVE MEMORYOS CONTROL CENTER</div>
+  <div class="live-badge">● LIVE MEMORYOS CONTROL CENTER</div>
   <h1>{page}</h1>
   <p>AI-agent memory, semantic retrieval, drift detection and self-healing — presented in a modern command-center interface.</p>
 </div>
@@ -303,9 +310,9 @@ if page == "Overview":
             st.info("No drift sessions yet. Run Drift Analysis to populate the timeline.")
     with right:
         st.markdown('<div class="card"><h3>💚 System health</h3><div class="muted">Current reliability signals and recovery readiness.</div></div>', unsafe_allow_html=True)
-        st.metric("Current status", f"{emoji} {status}")
-        st.metric("Heal threshold", f"{THRESHOLD:.2f}")
-        st.metric("Memory coverage", f"{len(memories)} items")
+        st.markdown(f'<div class="health-card"><div class="health-label">Current Status</div><div class="health-value">{emoji} {status}</div><div class="health-sub">Overall memory reliability state</div></div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="health-card"><div class="health-label">Heal Threshold</div><div class="health-value">{THRESHOLD:.2f}</div><div class="health-sub">Auto-heal trigger level</div></div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="health-card"><div class="health-label">Memory Coverage</div><div class="health-value">{len(memories)} items</div><div class="health-sub">Currently available memory records</div></div>', unsafe_allow_html=True)
 
 elif page == "Memory Explorer":
     st.markdown("### Memory Explorer")
