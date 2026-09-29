@@ -126,7 +126,10 @@ div[data-testid="stHorizontalBlock"] .stButton>button:hover{border-color:#f4774b
 .cap-card .stButton{margin-top:12px}.cap-card .stButton>button{min-height:34px!important;height:34px!important;padding:0 10px!important;border-radius:6px!important;background:#101d2d!important;border:1px solid #30455d!important;color:#f4774b!important;font-size:9px!important;font-weight:800!important;letter-spacing:.08em!important}.cap-card .stButton>button:hover{background:#f4774b!important;color:#fff!important;border-color:#f4774b!important}.cap-card>span{color:#f4774b;font-size:9px;letter-spacing:.12em}.cap-card h3{font-size:17px!important;margin:58px 0 9px!important;color:#e6e1db}.cap-card p{font-size:11px;line-height:1.65;color:#a3afbd}.cap-card>b{position:absolute;right:18px;bottom:18px;color:#c5ccd4}
 .landing-split{display:grid;grid-template-columns:1fr 1fr;gap:45px;align-items:center;margin:95px 0;padding:30px 0}.split-copy{padding:10px}.split-copy h2{font-size:45px;line-height:1.02;font-weight:500;letter-spacing:-.04em;color:#e6e1db;margin:11px 0 20px}.split-copy>p{color:#a5b0bd;font-size:12px;line-height:1.8;max-width:500px}.split-points{margin-top:28px}.split-points div{padding:13px 0;border-top:1px solid #223145;color:#a6b1bd;font-size:11px}.split-points b{color:#f4774b;margin-right:16px}.split-visual{height:430px;position:relative;overflow:hidden;border:1px solid #27374a;background:radial-gradient(circle,#1d2b3a 0,#0a111a 50%,#05090e 100%)}.visual-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:35px 35px;transform:perspective(400px) rotateX(58deg) scale(1.5);transform-origin:center bottom}.visual-core{position:absolute;left:50%;top:45%;transform:translate(-50%,-50%);width:135px;height:135px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:55px;color:#e9e1d8;background:radial-gradient(circle,#53585c,#151a1f 65%);box-shadow:0 0 70px rgba(244,119,75,.13)}.split-visual span{position:absolute;left:20px;bottom:18px;color:#7e8b9b;font-size:8px;letter-spacing:.18em;line-height:1.5}
 .landing-metrics{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #26374b;border-bottom:1px solid #26374b;margin:40px 0 90px}.landing-metrics div{padding:28px 22px;border-right:1px solid #26374b}.landing-metrics div:last-child{border-right:0}.landing-metrics strong{display:block;color:#e8e1d9;font-size:38px;font-weight:500;letter-spacing:-.05em}.landing-metrics span{font-size:8px;letter-spacing:.16em;color:#778495}
-.landing-bottom-cta{display:flex;justify-content:space-between;align-items:flex-end;padding:45px 0 80px;border-top:1px solid #26374b}.landing-bottom-cta h2{font-size:48px;line-height:1;letter-spacing:-.04em;color:#e6e1db;font-weight:500;margin:9px 0 0}.landing-cta-copy{max-width:310px;color:#788596;font-size:11px;line-height:1.7}
+.landing-bottom-cta{width:100%;margin:78px 0 0;padding:0;border-top:1px solid #26374b}
+.bottom-cta-inner{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:60px;align-items:end;padding:46px 8px 82px}
+.landing-bottom-cta h2{font-size:48px;line-height:1.02;letter-spacing:-.04em;color:#e6e1db;font-weight:500;margin:9px 0 0;max-width:760px}
+.landing-cta-copy{max-width:320px;color:#788596;font-size:11px;line-height:1.7;padding-bottom:4px}
 @media(max-width:900px){.desktop-site-header{display:none!important}}
 @media(min-width:901px){section[data-testid="stSidebar"]{display:none!important}.desktop-nav{display:block}}
 @media(max-width:900px){.desktop-nav{display:none!important}}
@@ -209,7 +212,7 @@ div[data-baseweb="select"]>div{background:#0d1725!important;border-color:#273b54
 [data-testid="stCaptionContainer"] p{color:#8b98aa!important;font-size:13px!important}
 [data-testid="stAlert"]{border-radius:12px}
 hr{border-color:#1f3045}
-@media(max-width:900px){section[data-testid="stSidebar"],section[data-testid="stSidebar"]>div{width:260px!important;display:block!important}.block-container{padding:1.2rem 1rem 3rem}.hero h1{font-size:36px}.hero{padding:30px}.kpi-value{font-size:28px}.landing-hero{min-height:650px;padding:22px 20px}.landing-copy{width:100%;margin-top:55px}.landing-copy h1{font-size:70px}.landing-side{display:none}.memory-core{width:245px;height:245px;right:5%;top:37%}.ring-one{width:275px;height:275px}.ring-two{width:215px;height:215px}.landing-orbit{width:54px;height:54px}.landing-cta-row{left:20px;bottom:78px}.landing-bottom{left:20px;right:20px;gap:15px;overflow:hidden}.landing-split{grid-template-columns:1fr;margin:60px 0}.landing-section-title h2,.split-copy h2{font-size:34px}.landing-metrics{grid-template-columns:1fr 1fr}.landing-metrics div{border-bottom:1px solid #26374b}.landing-bottom-cta{display:block}.landing-bottom-cta h2{font-size:36px}.landing-cta-copy{margin-top:20px}}
+@media(max-width:900px){section[data-testid="stSidebar"],section[data-testid="stSidebar"]>div{width:260px!important;display:block!important}.block-container{padding:1.2rem 1rem 3rem}.hero h1{font-size:36px}.hero{padding:30px}.kpi-value{font-size:28px}.landing-hero{min-height:650px;padding:22px 20px}.landing-copy{width:100%;margin-top:55px}.landing-copy h1{font-size:70px}.landing-side{display:none}.memory-core{width:245px;height:245px;right:5%;top:37%}.ring-one{width:275px;height:275px}.ring-two{width:215px;height:215px}.landing-orbit{width:54px;height:54px}.landing-cta-row{left:20px;bottom:78px}.landing-bottom{left:20px;right:20px;gap:15px;overflow:hidden}.landing-split{grid-template-columns:1fr;margin:60px 0}.landing-section-title h2,.split-copy h2{font-size:34px}.landing-metrics{grid-template-columns:1fr 1fr}.landing-metrics div{border-bottom:1px solid #26374b}.landing-bottom-cta{display:block}.bottom-cta-inner{display:block;padding:38px 0 55px}.landing-bottom-cta h2{font-size:36px}.landing-cta-copy{margin-top:20px}}
 @media(max-width:600px){.hero h1{font-size:30px}.hero p{font-size:14px}.hero-meta{display:none}.kpi{min-height:105px;padding:15px}.landing-hero{min-height:620px}.landing-copy h1{font-size:56px}.memory-core{width:190px;height:190px;top:39%;right:2%}.ring-one{width:215px;height:215px}.ring-two{width:170px;height:170px}.landing-orbit{display:none}.landing-bottom{font-size:8px;gap:9px}.landing-bottom div:nth-child(2){display:none}.landing-metrics strong{font-size:30px}}
 .overview-chart-head{display:flex;justify-content:space-between;align-items:end;margin:42px 0 12px;padding-top:22px;border-top:1px solid #24354b}
 .overview-chart-head span{font-size:8px;letter-spacing:.16em;color:#f4774b;font-weight:800}
@@ -570,7 +573,19 @@ if page == "Overview":
 
     st.markdown('<div class="landing-metrics"><div><strong>'+str(len(memories))+'</strong><span>MEMORY ITEMS</span></div><div><strong>'+f'{last_score:.2f}'+'</strong><span>DRIFT SCORE</span></div><div><strong>'+str(len(heal_history))+'</strong><span>HEAL EVENTS</span></div><div><strong>'+str(len(drift_history))+'</strong><span>SESSIONS</span></div></div>',unsafe_allow_html=True)
 
-    st.markdown('<div class="landing-bottom-cta"><div><div class="landing-eyebrow">AGENT MEMORY CONSOLE</div><h2>Give your agent a memory it can trust.</h2></div><div class="landing-cta-copy">Run retrieval, inspect context, analyze drift and execute recovery from the navigation above.</div></div>',unsafe_allow_html=True)
+    st.markdown('''
+    <section class="landing-bottom-cta">
+      <div class="bottom-cta-inner">
+        <div class="bottom-cta-main">
+          <div class="landing-eyebrow">AGENT MEMORY CONSOLE</div>
+          <h2>Give your agent a memory it can trust.</h2>
+        </div>
+        <div class="landing-cta-copy">
+          Run retrieval, inspect context, analyze drift and execute recovery from the navigation above.
+        </div>
+      </div>
+    </section>
+    ''', unsafe_allow_html=True)
 
 elif page == "Memory Explorer":
     st.markdown("### Memory Explorer")
