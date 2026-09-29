@@ -253,7 +253,33 @@ hr{border-color:#1f3045}
 .tech-logo-cloud img:nth-child(10){left:92%;top:78%;animation-delay:-6s}
 @keyframes techFloat{0%,100%{transform:translate3d(0,0,0) rotate(0deg)}50%{transform:translate3d(0,-12px,0) rotate(4deg)}}
 @media(max-width:600px){.tech-logo-cloud{opacity:.13}.tech-logo-cloud img{width:22px;height:22px}}
+
+/* Full-page floating technology logo background */
+.site-tech-logo-cloud{position:fixed;inset:0;width:100vw;height:100vh;z-index:1;pointer-events:none;overflow:hidden;opacity:.13}
+.site-tech-logo-cloud:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at center,transparent 18%,rgba(5,10,16,.25) 62%,rgba(5,10,16,.72) 100%)}
+.site-tech-logo-cloud img{position:absolute;width:34px;height:34px;filter:grayscale(1) brightness(1.9);animation:siteTechFloat 12s ease-in-out infinite}
+.site-tech-logo-cloud img:nth-child(1){left:5%;top:13%;animation-delay:-2s}.site-tech-logo-cloud img:nth-child(2){left:18%;top:31%;animation-delay:-7s}.site-tech-logo-cloud img:nth-child(3){left:31%;top:10%;animation-delay:-4s}.site-tech-logo-cloud img:nth-child(4){left:46%;top:28%;animation-delay:-9s}.site-tech-logo-cloud img:nth-child(5){left:62%;top:11%;animation-delay:-5s}.site-tech-logo-cloud img:nth-child(6){left:78%;top:30%;animation-delay:-1s}.site-tech-logo-cloud img:nth-child(7){left:91%;top:15%;animation-delay:-8s}.site-tech-logo-cloud img:nth-child(8){left:9%;top:58%;animation-delay:-6s}.site-tech-logo-cloud img:nth-child(9){left:24%;top:76%;animation-delay:-3s}.site-tech-logo-cloud img:nth-child(10){left:43%;top:61%;animation-delay:-10s}.site-tech-logo-cloud img:nth-child(11){left:68%;top:78%;animation-delay:-4s}.site-tech-logo-cloud img:nth-child(12){left:88%;top:60%;animation-delay:-7s}
+@keyframes siteTechFloat{0%,100%{transform:translate3d(0,0,0) rotate(0deg)}50%{transform:translate3d(8px,-16px,0) rotate(5deg)}}
+@media(max-width:600px){.site-tech-logo-cloud{opacity:.08}.site-tech-logo-cloud img{width:23px;height:23px}}
+.main .block-container{position:relative;z-index:2}
 </style>
+""", unsafe_allow_html=True)
+
+st.markdown("""
+<div class="site-tech-logo-cloud" aria-hidden="true">
+  <img src="https://cdn.simpleicons.org/python" alt="">
+  <img src="https://cdn.simpleicons.org/react" alt="">
+  <img src="https://cdn.simpleicons.org/streamlit" alt="">
+  <img src="https://cdn.simpleicons.org/langchain" alt="">
+  <img src="https://cdn.simpleicons.org/github" alt="">
+  <img src="https://cdn.simpleicons.org/numpy" alt="">
+  <img src="https://cdn.simpleicons.org/pandas" alt="">
+  <img src="https://cdn.simpleicons.org/scikitlearn" alt="">
+  <img src="https://cdn.simpleicons.org/flask" alt="">
+  <img src="https://cdn.simpleicons.org/docker" alt="">
+  <img src="https://cdn.simpleicons.org/tensorflow" alt="">
+  <img src="https://cdn.simpleicons.org/openai" alt="">
+</div>
 """, unsafe_allow_html=True)
 
 def read_json(path, default):
@@ -531,18 +557,6 @@ if page == "Overview":
     st.markdown(
         f"""
         <section class="landing-hero">
-          <div class="tech-logo-cloud" aria-hidden="true">
-            <img src="https://cdn.simpleicons.org/python" alt="">
-            <img src="https://cdn.simpleicons.org/react" alt="">
-            <img src="https://cdn.simpleicons.org/streamlit" alt="">
-            <img src="https://cdn.simpleicons.org/langchain" alt="">
-            <img src="https://cdn.simpleicons.org/github" alt="">
-            <img src="https://cdn.simpleicons.org/numpy" alt="">
-            <img src="https://cdn.simpleicons.org/pandas" alt="">
-            <img src="https://cdn.simpleicons.org/scikitlearn" alt="">
-            <img src="https://cdn.simpleicons.org/flask" alt="">
-            <img src="https://cdn.simpleicons.org/docker" alt="">
-          </div>
           <div class="hero-video-slideshow" aria-hidden="true">
             <video class="hero-video hero-video-1" autoplay muted loop playsinline preload="metadata">
               <source src="https://videos.pexels.com/video-files/3129977/3129977-uhd_3840_2160_30fps.mp4" type="video/mp4">
