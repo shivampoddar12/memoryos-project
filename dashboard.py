@@ -62,13 +62,21 @@ footer{visibility:hidden!important}
 .desktop-nav-item{width:100%}
 .desktop-nav-more{width:100%}
 .more-title{font-size:9px;font-weight:800;letter-spacing:.14em;color:#8d9aab;margin:2px 0 10px}
-.desktop-nav-row .stPopover>button{
+.desktop-nav-more [data-testid="stPopover"]>button,
+.desktop-nav-more button[kind="secondary"]{
   min-height:40px!important;height:40px!important;width:100%!important;
-  padding:0 14px!important;border:1px solid #24364b!important;border-radius:7px!important;
-  background:#0d1725!important;color:#c1cbd6!important;font-family:Inter,system-ui,sans-serif!important;
+  padding:0 14px!important;border:1px solid #40536b!important;border-radius:7px!important;
+  background:#0d1725!important;background-color:#0d1725!important;
+  color:#c1cbd6!important;font-family:Inter,system-ui,sans-serif!important;
   font-size:11px!important;font-weight:600!important;box-shadow:none!important;
 }
-.desktop-nav-row .stPopover>button:hover{background:#17273a!important;color:#fff!important;border-color:#40536b!important}
+.desktop-nav-more [data-testid="stPopover"]>button:hover,
+.desktop-nav-more button[kind="secondary"]:hover{
+  background:#17273a!important;background-color:#17273a!important;color:#fff!important;border-color:#f4774b!important;
+}
+div[data-baseweb="popover"]{background:#0b1420!important;border:1px solid #2b3d52!important}
+div[data-baseweb="popover"] [data-testid="stVerticalBlock"]{background:#0b1420!important}
+.desktop-nav-more [data-testid="stPopover"] svg{color:#c1cbd6!important}
 .desktop-nav-label{display:none!important}
 @media(min-width:901px){section[data-testid="stSidebar"]{display:none!important}.main .block-container{max-width:1500px;padding-left:3.2rem;padding-right:3.2rem}}
 .landing-hero{position:relative;overflow:hidden;min-height:720px;margin:0 0 55px;padding:32px 38px 26px;border:1px solid #26374b;background:radial-gradient(circle at 72% 44%,#18283b 0%,#0a111c 31%,#050a10 74%);box-shadow:0 25px 80px rgba(0,0,0,.35)}
