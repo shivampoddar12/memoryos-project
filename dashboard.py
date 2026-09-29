@@ -214,7 +214,7 @@ with st.sidebar:
     st.markdown('<div class="brand">🧠 MemoryOS</div><div class="muted">AI Memory Reliability Layer</div>', unsafe_allow_html=True)
     st.divider()
     page = st.radio("NAVIGATION", [
-        "Overview", "Memory Explorer", "Memory Lifecycle", "Semantic Retrieval", "Drift Analytics",
+        "Overview", "Memory Explorer", "Memory Lifecycle", "Semantic Retrieval", "Memory Intelligence", "Drift Analytics",
         "Auto-Heal", "Multi-Agent", "Benchmark", "Reports", "Settings"
     ], label_visibility="visible")
     st.divider()
@@ -335,6 +335,31 @@ elif page == "Semantic Retrieval":
             st.text_area("Agent-ready context", ENGINE.context(q, limit), height=140)
         else:
             st.info("No relevant memories found.")
+
+elif page == "Memory Intelligence":
+    st.markdown("### Memory Intelligence")
+    st.caption("Inspect why memories are retrieved and monitor the current memory-health snapshot.")
+    q = st.text_input("Explain a memory query", placeholder="e.g. machine learning")
+    if st.button("Analyze Retrieval", use_container_width=True):
+        result = ENGINE.explain_retrieval(q, limit=5)
+        if result["results"]:
+            for i, item in enumerate(result["results"], 1):
+                st.markdown(
+                    f'<div class="card"><span class="badge">#{i} • {item["reason"]}</span>'
+                    f'<h3>{item["content"]}</h3>'
+                    f'<div class="muted">semantic similarity: {item["signals"]["semantic_similarity"]:.3f} '
+                    f'• importance: {item["signals"]["importance"]:.2f} '
+                    f'• combined: {item["signals"]["combined_score"]:.3f}</div></div>',
+                    unsafe_allow_html=True)
+        else:
+            st.info("No matching memories found.")
+    st.markdown("### Health snapshot")
+    snap = ENGINE.snapshot()
+    a,b,c,d = st.columns(4)
+    with a: kpi("Memory Health", snap["status"], "latest state")
+    with b: kpi("Active", snap["active_memories"], "usable memories")
+    with c: kpi("Stale", snap["stale_memories"], "decay candidates")
+    with d: kpi("Drift", f'{snap["drift_score"]:.2f}', "latest score")
 
 elif page == "Drift Analytics":
     st.markdown("### Drift Analytics")
