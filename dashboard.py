@@ -43,7 +43,8 @@ section[data-testid="stSidebar"]>div{width:285px!important}
 .brand{font-size:28px;font-weight:800;letter-spacing:-1.2px;color:#fff;margin-bottom:2px}
 .muted{color:#a7b1c0;font-size:13px;line-height:1.55}
 .hero{position:relative;overflow:hidden;padding:42px 46px;min-height:235px;border:1px solid #22334a;border-radius:24px;
-background:radial-gradient(circle at 82% 35%,rgba(246,126,74,.24),transparent 28%),linear-gradient(120deg,#101d31 0%,#0d1727 56%,#111a2b 100%);
+background-image:linear-gradient(90deg,rgba(7,14,25,.97) 0%,rgba(7,14,25,.86) 42%,rgba(7,14,25,.35) 100%),url('https://images.unsplash.com/photo-1694261321131-8157dce8e288?auto=format&fit=crop&fm=jpg&q=80&w=1800');
+background-size:cover;background-position:center;
 box-shadow:0 24px 60px rgba(0,0,0,.28);margin-bottom:28px}
 .hero:before{content:"";position:absolute;width:430px;height:430px;right:-180px;top:-210px;border-radius:50%;border:1px solid rgba(246,126,74,.16)}
 .hero h1{margin:18px 0 0;font-size:48px;line-height:1.05;letter-spacing:-2.4px;color:#fff;position:relative;z-index:2}
@@ -58,6 +59,14 @@ box-shadow:0 24px 60px rgba(0,0,0,.28);margin-bottom:28px}
 .kpi-sub{color:#7e8b9d;font-size:12px;margin-top:7px}
 .card{background:#0f1928;border:1px solid #22334a;border-radius:18px;padding:23px;margin-bottom:18px;box-shadow:0 12px 32px rgba(0,0,0,.16)}
 .card:hover{border-color:#30445f}
+.image-feature{position:relative;overflow:hidden;min-height:230px;border-radius:20px;border:1px solid #22334a;background:#101b2b;box-shadow:0 14px 36px rgba(0,0,0,.2)}
+.image-feature:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,15,27,.96) 0%,rgba(8,15,27,.78) 52%,rgba(8,15,27,.18) 100%),var(--feature-image);background-size:cover;background-position:center}
+.image-feature-content{position:relative;z-index:2;padding:28px;max-width:590px}
+.image-feature-kicker{color:#f58a62;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.image-feature h3{font-size:28px!important;line-height:1.15;margin:8px 0!important}
+.image-feature p{color:#b8c3d1;font-size:13px;line-height:1.6;max-width:500px}
+.image-feature .mini-badge{display:inline-flex;padding:6px 9px;border-radius:999px;background:rgba(244,119,75,.12);border:1px solid rgba(244,119,75,.35);color:#ffb397;font-size:11px;font-weight:700}
+
 .card h3{margin:0 0 8px;font-size:19px;color:#fff}
 .badge{display:inline-flex;align-items:center;gap:5px;padding:7px 11px;border-radius:999px;background:#162437;border:1px solid #2b405a;font-size:11px;color:#dce3ec;font-weight:700}
 .health-card{background:#101b2b;border:1px solid #253750;border-radius:15px;padding:16px 17px;margin:8px 0}
@@ -288,7 +297,14 @@ if page == "Overview":
 
     left, right = st.columns([1.5,1])
     with left:
-        st.markdown('<div class="section-head"><div><div class="section-title">Drift timeline</div><div class="section-note">Session-by-session behavioral drift</div></div></div>', unsafe_allow_html=True)
+        st.markdown(f"""<div class="image-feature" style="--feature-image:url('{serverImage}')">
+<div class="image-feature-content">
+<div class="image-feature-kicker">Memory Infrastructure</div>
+<h3>Reliable context, built for intelligent agents.</h3>
+<p>MemoryOS monitors drift, ranks relevant memories and keeps the agent context useful as sessions evolve.</p>
+<span class="mini-badge">SELF-HEALING MEMORY</span>
+</div></div>""", unsafe_allow_html=True)
+st.markdown('<div class="section-head"><div><div class="section-title">Drift timeline</div><div class="section-note">Session-by-session behavioral drift</div></div></div>', unsafe_allow_html=True)
         if drift_history:
             df = pd.DataFrame(drift_history)
             if "session" in df and "drift_score" in df:
@@ -296,7 +312,13 @@ if page == "Overview":
         else:
             st.info("No drift sessions yet. Run Drift Analysis to populate the timeline.")
     with right:
-        st.markdown('<div class="section-head"><div><div class="section-title">System health</div><div class="section-note">Reliability and recovery readiness</div></div></div>', unsafe_allow_html=True)
+        st.markdown(f"""<div class="image-feature" style="--feature-image:url('{workImage}');min-height:180px;margin-bottom:16px">
+<div class="image-feature-content" style="padding:22px">
+<div class="image-feature-kicker">Agent Workspace</div>
+<h3 style="font-size:22px!important">Memory that works with your agent.</h3>
+<p>Retrieve the right context before every interaction.</p>
+</div></div>""", unsafe_allow_html=True)
+st.markdown('<div class="section-head"><div><div class="section-title">System health</div><div class="section-note">Reliability and recovery readiness</div></div></div>', unsafe_allow_html=True)
         st.markdown(f'<div class="health-card"><div class="health-label">Current Status</div><div class="health-value">{emoji} {status}</div><div class="health-sub">Overall memory reliability state</div></div>', unsafe_allow_html=True)
         st.markdown(f'<div class="health-card"><div class="health-label">Heal Threshold</div><div class="health-value">{THRESHOLD:.2f}</div><div class="health-sub">Auto-heal trigger level</div></div>', unsafe_allow_html=True)
         st.markdown(f'<div class="health-card"><div class="health-label">Memory Coverage</div><div class="health-value">{len(memories)} items</div><div class="health-sub">Currently available memory records</div></div>', unsafe_allow_html=True)
