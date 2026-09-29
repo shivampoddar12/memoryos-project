@@ -266,6 +266,43 @@ class MemoryEngine:
             })
         return sorted(result, key=lambda x: x["relevance"], reverse=True)
 
+
+    def explain_retrieval(self, query: str, limit: int = 5) -> Dict[str, Any]:
+        """Return ranked memories plus explainable scoring components."""
+        result = self.retrieve(query, limit=limit)
+        explained = []
+        for item in result["results"]:
+            similarity = float(item.get("similarity", 0.0))
+            importance = float(item.get("importance", 1.0))
+            retrieval_score = float(item.get("retrieval_score", 0.0))
+            explained.append({
+                **item,
+                "signals": {
+                    "semantic_similarity": round(similarity, 4),
+                    "importance": round(importance, 4),
+                    "combined_score": round(retrieval_score, 4),
+                },
+                "reason": (
+                    "Matched semantically"
+                    + (" and has high importance" if importance >= 0.7 else "")
+                ),
+            })
+        return {"query": query, "results": explained}
+
+    def snapshot(self) -> Dict[str, Any]:
+        """Create a serializable health snapshot for audit/reporting."""
+        health = self.health()
+        return {
+            **health,
+            "generated_at": datetime.now().isoformat(),
+            "active_memories": sum(
+                1 for item in self.lifecycle() if item["state"] == "ACTIVE"
+            ),
+            "stale_memories": sum(
+                1 for item in self.lifecycle() if item["state"] == "STALE"
+            ),
+        }
+
     def health(self) -> Dict[str, Any]:
         history = self.drift_history()
         last = history[-1] if history else None
