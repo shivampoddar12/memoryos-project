@@ -68,11 +68,11 @@ footer{visibility:hidden!important}
   font-weight:600!important;letter-spacing:0!important;
   box-shadow:none!important;transform:none!important;
 }
-.desktop-nav-item button:hover{background:#162437!important;color:#fff!important;border-color:#293b52!important}
-.desktop-nav-item.active button{background:#f4774b!important;color:#fff!important;border-color:#ff9974!important}
+div.desktop-nav-item button:hover{background:#162437!important;color:#fff!important;border-color:#293b52!important}
+div.desktop-nav-item.active button{background:#f4774b!important;color:#fff!important;border-color:#ff9974!important}
 .desktop-secondary-row{border-top:1px solid #1b2a3c;background:#0e1928}
-.desktop-secondary-row .desktop-nav-item button{color:#8997a9!important;font-size:10px!important}
-.desktop-secondary-row .desktop-nav-item.active button{background:rgba(244,119,75,.13)!important;color:#ff9b76!important;border-color:rgba(244,119,75,.28)!important}
+.desktop-secondary-row div.desktop-nav-item button{color:#8997a9!important;font-size:10px!important}
+.desktop-secondary-row div.desktop-nav-item.active button{background:rgba(244,119,75,.13)!important;color:#ff9b76!important;border-color:rgba(244,119,75,.28)!important}
 .desktop-nav-label{display:none!important}
 @media(min-width:901px){section[data-testid="stSidebar"]{display:none!important}.main .block-container{max-width:1500px;padding-left:3.2rem;padding-right:3.2rem}}
 @media(max-width:900px){.desktop-site-header{display:none!important}}
