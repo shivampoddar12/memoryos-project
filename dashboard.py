@@ -52,6 +52,13 @@ footer{visibility:hidden!important}
 .stAppViewContainer{padding-top:0!important}
 .main .block-container{padding-top:.65rem!important}
 
+.desktop-nav-shell{background:#0b1422;border:1px solid #24354b;border-top:0;border-radius:0 0 14px 14px;padding:0 0 4px;margin-bottom:24px}
+.desktop-nav-shell .desktop-nav-row{padding:10px 18px}
+.global-search-panel{margin:-12px 0 18px;padding:14px 18px;border:1px solid #26374b;border-radius:10px;background:#0b1420}
+.global-search-panel .stTextInput input{background:#0d1725!important;color:#e6edf5!important;border:1px solid #33485f!important}
+.global-search-panel .stButton>button{min-height:40px!important;background:#f4774b!important;color:#fff!important;border:1px solid #f4774b!important}
+.search-result{display:flex;justify-content:space-between;gap:20px;padding:11px 13px;margin:7px 0;border:1px solid #26374b;border-radius:7px;background:#0d1725;color:#dbe2ea;font-size:11px}
+.search-result span{color:#8391a2;white-space:nowrap}
 .desktop-site-header{display:block;margin:0 0 24px;background:#0b1422;border:1px solid #24354b;border-radius:0 0 14px 14px;box-shadow:0 10px 30px rgba(0,0,0,.22);overflow:hidden}
 .desktop-topbar{display:flex;align-items:center;gap:30px;padding:14px 24px;border-bottom:1px solid #1d2b3e}
 .desktop-brand{font-size:23px;font-weight:800;letter-spacing:-1px;color:#f2eee8;white-space:nowrap}
@@ -140,6 +147,9 @@ box-shadow:0 24px 60px rgba(0,0,0,.28);margin-bottom:28px}
 div[data-testid="stMetric"]{background:#101b2b;border:1px solid #253750;padding:16px;border-radius:16px}
 .stButton>button{border-radius:11px;border:1px solid #31445c;background:#162437;color:#fff;font-size:14px;font-weight:700;min-height:48px;transition:.2s}
 .stButton>button:hover{border-color:#f4774b;background:#1d2c40;color:#fff;transform:translateY(-1px);box-shadow:0 8px 20px rgba(244,119,75,.12)}
+div[data-testid="stHorizontalBlock"] .stButton>button{
+  border-radius:7px!important;
+}
 div[data-testid="stFormSubmitButton"]>button{border-radius:11px;min-height:48px;font-weight:700}
 .desktop-nav-row .stButton>button{
   min-height:40px!important;height:40px!important;width:100%!important;padding:0 10px!important;
@@ -333,6 +343,10 @@ SECONDARY_NAV = ["Drift Analytics", "Auto-Heal", "Multi-Agent", "Benchmark", "Re
 
 if "nav_page" not in st.session_state:
     st.session_state.nav_page = "Overview"
+if "show_more_nav" not in st.session_state:
+    st.session_state.show_more_nav = False
+if "search_open" not in st.session_state:
+    st.session_state.search_open = False
 
 def set_primary():
     st.session_state.nav_page = st.session_state.primary_nav
@@ -375,9 +389,48 @@ def render_single_nav():
         st.markdown('</div>', unsafe_allow_html=True)
 
 
-st.markdown('<div class="desktop-site-header"><div class="desktop-topbar"><div class="desktop-brand">🧠 Memory<span>OS</span></div><div class="desktop-search">⌕ &nbsp; Search MemoryOS</div></div><div class="desktop-nav-row">', unsafe_allow_html=True)
+st.markdown('<div class="desktop-site-header"><div class="desktop-topbar"><div class="desktop-brand">🧠 Memory<span>OS</span></div></div></div>', unsafe_allow_html=True)
+
+search_cols = st.columns([5.7, 1.3], gap="small")
+with search_cols[1]:
+    if st.button("⌕  Search MemoryOS", key="global_search_toggle", use_container_width=True):
+        st.session_state.search_open = not st.session_state.search_open
+        st.rerun()
+
+st.markdown('<div class="desktop-nav-shell"><div class="desktop-nav-row">', unsafe_allow_html=True)
 render_single_nav()
 st.markdown('</div></div>', unsafe_allow_html=True)
+
+if st.session_state.search_open:
+    st.markdown('<div class="global-search-panel">', unsafe_allow_html=True)
+    qcol, bcol = st.columns([5, 1], gap="small")
+    with qcol:
+        query = st.text_input("Search MemoryOS", placeholder="Search memories, pages or concepts…", label_visibility="collapsed", key="global_search_query")
+    with bcol:
+        do_search = st.button("SEARCH", key="global_search_submit", use_container_width=True)
+    if do_search:
+        q = query.strip()
+        if not q:
+            st.warning("Type something to search.")
+        else:
+            page_hits = [p for p in NAV_ITEMS if q.lower() in p.lower()]
+            memory_hits = ENGINE.search(q, limit=8)
+            if page_hits:
+                st.markdown("**Pages**")
+                page_cols = st.columns(min(4, len(page_hits)), gap="small")
+                for i, p in enumerate(page_hits):
+                    with page_cols[i]:
+                        if st.button(p, key=f"search_page_{i}_{p}", use_container_width=True):
+                            st.session_state.nav_page = p
+                            st.session_state.search_open = False
+                            st.rerun()
+            st.markdown("**Memory results**")
+            if memory_hits:
+                for hit in memory_hits:
+                    st.markdown(f'<div class="search-result"><b>{hit.get("content","")}</b><span>similarity {float(hit.get("similarity",0)):.2f} • importance {float(hit.get("importance",0)):.2f}</span></div>', unsafe_allow_html=True)
+            else:
+                st.info("No matching memories found.")
+    st.markdown('</div>', unsafe_allow_html=True)
 
 with st.sidebar:
     st.markdown('<div class="brand">🧠 MemoryOS</div><div class="muted">AI Memory Reliability Layer</div>', unsafe_allow_html=True)
@@ -431,7 +484,7 @@ if page == "Overview":
             <span>Semantic retrieval, drift detection and self-healing memory in one intelligent layer.</span>
           </div>
           <div class="landing-cta-row">
-            <button class="fake-cta">Explore MemoryOS <span>↗</span></button>
+            <span class="cta-note">Use the navigation to explore the live memory workspace.</span>
             <span class="cta-note">Built for intelligent agents</span>
           </div>
           <div class="landing-orbit orbit-one">RETRIEVE</div>
@@ -452,6 +505,10 @@ if page == "Overview":
         """,
         unsafe_allow_html=True,
     )
+
+    if st.button("Explore MemoryOS  ↗", key="hero_explore", use_container_width=False):
+        st.session_state.nav_page = "Memory Explorer"
+        st.rerun()
 
     st.markdown('<div class="landing-section-title"><span>MEMORYOS CAPABILITIES</span><h2>Everything your agent needs<br>to remember intelligently.</h2></div>', unsafe_allow_html=True)
     f1,f2,f3,f4 = st.columns(4)
