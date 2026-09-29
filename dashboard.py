@@ -36,27 +36,37 @@ st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 html, body, [class*="css"] { font-family: Inter, sans-serif; }
-.stApp { background: #07090d; color: #f5f7fb; }
-section[data-testid="stSidebar"] { background: #0b0e14; border-right: 1px solid #1d2430; }
-.block-container { max-width: 1450px; padding: 2rem 2.5rem 4rem; }
-.brand { font-size: 26px; font-weight: 800; letter-spacing: -1px; margin-bottom: 2px; }
-.muted { color: #8993a4; font-size: 13px; }
-.hero { padding: 24px 28px; border: 1px solid #202938; border-radius: 20px;
-        background: linear-gradient(135deg,#101621 0%,#0b0f16 60%,#111827 100%);
-        margin-bottom: 22px; }
-.hero h1 { margin: 0; font-size: 34px; letter-spacing: -1.5px; }
-.hero p { color:#9ba6b7; margin:8px 0 0; }
-.kpi { background:#0d121a; border:1px solid #202938; border-radius:16px; padding:18px; min-height:115px; }
-.kpi-label { color:#8d98aa; font-size:12px; text-transform:uppercase; letter-spacing:.08em; }
-.kpi-value { font-size:29px; font-weight:800; margin-top:8px; }
+.stApp { background: radial-gradient(circle at 78% 0%, #172033 0%, #07090d 34%); color: #f5f7fb; }
+section[data-testid="stSidebar"] { background: linear-gradient(180deg,#0a0d13 0%,#080a0f 100%); border-right:1px solid #202938; }
+.block-container { max-width: 1500px; padding: 1.4rem 2.6rem 4rem; }
+.brand { font-size: 28px; font-weight: 800; letter-spacing: -1.2px; margin-bottom: 2px; }
+.muted { color:#8f9aad; font-size:13px; }
+.hero { position:relative; overflow:hidden; padding:30px 32px; border:1px solid #293447; border-radius:24px;
+        background:linear-gradient(120deg,#111827 0%,#0b1018 48%,#161126 100%);
+        box-shadow:0 18px 55px rgba(0,0,0,.25); margin-bottom:24px; }
+.hero:after { content:""; position:absolute; width:260px; height:260px; right:-80px; top:-120px;
+              border-radius:50%; background:rgba(124,58,237,.16); filter:blur(12px); }
+.hero h1 { margin:6px 0 0; font-size:38px; letter-spacing:-1.8px; position:relative; z-index:1; }
+.hero p { color:#9ba6b7; margin:9px 0 0; max-width:760px; position:relative; z-index:1; }
+.kpi { background:linear-gradient(145deg,#101722,#0b1017); border:1px solid #263244; border-radius:18px; padding:19px; min-height:118px;
+       box-shadow:0 10px 28px rgba(0,0,0,.16); transition:.2s; }
+.kpi:hover { transform:translateY(-2px); border-color:#3b4a60; }
+.kpi-label { color:#8995a8; font-size:11px; text-transform:uppercase; letter-spacing:.1em; font-weight:700; }
+.kpi-value { font-size:30px; font-weight:800; margin-top:9px; letter-spacing:-.8px; }
 .kpi-sub { color:#758195; font-size:12px; margin-top:4px; }
-.card { background:#0d121a; border:1px solid #202938; border-radius:18px; padding:20px; margin-bottom:16px; }
-.card h3 { margin:0 0 6px; font-size:17px; }
-.badge { display:inline-block; padding:5px 9px; border-radius:999px; background:#151d2a;
-         border:1px solid #2b3748; font-size:11px; color:#cbd5e1; }
-div[data-testid="stMetric"] { background:#0d121a; border:1px solid #202938; padding:14px; border-radius:14px; }
-.stButton > button { border-radius:10px; border:1px solid #2b3545; background:#121923; color:#fff; font-weight:600; }
-.stButton > button:hover { border-color:#7f8da3; }
+.card { background:linear-gradient(145deg,#10161f,#0c1118); border:1px solid #263244; border-radius:20px; padding:21px; margin-bottom:17px;
+        box-shadow:0 12px 30px rgba(0,0,0,.14); }
+.card:hover { border-color:#354359; }
+.card h3 { margin:0 0 7px; font-size:17px; }
+.badge { display:inline-flex; align-items:center; gap:5px; padding:6px 10px; border-radius:999px; background:#151e2b;
+         border:1px solid #304056; font-size:11px; color:#d5deea; font-weight:700; }
+div[data-testid="stMetric"] { background:#10161f; border:1px solid #263244; padding:14px; border-radius:16px; }
+.stButton > button { border-radius:12px; border:1px solid #303d50; background:linear-gradient(180deg,#151e2a,#101720); color:#fff; font-weight:700; min-height:44px; transition:.2s; }
+.stButton > button:hover { border-color:#7c3aed; color:#fff; transform:translateY(-1px); box-shadow:0 8px 20px rgba(124,58,237,.16); }
+div[data-testid="stFormSubmitButton"] > button { border-radius:12px; min-height:44px; font-weight:700; }
+div[data-testid="stRadio"] label { border-radius:10px; padding:6px 9px; margin:2px 0; }
+div[data-testid="stRadio"] label:hover { background:#111823; }
+hr { border-color:#202938; }
 div[data-testid="stTextInput"] input, div[data-testid="stTextArea"] textarea,
 div[data-baseweb="select"] > div { background:#0c1118; border-color:#273243; color:#fff; }
 [data-testid="stDataFrame"] { border:1px solid #202938; border-radius:14px; overflow:hidden; }
@@ -218,15 +228,15 @@ with st.sidebar:
         "Auto-Heal", "Multi-Agent", "Benchmark", "Reports", "Settings"
     ], label_visibility="visible")
     st.divider()
-    st.markdown(f'<span class="badge">{emoji} {status}</span>', unsafe_allow_html=True)
-    st.caption(f"Threshold: {THRESHOLD:.2f}")
+    st.markdown(f'<div class="card" style="padding:12px 14px;margin:12px 0 8px"><span class="badge">{emoji} {status}</span></div>', unsafe_allow_html=True)
+    st.caption(f"● System online  •  Threshold {THRESHOLD:.2f}")
     st.caption(f"Updated: {datetime.now().strftime('%d %b %Y • %H:%M')}")
 
 st.markdown(f"""
 <div class="hero">
-  <div class="badge">MEMORY RELIABILITY ENGINE</div>
+  <div class="badge">● LIVE MEMORYOS CONTROL CENTER</div>
   <h1>{page}</h1>
-  <p>Observe memory health, detect behavioral drift, and recover stale context from one control surface.</p>
+  <p>AI-agent memory, semantic retrieval, drift detection and self-healing — presented in a modern command-center interface.</p>
 </div>
 """, unsafe_allow_html=True)
 
