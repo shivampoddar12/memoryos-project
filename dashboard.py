@@ -62,10 +62,12 @@ footer{visibility:hidden!important}
 .desktop-site-header{display:block;margin:0 0 24px;background:#0b1422;border:1px solid #24354b;border-radius:0 0 14px 14px;box-shadow:0 10px 30px rgba(0,0,0,.22);overflow:visible;position:relative;z-index:20}
 .desktop-site-header .stHorizontalBlock{margin:0!important;padding:0 24px 16px!important;align-items:center!important}
 .desktop-site-header .stButton{margin:0!important}
-.desktop-site-header .stHorizontalBlock{margin:0!important;padding:0 24px 12px!important;align-items:center!important}
-.desktop-site-header .stButton>button{min-height:38px!important;height:38px!important;width:38px!important;margin:0!important;padding:0!important;border-radius:8px!important;font-size:21px!important;color:#f4774b!important;background:#0d1725!important;border:1px solid #293b52!important}
-.desktop-site-header .stButton>button:hover{color:#fff!important;border-color:#f4774b!important;background:#17273a!important}
-.header-fill{height:38px}
+.desktop-site-header .stHorizontalBlock{margin:0!important;padding:8px 18px!important;align-items:center!important;gap:6px!important}
+.desktop-brand-inline{font-size:20px;font-weight:800;letter-spacing:-1px;color:#f2eee8;white-space:nowrap;line-height:40px}
+.desktop-brand-inline span{color:#f4774b}
+.desktop-site-header .stButton>button{min-height:40px!important;height:40px!important;margin:0!important;padding:0 7px!important;border-radius:7px!important;font-size:9.5px!important}
+.desktop-site-header .stHorizontalBlock:last-child .stButton>button{padding:0!important;font-size:20px!important;color:#f4774b!important}
+
 
 
 .desktop-nav-shell{position:relative;z-index:10;clear:both;margin-top:0!important;margin-bottom:8px!important}
@@ -374,17 +376,26 @@ VISIBLE_NAV = ["Overview", "Memory Explorer", "Memory Lifecycle", "Semantic Retr
 MORE_NAV = ["Drift Analytics", "Auto-Heal", "Multi-Agent", "Benchmark", "Reports", "Settings"]
 
 def render_single_nav():
-    # Compact weighted columns keep every item fully visible on normal desktop widths.
-    cols = st.columns([0.86, 1.10, 1.10, 1.14, 1.18, 1.00, 0.86], gap="small")
+    # Single desktop website row: brand + primary navigation + search icon.
+    cols = st.columns([1.25, 0.82, 1.05, 1.05, 1.10, 1.12, 0.98, 0.88, 0.32], gap="small")
+
+    with cols[0]:
+        st.markdown('<div class="desktop-brand-inline">🧠 Memory<span>OS</span></div>', unsafe_allow_html=True)
+
     for i, item in enumerate(VISIBLE_NAV):
-        with cols[i]:
+        with cols[i + 1]:
             if st.button(item, key=f"topnav_{i}_{item}", use_container_width=True):
                 st.session_state.nav_page = item
                 st.rerun()
 
-    with cols[6]:
+    with cols[7]:
         if st.button("SEE MORE  +", key="topnav_more", use_container_width=True):
             st.session_state.show_more_nav = not st.session_state.get("show_more_nav", False)
+            st.rerun()
+
+    with cols[8]:
+        if st.button("⌕", key="global_search_toggle", help="Search MemoryOS", use_container_width=True):
+            st.session_state.search_open = not st.session_state.search_open
             st.rerun()
 
     if st.session_state.get("show_more_nav", False):
@@ -399,21 +410,12 @@ def render_single_nav():
         st.markdown('</div>', unsafe_allow_html=True)
 
 
-# Compact website header: logo left, search icon right, no extra search row.
-st.markdown('<div class="desktop-site-header"><div class="desktop-topbar"><div class="desktop-brand">🧠 Memory<span>OS</span></div>', unsafe_allow_html=True)
-
-header_cols = st.columns([9.55, 0.45], gap="small")
-with header_cols[0]:
-    st.markdown('<div class="header-fill"></div>', unsafe_allow_html=True)
-with header_cols[1]:
-    if st.button("⌕", key="global_search_toggle", help="Search MemoryOS", use_container_width=True):
-        st.session_state.search_open = not st.session_state.search_open
-        st.rerun()
-
-st.markdown('</div></div>', unsafe_allow_html=True)
-
-st.markdown('<div class="desktop-nav-shell"><div class="desktop-nav-heading">MEMORYOS NAVIGATION</div></div>', unsafe_allow_html=True)
+# One-line desktop website navigation: brand + navigation + search icon.
+st.markdown('<div class="desktop-site-header">', unsafe_allow_html=True)
+st.markdown('<div class="desktop-nav-heading">MEMORYOS</div>', unsafe_allow_html=True)
 render_single_nav()
+st.markdown('</div>', unsafe_allow_html=True)
+
 
 if st.session_state.search_open:
     st.markdown('<div class="global-search-panel">', unsafe_allow_html=True)
