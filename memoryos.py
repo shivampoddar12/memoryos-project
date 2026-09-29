@@ -8,6 +8,7 @@ from langgraph.graph import StateGraph, END
 from typing import TypedDict, List
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+from memory_engine import MemoryEngine
 
 print("🚀 MemoryOS — Complete System Loading...")
 
@@ -127,6 +128,7 @@ class MemoryOS:
         self.healer = AutoHealer()
         self.session_count = 0
         self.is_initialized = False
+        self.memory_engine = MemoryEngine(".", drift_threshold=0.45)
         print("✅ MemoryOS initialized!")
 
     def initialize(self, baseline_texts: list):
@@ -140,8 +142,12 @@ class MemoryOS:
         """Har message pe yeh run hoga"""
         self.session_count += 1
 
-        # Simple response (bina OpenAI ke)
+        # Retrieve relevant long-term context before producing the response.
+        retrieved = self.memory_engine.retrieve(user_input, limit=3)
+        context = self.memory_engine.context(user_input, limit=3)
         response = f"[Session {self.session_count}] Received: '{user_input}'"
+        if context:
+            response += "\\n" + context
 
         # Memory mein add karo
         entry = {
@@ -151,6 +157,11 @@ class MemoryOS:
             "response": response
         }
         memory_log = memory_log + [entry]
+        self.memory_engine.save_memories([
+            {"content": e.get("input", e.get("content", "")),
+             "importance": 1.0, "access_count": 0, "is_stale": False}
+            for e in memory_log if e.get("input", e.get("content", ""))
+        ])
 
         # Drift check karo (session 2 se)
         drift_result = {"score": 0.0, "status": "HEALTHY",
