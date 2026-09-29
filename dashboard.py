@@ -6,6 +6,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 import streamlit as st
+from memory_engine import MemoryEngine
 
 try:
     from sklearn.feature_extraction.text import TfidfVectorizer
@@ -22,6 +23,7 @@ MEMORY_LOG_FILE = BASE / "memory_log.json"
 SYNC_FILE = BASE / "sync_bus_log.json"
 BENCHMARK_FILE = BASE / "benchmark_results.json"
 THRESHOLD = 0.45
+ENGINE = MemoryEngine(BASE, drift_threshold=THRESHOLD)
 
 st.set_page_config(
     page_title="MemoryOS",
@@ -240,14 +242,15 @@ if page == "Overview":
     with a:
         if st.button("🔍 Run Drift Analysis", use_container_width=True):
             sample = [m["content"] for m in memories]
-            score = drift_score(sample)
-            save_drift(score, len(sample))
-            st.success(f"Analysis complete • drift {score:.2f}")
+            baseline = sample[:max(1, min(4, len(sample)))]
+            current = sample[-max(1, min(4, len(sample))):]
+            result = ENGINE.drift(baseline, current)
+            st.success(f"Analysis complete • drift {result['score']:.2f} • {result['status']}")
             st.rerun()
     with b:
         if st.button("🛠 Run Auto-Heal", use_container_width=True):
             if last_score >= THRESHOLD:
-                _, entry = run_heal(memories, last_score)
+                entry = ENGINE.heal(last_score)
                 st.success(f"Healed • pruned {entry['memories_pruned']} memories")
                 st.rerun()
             else:
@@ -280,7 +283,7 @@ elif page == "Memory Explorer":
     st.markdown("### Memory Explorer")
     q = st.text_input("Search memory", placeholder="Search by content...")
     min_imp = st.slider("Minimum importance", 0.0, 1.0, 0.0, 0.05)
-    filtered = [m for m in memories if q.lower() in m["content"].lower() and m["importance"] >= min_imp]
+    filtered = [m for m in ENGINE.search(q, limit=100) if m["importance"] >= min_imp]
     st.caption(f"{len(filtered)} memories shown")
     if filtered:
         df = pd.DataFrame(filtered)
