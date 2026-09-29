@@ -43,32 +43,44 @@ html,body,[class*="css"]{font-family:Inter,system-ui,-apple-system,BlinkMacSyste
 section[data-testid="stSidebar"]{width:285px!important;background:#0a1423;border-right:1px solid #1c2a3d}
 section[data-testid="stSidebar"]>div{width:285px!important}
 .block-container{max-width:1440px;padding:1.5rem 3.2rem 5rem}
-/* Streamlit chrome reset: keep the app itself flush to the top. */
+/* Streamlit chrome reset */
 header[data-testid="stHeader"]{background:transparent!important;height:0!important;min-height:0!important}
 div[data-testid="stToolbar"]{display:none!important}
 div[data-testid="stDecoration"]{display:none!important}
 #MainMenu{visibility:hidden!important}
 footer{visibility:hidden!important}
 .stAppViewContainer{padding-top:0!important}
-.main .block-container{padding-top:1rem!important}
+.main .block-container{padding-top:.65rem!important}
 
-.desktop-nav{display:block;margin:0 0 24px;padding:12px 16px;border:1px solid #263952;border-radius:16px;background:linear-gradient(180deg,#101d2e,#0c1726);box-shadow:0 10px 28px rgba(0,0,0,.20)}
-.desktop-nav-label{color:#718197;font-size:9px;font-weight:800;letter-spacing:.16em;margin:0 0 9px 3px}
-.desktop-nav [data-testid="stRadio"]{padding:0!important;margin:0!important}
-.desktop-nav [data-testid="stRadio"]>label{display:none!important}
-.desktop-nav [role="radiogroup"]{gap:5px!important;flex-wrap:nowrap!important;overflow-x:auto!important;scrollbar-width:none!important;padding-bottom:1px!important}
-.desktop-nav [role="radiogroup"]::-webkit-scrollbar{display:none!important}
-.desktop-nav [role="radio"]{
-  flex:0 0 auto!important;display:inline-flex!important;align-items:center!important;
-  border-radius:9px!important;padding:8px 12px!important;
-  color:#aebacc!important;font-size:11px!important;font-weight:700!important;
-  border:1px solid transparent!important;background:transparent!important;
-  transition:all .18s ease!important;white-space:nowrap!important;
+.desktop-site-header{
+  display:block;margin:0 0 22px;background:#0b1422;
+  border:1px solid #24354b;border-radius:0 0 18px 18px;
+  box-shadow:0 12px 30px rgba(0,0,0,.22);overflow:hidden;
 }
-.desktop-nav [role="radio"]>div:first-child{display:none!important}
-.desktop-nav [role="radio"] p{color:inherit!important;font-size:11px!important;font-weight:700!important;margin:0!important}
-.desktop-nav [role="radio"]:hover{background:#17263a!important;color:#fff!important;border-color:#2b4059!important}
-.desktop-nav [role="radio"][aria-checked="true"]{background:#f4774b!important;color:#fff!important;border-color:#ff9a72!important;box-shadow:0 5px 14px rgba(244,119,75,.20)!important}
+.desktop-topbar{display:flex;align-items:center;gap:28px;padding:14px 22px 11px;border-bottom:1px solid #1c2a3d}
+.desktop-brand{font-size:24px;font-weight:800;letter-spacing:-1px;color:#fff;white-space:nowrap}
+.desktop-brand span{color:#f4774b}
+.desktop-nav-row{display:flex;align-items:center;gap:4px;min-width:0}
+.desktop-nav-row [data-testid="stRadio"]{padding:0!important;margin:0!important}
+.desktop-nav-row [data-testid="stRadio"]>label{display:none!important}
+.desktop-nav-row [role="radiogroup"]{display:flex!important;align-items:center!important;gap:2px!important;flex-wrap:nowrap!important;overflow-x:auto!important;scrollbar-width:none!important}
+.desktop-nav-row [role="radiogroup"]::-webkit-scrollbar{display:none!important}
+.desktop-nav-row [role="radio"]{
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;
+  flex:0 0 auto!important;border:0!important;border-radius:8px!important;
+  background:transparent!important;padding:9px 11px!important;
+  color:#b7c1cf!important;white-space:nowrap!important;
+}
+.desktop-nav-row [role="radio"]>div:first-child{display:none!important}
+.desktop-nav-row [role="radio"] p{font-size:12px!important;font-weight:650!important;color:inherit!important;margin:0!important}
+.desktop-nav-row [role="radio"]:hover{background:#172536!important;color:#fff!important}
+.desktop-nav-row [role="radio"][aria-checked="true"]{background:#f4774b!important;color:#fff!important}
+.desktop-secondary{padding:7px 22px;background:#0e1928;border-top:1px solid rgba(255,255,255,.02)}
+.desktop-secondary [role="radio"]{padding:7px 13px!important;color:#93a0b2!important}
+.desktop-secondary [role="radio"][aria-checked="true"]{background:rgba(244,119,75,.13)!important;color:#ff9b76!important}
+
+@media(min-width:901px){section[data-testid="stSidebar"]{display:none!important}}
+@media(max-width:900px){.desktop-site-header{display:none!important}}
 @media(min-width:901px){section[data-testid="stSidebar"]{display:none!important}.desktop-nav{display:block}}
 @media(max-width:900px){.desktop-nav{display:none!important}}
 
@@ -275,28 +287,40 @@ NAV_ITEMS = [
     "Memory Intelligence", "Agent Memory", "Drift Analytics", "Auto-Heal",
     "Multi-Agent", "Benchmark", "Reports", "Settings"
 ]
+PRIMARY_NAV = ["Overview", "Memory Explorer", "Memory Lifecycle", "Semantic Retrieval", "Memory Intelligence", "Agent Memory"]
+SECONDARY_NAV = ["Drift Analytics", "Auto-Heal", "Multi-Agent", "Benchmark", "Reports", "Settings"]
 
 if "nav_page" not in st.session_state:
     st.session_state.nav_page = "Overview"
 
-def sync_desktop_nav():
-    st.session_state.nav_page = st.session_state.desktop_nav
+def set_primary():
+    st.session_state.nav_page = st.session_state.primary_nav
 
-def sync_mobile_nav():
-    st.session_state.nav_page = st.session_state.mobile_nav
+def set_secondary():
+    st.session_state.nav_page = st.session_state.secondary_nav
 
-# Desktop: website-style top navigation. Mobile: keep the compact sidebar navigation.
-st.markdown('<div class="desktop-nav"><div class="desktop-nav-label">MEMORYOS</div>', unsafe_allow_html=True)
+# Desktop: commerce-style website header. Mobile: compact Streamlit sidebar.
+st.markdown('<div class="desktop-site-header"><div class="desktop-topbar"><div class="desktop-brand">🧠 Memory<span>OS</span></div><div class="desktop-nav-row">', unsafe_allow_html=True)
 st.radio(
-    "Desktop navigation",
-    NAV_ITEMS,
-    key="desktop_nav",
-    index=NAV_ITEMS.index(st.session_state.nav_page),
+    "Primary navigation",
+    PRIMARY_NAV,
+    key="primary_nav",
+    index=PRIMARY_NAV.index(st.session_state.nav_page) if st.session_state.nav_page in PRIMARY_NAV else 0,
     horizontal=True,
     label_visibility="collapsed",
-    on_change=sync_desktop_nav,
+    on_change=set_primary,
 )
-st.markdown('</div>', unsafe_allow_html=True)
+st.markdown('</div></div><div class="desktop-secondary"><div class="desktop-nav-row">', unsafe_allow_html=True)
+st.radio(
+    "Secondary navigation",
+    SECONDARY_NAV,
+    key="secondary_nav",
+    index=SECONDARY_NAV.index(st.session_state.nav_page) if st.session_state.nav_page in SECONDARY_NAV else 0,
+    horizontal=True,
+    label_visibility="collapsed",
+    on_change=set_secondary,
+)
+st.markdown('</div></div></div>', unsafe_allow_html=True)
 
 with st.sidebar:
     st.markdown('<div class="brand">🧠 MemoryOS</div><div class="muted">AI Memory Reliability Layer</div>', unsafe_allow_html=True)
@@ -307,7 +331,7 @@ with st.sidebar:
         key="mobile_nav",
         index=NAV_ITEMS.index(st.session_state.nav_page),
         label_visibility="visible",
-        on_change=sync_mobile_nav,
+        on_change=lambda: st.session_state.update(nav_page=st.session_state.mobile_nav),
     )
     st.divider()
     st.markdown(f'<div class="card" style="padding:12px 14px;margin:12px 0 8px"><span class="badge">{emoji} {status}</span></div>', unsafe_allow_html=True)
