@@ -35,38 +35,56 @@ st.set_page_config(
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-html, body, [class*="css"] { font-family: Inter, sans-serif; }
-.stApp { background: radial-gradient(circle at 78% 0%, #172033 0%, #07090d 34%); color: #f5f7fb; }
-section[data-testid="stSidebar"] { background: linear-gradient(180deg,#0a0d13 0%,#080a0f 100%); border-right:1px solid #202938; }
-.block-container { max-width: 1500px; padding: 1.4rem 2.6rem 4rem; }
-.brand { font-size: 28px; font-weight: 800; letter-spacing: -1.2px; margin-bottom: 2px; }
-.muted { color:#8f9aad; font-size:13px; }
-.hero { position:relative; overflow:hidden; padding:30px 32px; border:1px solid #293447; border-radius:24px;
-        background:linear-gradient(120deg,#111827 0%,#0b1018 48%,#161126 100%);
-        box-shadow:0 18px 55px rgba(0,0,0,.25); margin-bottom:24px; }
-.hero:after { content:""; position:absolute; width:260px; height:260px; right:-80px; top:-120px;
-              border-radius:50%; background:rgba(124,58,237,.16); filter:blur(12px); }
-.hero h1 { margin:6px 0 0; font-size:38px; letter-spacing:-1.8px; position:relative; z-index:1; }
-.hero p { color:#9ba6b7; margin:9px 0 0; max-width:760px; position:relative; z-index:1; }
-.kpi { background:linear-gradient(145deg,#101722,#0b1017); border:1px solid #263244; border-radius:18px; padding:19px; min-height:118px;
-       box-shadow:0 10px 28px rgba(0,0,0,.16); transition:.2s; }
-.kpi:hover { transform:translateY(-2px); border-color:#3b4a60; }
-.kpi-label { color:#8995a8; font-size:11px; text-transform:uppercase; letter-spacing:.1em; font-weight:700; }
-.kpi-value { font-size:30px; font-weight:800; margin-top:9px; letter-spacing:-.8px; }
-.kpi-sub { color:#758195; font-size:12px; margin-top:4px; }
-.card { background:linear-gradient(145deg,#10161f,#0c1118); border:1px solid #263244; border-radius:20px; padding:21px; margin-bottom:17px;
-        box-shadow:0 12px 30px rgba(0,0,0,.14); }
-.card:hover { border-color:#354359; }
-.card h3 { margin:0 0 7px; font-size:17px; }
-.badge { display:inline-flex; align-items:center; gap:5px; padding:6px 10px; border-radius:999px; background:#151e2b;
-         border:1px solid #304056; font-size:11px; color:#d5deea; font-weight:700; }
-div[data-testid="stMetric"] { background:#10161f; border:1px solid #263244; padding:14px; border-radius:16px; }
-.stButton > button { border-radius:12px; border:1px solid #303d50; background:linear-gradient(180deg,#151e2a,#101720); color:#fff; font-weight:700; min-height:44px; transition:.2s; }
-.stButton > button:hover { border-color:#7c3aed; color:#fff; transform:translateY(-1px); box-shadow:0 8px 20px rgba(124,58,237,.16); }
-div[data-testid="stFormSubmitButton"] > button { border-radius:12px; min-height:44px; font-weight:700; }
-div[data-testid="stRadio"] label { border-radius:10px; padding:6px 9px; margin:2px 0; }
-div[data-testid="stRadio"] label:hover { background:#111823; }
-hr { border-color:#202938; }
+html, body, [class*="css"] { font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+.stApp { background:#080b11; color:#f7f8fb; }
+section[data-testid="stSidebar"] { width:300px !important; background:#0b0f16; border-right:1px solid #242d3b; }
+section[data-testid="stSidebar"] > div { width:300px !important; }
+.block-container { max-width:1480px; padding:2.2rem 3rem 5rem; }
+.brand { font-size:30px; font-weight:800; letter-spacing:-1.2px; margin-bottom:3px; color:#ffffff; }
+.muted { color:#aab4c3; font-size:14px; line-height:1.55; }
+.hero { position:relative; overflow:hidden; padding:34px 36px; border:1px solid #303b4d; border-radius:22px;
+        background:linear-gradient(135deg,#151d2a 0%,#0e141d 58%,#17132a 100%);
+        box-shadow:0 18px 55px rgba(0,0,0,.28); margin-bottom:28px; }
+.hero:after { content:""; position:absolute; width:300px; height:300px; right:-90px; top:-140px;
+              border-radius:50%; background:rgba(124,58,237,.18); filter:blur(16px); }
+.hero h1 { margin:8px 0 0; font-size:44px; line-height:1.12; letter-spacing:-2px; position:relative; z-index:1; color:#ffffff; }
+.hero p { color:#c1cad7; margin:12px 0 0; max-width:850px; position:relative; z-index:1; font-size:16px; line-height:1.55; }
+.kpi { background:#101720; border:1px solid #2a3647; border-radius:17px; padding:20px; min-height:128px;
+       box-shadow:0 10px 28px rgba(0,0,0,.18); transition:.2s; }
+.kpi:hover { transform:translateY(-2px); border-color:#53647c; }
+.kpi-label { color:#b8c2d0; font-size:13px; text-transform:none; letter-spacing:.01em; font-weight:700; }
+.kpi-value { font-size:34px; line-height:1.1; color:#ffffff; font-weight:800; margin-top:10px; letter-spacing:-.8px; }
+.kpi-sub { color:#8f9bad; font-size:13px; margin-top:7px; }
+.card { background:#0f151e; border:1px solid #2a3647; border-radius:18px; padding:23px; margin-bottom:18px;
+        box-shadow:0 12px 30px rgba(0,0,0,.16); }
+.card:hover { border-color:#3b4b61; }
+.card h3 { margin:0 0 8px; font-size:20px; color:#ffffff; }
+.badge { display:inline-flex; align-items:center; gap:5px; padding:7px 11px; border-radius:999px; background:#182231;
+         border:1px solid #394a61; font-size:12px; color:#e5eaf1; font-weight:700; }
+div[data-testid="stMetric"] { background:#101720; border:1px solid #2a3647; padding:16px; border-radius:16px; }
+.stButton > button { border-radius:11px; border:1px solid #3a485c; background:#151e2a; color:#ffffff; font-size:14px; font-weight:700; min-height:48px; transition:.2s; }
+.stButton > button:hover { border-color:#9a7cff; background:#1b2636; color:#fff; transform:translateY(-1px); box-shadow:0 8px 20px rgba(124,58,237,.18); }
+div[data-testid="stFormSubmitButton"] > button { border-radius:11px; min-height:48px; font-weight:700; }
+div[data-testid="stRadio"] > label { color:#aeb8c6 !important; font-size:12px !important; font-weight:700 !important; letter-spacing:.09em; }
+div[data-testid="stRadio"] label { display:flex; align-items:center; border-radius:10px; padding:9px 10px; margin:3px 0; color:#e5eaf1 !important; }
+div[data-testid="stRadio"] label p { font-size:15px !important; color:#d8dee8 !important; font-weight:600 !important; }
+div[data-testid="stRadio"] label:hover { background:#151d28; }
+div[data-testid="stRadio"] [aria-checked="true"] { background:#171f2d; border-left:3px solid #8b5cf6; }
+div[data-testid="stTextInput"] input, div[data-testid="stTextArea"] textarea { font-size:15px !important; color:#f8fafc !important; }
+div[data-baseweb="select"] > div { min-height:44px; }
+[data-testid="stDataFrame"] { border:1px solid #2a3647; border-radius:14px; overflow:hidden; }
+[data-testid="stCaptionContainer"] p { color:#aab4c3 !important; font-size:13px !important; }
+hr { border-color:#263142; }
+@media(max-width:900px){
+ section[data-testid="stSidebar"], section[data-testid="stSidebar"] > div { width:270px !important; }
+ .block-container{padding:1.4rem 1rem 3rem}
+ .hero h1{font-size:34px}.hero{padding:25px}
+ .kpi-value{font-size:28px}
+}
+@media(max-width:600px){
+ .hero h1{font-size:30px}.hero p{font-size:14px}
+ .kpi{min-height:105px;padding:15px}
+}
 div[data-testid="stTextInput"] input, div[data-testid="stTextArea"] textarea,
 div[data-baseweb="select"] > div { background:#0c1118; border-color:#273243; color:#fff; }
 [data-testid="stDataFrame"] { border:1px solid #202938; border-radius:14px; overflow:hidden; }
@@ -242,12 +260,12 @@ st.markdown(f"""
 
 if page == "Overview":
     cols = st.columns(4)
-    with cols[0]: kpi("Memories", len(memories), "active memory items")
-    with cols[1]: kpi("Drift Score", f"{last_score:.2f}", status)
-    with cols[2]: kpi("Heal Events", len(heal_history), "recovery operations")
-    with cols[3]: kpi("Sessions", len(drift_history), "tracked sessions")
+    with cols[0]: kpi("🧠 Memories", len(memories), "Active memory items")
+    with cols[1]: kpi("📈 Drift Score", f"{last_score:.2f}", status)
+    with cols[2]: kpi("🛠 Heal Events", len(heal_history), "Recovery operations")
+    with cols[3]: kpi("◉ Sessions", len(drift_history), "Tracked sessions")
 
-    st.markdown("### Quick actions")
+    st.markdown("## Quick actions")
     a,b,c,d = st.columns(4)
     with a:
         if st.button("🔍 Run Drift Analysis", use_container_width=True):
@@ -276,7 +294,7 @@ if page == "Overview":
 
     left, right = st.columns([1.5,1])
     with left:
-        st.markdown('<div class="card"><h3>Drift timeline</h3><div class="muted">Session-by-session behavioral drift</div></div>', unsafe_allow_html=True)
+        st.markdown('<div class="card"><h3>📈 Drift timeline</h3><div class="muted">Session-by-session behavioral drift. Higher scores indicate greater change from the baseline.</div></div>', unsafe_allow_html=True)
         if drift_history:
             df = pd.DataFrame(drift_history)
             if "session" in df and "drift_score" in df:
@@ -284,7 +302,7 @@ if page == "Overview":
         else:
             st.info("No drift sessions yet. Run Drift Analysis to populate the timeline.")
     with right:
-        st.markdown('<div class="card"><h3>System health</h3><div class="muted">Current reliability signals</div></div>', unsafe_allow_html=True)
+        st.markdown('<div class="card"><h3>💚 System health</h3><div class="muted">Current reliability signals and recovery readiness.</div></div>', unsafe_allow_html=True)
         st.metric("Current status", f"{emoji} {status}")
         st.metric("Heal threshold", f"{THRESHOLD:.2f}")
         st.metric("Memory coverage", f"{len(memories)} items")
