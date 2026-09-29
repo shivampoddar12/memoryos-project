@@ -1,5 +1,5 @@
 # memoryos-project
-Memory - Self Healing Memory Architecture for AI Agents
+Memory - Self-Healing Memory Architecture for AI Agents
 
 # 🧠 MemoryOS for AI Agents
 
@@ -25,7 +25,7 @@ This phenomenon is called **Context Rot**.
 
 ## ✅ The Solution — MemoryOS
 
-MemoryOS is an OS-inspired monitoring and self-healing layer for AI agents.
+MemoryOS is a lightweight monitoring, retrieval, lifecycle-management, drift-detection, and self-healing layer for AI-agent memory.
 
 > Just as an OS manages RAM for a computer — MemoryOS manages memory for AI agents.
 
@@ -48,7 +48,7 @@ User Input
     ↓
 LangGraph Agent
     ↓
-Memory Ingestion Layer (Mem0 + Redis)
+Memory Retrieval + Lifecycle Layer (TF-IDF + JSON)
     ↓
 Drift Detection Engine (cosine similarity)
     ↓
@@ -105,9 +105,9 @@ if drift(t) ≥ θ (0.45):
 | Layer | Technology |
 |---|---|
 | Agent Framework | LangGraph |
-| Memory Store | Mem0 + Redis |
+| Memory Store | Local JSON persistence |
 | Embeddings | TF-IDF (scikit-learn) |
-| Vector Index | FAISS |
+| Vector Index | TF-IDF / cosine similarity |
 | Dashboard | Streamlit + Plotly |
 | Version Control | Git + GitHub |
 
@@ -151,3 +151,12 @@ python -m streamlit run dashboard.py
 B.Tech CSE-AI | Parul University | 2025-26
 
 Supervisor: Ms. Kiran Sharma
+
+
+## Current Dashboard
+
+The Streamlit dashboard includes Overview, Memory Explorer, Memory Lifecycle, Semantic Retrieval, Memory Intelligence, Agent Memory, Drift Analytics, Auto-Heal, Multi-Agent, Benchmark, Reports, and Settings.
+
+## Implementation note
+
+The current repository is a lightweight academic prototype. It does not require external Mem0, Redis, or FAISS services; the implemented retrieval layer uses scikit-learn TF-IDF and cosine similarity with local JSON persistence.
