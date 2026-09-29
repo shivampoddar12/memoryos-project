@@ -209,6 +209,7 @@ div[data-baseweb="select"]>div{background:#0d1725!important;border-color:#273b54
 hr{border-color:#1f3045}
 @media(max-width:900px){section[data-testid="stSidebar"],section[data-testid="stSidebar"]>div{width:260px!important;display:block!important}.block-container{padding:1.2rem 1rem 3rem}.hero h1{font-size:36px}.hero{padding:30px}.kpi-value{font-size:28px}.landing-hero{min-height:650px;padding:22px 20px}.landing-copy{width:100%;margin-top:55px}.landing-copy h1{font-size:70px}.landing-side{display:none}.memory-core{width:245px;height:245px;right:5%;top:37%}.ring-one{width:275px;height:275px}.ring-two{width:215px;height:215px}.landing-orbit{width:54px;height:54px}.landing-cta-row{left:20px;bottom:78px}.landing-bottom{left:20px;right:20px;gap:15px;overflow:hidden}.landing-split{grid-template-columns:1fr;margin:60px 0}.landing-section-title h2,.split-copy h2{font-size:34px}.landing-metrics{grid-template-columns:1fr 1fr}.landing-metrics div{border-bottom:1px solid #26374b}.landing-bottom-cta{display:block}.landing-bottom-cta h2{font-size:36px}.landing-cta-copy{margin-top:20px}}
 @media(max-width:600px){.hero h1{font-size:30px}.hero p{font-size:14px}.hero-meta{display:none}.kpi{min-height:105px;padding:15px}.landing-hero{min-height:620px}.landing-copy h1{font-size:56px}.memory-core{width:190px;height:190px;top:39%;right:2%}.ring-one{width:215px;height:215px}.ring-two{width:170px;height:170px}.landing-orbit{display:none}.landing-bottom{font-size:8px;gap:9px}.landing-bottom div:nth-child(2){display:none}.landing-metrics strong{font-size:30px}}
+.hero-feature-buttons{height:0}
 </style>
 """, unsafe_allow_html=True)
 
@@ -516,21 +517,13 @@ if page == "Overview":
             <div class="core-mark"><i></i><i></i><i></i><i></i></div>
             <div class="core-label">MEMORY<br>ENGINE</div>
           </div>
-          <div class="landing-bottom">
-            <div><b>01</b><span>Semantic Retrieval</span></div>
-            <div><b>02</b><span>Memory Reliability</span></div>
-            <div><b>03</b><span>Self-Healing Context</span></div>
-          </div>
         </section>
         """,
         unsafe_allow_html=True,
     )
 
-    if st.button("Explore MemoryOS  ↗", key="hero_explore", use_container_width=False):
-        st.session_state.nav_page = "Memory Explorer"
-        st.rerun()
-
-    # Functional hero quick-links matching the three highlighted capabilities.
+    st.markdown('<div class="hero-feature-buttons"></div>', unsafe_allow_html=True)
+    # These are the three exact hero navigation buttons from the landing design.
     quick1, quick2, quick3 = st.columns(3, gap="small")
     quick_links = [
         ("01  Semantic Retrieval", "Semantic Retrieval"),
@@ -543,6 +536,10 @@ if page == "Overview":
                 st.session_state.nav_page = target
                 st.session_state.search_open = False
                 st.rerun()
+
+    if st.button("Explore MemoryOS  ↗", key="hero_explore", use_container_width=False):
+        st.session_state.nav_page = "Memory Explorer"
+        st.rerun()
 
     st.markdown('<div class="landing-section-title"><span>MEMORYOS CAPABILITIES</span><h2>Everything your agent needs<br>to remember intelligently.</h2></div>', unsafe_allow_html=True)
     f1,f2,f3,f4 = st.columns(4)
