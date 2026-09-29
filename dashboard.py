@@ -66,7 +66,8 @@ footer{visibility:hidden!important}
 .desktop-brand-inline{font-size:20px;font-weight:800;letter-spacing:-1px;color:#f2eee8;white-space:nowrap;line-height:40px}
 .desktop-brand-inline span{color:#f4774b}
 .desktop-site-header .stButton>button{min-height:40px!important;height:40px!important;margin:0!important;padding:0 7px!important;border-radius:7px!important;font-size:9.5px!important}
-.desktop-site-header .stHorizontalBlock:last-child .stButton>button{padding:0!important;font-size:20px!important;color:#f4774b!important}
+.desktop-site-header .stHorizontalBlock .stButton>button[aria-label="Search MemoryOS"]{padding:0!important;font-size:18px!important;line-height:1!important;color:#f4774b!important;background:#0d1725!important;border:1px solid #40536b!important}
+.desktop-site-header .stHorizontalBlock .stButton>button[aria-label="Search MemoryOS"]:hover{color:#fff!important;border-color:#f4774b!important;background:#17273a!important}
 
 
 
@@ -394,7 +395,7 @@ def render_single_nav():
             st.rerun()
 
     with cols[8]:
-        if st.button("⌕", key="global_search_toggle", help="Search MemoryOS", use_container_width=True):
+        if st.button("🔍", key="global_search_toggle", help="Search MemoryOS", use_container_width=True):
             st.session_state.search_open = not st.session_state.search_open
             st.rerun()
 
