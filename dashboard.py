@@ -262,6 +262,28 @@ hr{border-color:#1f3045}
 @keyframes siteTechFloat{0%,100%{transform:translate3d(0,0,0) rotate(0deg)}50%{transform:translate3d(8px,-16px,0) rotate(5deg)}}
 @media(max-width:600px){.site-tech-logo-cloud{opacity:.08}.site-tech-logo-cloud img{width:23px;height:23px}}
 .main .block-container{position:relative;z-index:2}
+
+/* Clear, viva-friendly memory visual */
+.memory-network{position:absolute;inset:0;display:block}
+.memory-network:before,.memory-network:after{content:"";position:absolute;left:50%;top:50%;width:145px;height:1px;background:rgba(244,119,75,.35);transform-origin:left center}
+.memory-network:before{transform:rotate(28deg)}.memory-network:after{transform:rotate(-28deg)}
+.network-core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:74px;height:74px;border:1px solid rgba(244,119,75,.75);border-radius:22px;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle,#263747,#0b1118 72%);color:#f4774b;font-size:24px;font-weight:800;box-shadow:0 0 35px rgba(244,119,75,.16)}
+.network-label{position:absolute;left:50%;top:calc(50% + 58px);transform:translateX(-50%);font-size:8px;letter-spacing:.18em;color:#c7ced6;white-space:nowrap}
+.memory-network .node{position:absolute;width:18px;height:18px;border:1px solid #e4ddd5;border-radius:50%;background:#111923;box-shadow:0 0 18px rgba(244,119,75,.2)}
+.memory-network .n1{left:23%;top:28%}.memory-network .n2{right:20%;top:28%}.memory-network .n3{left:17%;bottom:27%}.memory-network .n4{right:16%;bottom:27%}.memory-network .n5{left:48%;top:12%}
+.metrics-heading{display:flex;justify-content:space-between;align-items:end;margin:34px 0 12px;padding-top:24px;border-top:1px solid #24354b}
+.metrics-heading span{font-size:8px;letter-spacing:.16em;color:#f4774b;font-weight:800}
+.metrics-heading h3{margin:6px 0 0;color:#e6e1db;font-size:24px;font-weight:600}
+.metric-threshold{font-size:9px;color:#a7b1bd;border:1px solid #33485f;border-radius:999px;padding:7px 10px}
+.landing-metrics{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border:1px solid #27384d!important;border-radius:12px;overflow:hidden;background:rgba(10,18,30,.72)}
+.landing-metrics .metric-card{min-height:135px;padding:22px 20px;border-right:1px solid #27384d;background:rgba(12,22,35,.72)}
+.landing-metrics .metric-card:last-child{border-right:0}
+.landing-metrics .metric-card strong{display:block;font-size:34px;line-height:1;color:#f1ebe3;font-weight:600}
+.landing-metrics .metric-card span{display:block;margin-top:9px;font-size:8px;letter-spacing:.13em;color:#f4774b;font-weight:800}
+.landing-metrics .metric-card small{display:block;margin-top:10px;color:#7f8b9a;font-size:9px;line-height:1.5}
+.drift-explainer{margin-top:10px;padding:12px 15px;border-left:2px solid #f4774b;background:rgba(244,119,75,.055);color:#9da8b5;font-size:10px;line-height:1.6}
+.drift-explainer b{color:#d9dfe5}.drift-explainer code{color:#f0b19b;background:#141f2d;padding:2px 5px;border-radius:4px}
+@media(max-width:800px){.landing-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.landing-metrics .metric-card:nth-child(2){border-right:0}.landing-metrics .metric-card:nth-child(-n+2){border-bottom:1px solid #27384d}.metrics-heading{align-items:flex-start;gap:12px;flex-direction:column}}
 </style>
 """, unsafe_allow_html=True)
 
@@ -637,9 +659,22 @@ if page == "Overview":
             st.line_chart(chart_df, height=280, use_container_width=True)
         st.markdown('<div class="chart-caption">Session-by-session memory drift. Higher values indicate greater context change.</div>', unsafe_allow_html=True)
 
-    st.markdown('<div class="landing-split"><div class="split-copy"><div class="landing-eyebrow">MEMORY INFRASTRUCTURE</div><h2>Context that stays useful as your agent evolves.</h2><p>MemoryOS connects retrieval, reliability monitoring and recovery into one lightweight memory layer. Test the pipeline, inspect retrieval signals and keep stale context under control.</p><div class="split-points"><div><b>01</b>Relevant memories before every interaction</div><div><b>02</b>Explainable retrieval signals</div><div><b>03</b>Persistent local memory state</div></div></div><div class="split-visual"><div class="visual-grid"></div><div class="visual-core">✣</div><span>AI MEMORY<br>INFRASTRUCTURE</span></div></div>',unsafe_allow_html=True)
+    st.markdown('<div class="landing-split"><div class="split-copy"><div class="landing-eyebrow">MEMORY INFRASTRUCTURE</div><h2>Context that stays useful as your agent evolves.</h2><p>MemoryOS connects semantic retrieval, drift monitoring and automatic recovery into one lightweight memory layer.</p><div class="split-points"><div><b>01</b>Retrieve the most relevant memories</div><div><b>02</b>Measure context drift with TF-IDF similarity</div><div><b>03</b>Heal low-value or stale memory automatically</div></div></div><div class="split-visual"><div class="visual-grid"></div><div class="memory-network"><i class="node n1"></i><i class="node n2"></i><i class="node n3"></i><i class="node n4"></i><i class="node n5"></i><span class="network-core">M</span><span class="network-label">MEMORYOS CORE</span></div><span>AI MEMORY<br>INFRASTRUCTURE</span></div></div>',unsafe_allow_html=True)
 
-    st.markdown('<div class="landing-metrics"><div><strong>'+str(len(memories))+'</strong><span>MEMORY ITEMS</span></div><div><strong>'+f'{last_score:.2f}'+'</strong><span>DRIFT SCORE</span></div><div><strong>'+str(len(heal_history))+'</strong><span>HEAL EVENTS</span></div><div><strong>'+str(len(drift_history))+'</strong><span>SESSIONS</span></div></div>',unsafe_allow_html=True)
+    drift_label = status.title()
+    st.markdown(f'''
+    <div class="metrics-heading">
+      <div><span>MEMORYOS HEALTH SNAPSHOT</span><h3>What these numbers mean</h3></div>
+      <div class="metric-threshold">Auto-heal trigger · 0.45</div>
+    </div>
+    <div class="landing-metrics">
+      <div class="metric-card"><strong>{len(memories)}</strong><span>MEMORY ITEMS</span><small>Stored context available to the agent.</small></div>
+      <div class="metric-card metric-drift"><strong>{last_score:.2f}</strong><span>MEMORY DRIFT · {drift_label.upper()}</span><small>0 = very similar context · 1 = highly changed context.</small></div>
+      <div class="metric-card"><strong>{len(heal_history)}</strong><span>AUTO-HEAL RUNS</span><small>Recovery actions recorded by MemoryOS.</small></div>
+      <div class="metric-card"><strong>{len(drift_history)}</strong><span>SESSIONS ANALYZED</span><small>Recorded drift measurements across runs.</small></div>
+    </div>
+    <div class="drift-explainer"><b>How to explain Drift Score:</b> MemoryOS converts text into TF-IDF vectors, calculates cosine similarity, and represents the change as <code>1 − similarity</code>. A higher score means the context has changed more and deserves closer inspection.</div>
+    ''',unsafe_allow_html=True)
 
     st.markdown('''
     <section class="landing-bottom-cta">
