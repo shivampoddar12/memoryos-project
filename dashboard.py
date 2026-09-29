@@ -52,6 +52,17 @@ section[data-testid="stSidebar"] > div { width:300px !important; }
 .live-badge { display:inline-flex; align-items:center; gap:7px; padding:8px 13px; border-radius:999px;
               background:#dc2626; border:1px solid #ef4444; color:#fff; font-size:12px; font-weight:800;
               letter-spacing:.04em; box-shadow:0 6px 18px rgba(220,38,38,.18); }
+.hero-top { display:flex; align-items:center; justify-content:space-between; gap:16px; position:relative; z-index:2; }
+.hero-meta { color:#8a94a3; font-size:11px; font-weight:800; letter-spacing:.08em; }
+.section-head { display:flex; align-items:flex-end; justify-content:space-between; gap:18px; margin:4px 0 13px; }
+.section-title { color:#171a1f; font-size:20px; font-weight:800; letter-spacing:-.4px; }
+.section-note { color:#7b8491; font-size:12px; }
+.action-grid { margin-top:4px; }
+.action-card { background:#fff; border:1px solid #e2e6ec; border-radius:16px; padding:16px; box-shadow:0 5px 18px rgba(15,23,42,.04); }
+.action-card .action-title { font-size:14px; font-weight:800; color:#202733; margin-bottom:4px; }
+.action-card .action-desc { font-size:12px; color:#7b8491; line-height:1.45; }
+.health-title { font-size:13px; font-weight:800; color:#202733; margin-bottom:9px; }
+@media(max-width:700px){ .hero-top{align-items:flex-start; flex-direction:column}.hero-meta{display:none}.section-head{align-items:flex-start;flex-direction:column;gap:3px} }
 .kpi { background:#ffffff; border:1px solid #e2e6ec; border-radius:17px; padding:20px; min-height:128px;
        box-shadow:0 7px 22px rgba(15,23,42,.05); transition:.2s; }
 .kpi:hover { transform:translateY(-2px); border-color:#f0a2a2; box-shadow:0 10px 28px rgba(15,23,42,.08); }
@@ -252,9 +263,12 @@ with st.sidebar:
 
 st.markdown(f"""
 <div class="hero">
-  <div class="live-badge">● LIVE MEMORYOS CONTROL CENTER</div>
+  <div class="hero-top">
+    <div class="live-badge">● LIVE SYSTEM</div>
+    <div class="hero-meta">MEMORY RELIABILITY PLATFORM&nbsp;&nbsp;•&nbsp;&nbsp;v1.0</div>
+  </div>
   <h1>{page}</h1>
-  <p>AI-agent memory, semantic retrieval, drift detection and self-healing — presented in a modern command-center interface.</p>
+  <p>Monitor memory health, understand retrieval, detect drift and recover stale context from one intelligent workspace.</p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -265,7 +279,7 @@ if page == "Overview":
     with cols[2]: kpi("🛠 Heal Events", len(heal_history), "Recovery operations")
     with cols[3]: kpi("◉ Sessions", len(drift_history), "Tracked sessions")
 
-    st.markdown("## Quick actions")
+    st.markdown('<div class="section-head"><div><div class="section-title">Quick actions</div><div class="section-note">Run the core MemoryOS operations from here.</div></div></div>', unsafe_allow_html=True)
     a,b,c,d = st.columns(4)
     with a:
         if st.button("🔍 Run Drift Analysis", use_container_width=True):
@@ -294,7 +308,7 @@ if page == "Overview":
 
     left, right = st.columns([1.5,1])
     with left:
-        st.markdown('<div class="card"><h3>📈 Drift timeline</h3><div class="muted">Session-by-session behavioral drift. Higher scores indicate greater change from the baseline.</div></div>', unsafe_allow_html=True)
+        st.markdown('<div class="section-head"><div><div class="section-title">Drift timeline</div><div class="section-note">Session-by-session behavioral drift</div></div></div>', unsafe_allow_html=True)
         if drift_history:
             df = pd.DataFrame(drift_history)
             if "session" in df and "drift_score" in df:
@@ -302,7 +316,7 @@ if page == "Overview":
         else:
             st.info("No drift sessions yet. Run Drift Analysis to populate the timeline.")
     with right:
-        st.markdown('<div class="card"><h3>💚 System health</h3><div class="muted">Current reliability signals and recovery readiness.</div></div>', unsafe_allow_html=True)
+        st.markdown('<div class="section-head"><div><div class="section-title">System health</div><div class="section-note">Reliability and recovery readiness</div></div></div>', unsafe_allow_html=True)
         st.markdown(f'<div class="health-card"><div class="health-label">Current Status</div><div class="health-value">{emoji} {status}</div><div class="health-sub">Overall memory reliability state</div></div>', unsafe_allow_html=True)
         st.markdown(f'<div class="health-card"><div class="health-label">Heal Threshold</div><div class="health-value">{THRESHOLD:.2f}</div><div class="health-sub">Auto-heal trigger level</div></div>', unsafe_allow_html=True)
         st.markdown(f'<div class="health-card"><div class="health-label">Memory Coverage</div><div class="health-value">{len(memories)} items</div><div class="health-sub">Currently available memory records</div></div>', unsafe_allow_html=True)
