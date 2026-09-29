@@ -130,6 +130,7 @@ class MemoryEngine:
 
         result = {
             "score": score,
+            "drift_score": score,
             "status": status,
             "emoji": emoji,
             "heal_needed": score >= self.drift_threshold,
